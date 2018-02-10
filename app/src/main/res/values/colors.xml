@@ -13,6 +13,11 @@
     <color name="list_bg_color">#FFF4F4F4</color>
     <color name="list_focus_color">#bdbdbd</color>
     <color name="logoScreenBackground">#F7F7F7</color>
+    <color name="colorWhiteGray">#CCCCCC</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#999999</color>
+    <color name="colorMilkWhite">#FAFFF0</color>
 
     <drawable name="checkbox">#666666</drawable>
     <drawable name="camera_back_press">#1b1b1b</drawable>
