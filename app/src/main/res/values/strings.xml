@@ -3,6 +3,6 @@
     <string name="username">Username</string>
     <string name="join">Join Group</string>
     <string name="create">Create Group</string>
-    <string name="list_restaurant">List of Restaurant</string>
+    <string name="list_restaurant">List of Res</string>
     <string name="set">Setting</string>
 </resources>
