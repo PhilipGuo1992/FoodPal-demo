@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Food Pal</string>
     <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="app_login">Login or Create Your New Account</string>
+    <string name="app_forget">Forget Password?</string>
+    <string name="app_create"> Create An Account</string>
 </resources>
