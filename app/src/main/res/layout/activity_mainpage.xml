@@ -36,32 +36,36 @@
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_weight="1"
+                android:background="@color/colorGray"
                 android:text="@string/join"
-                android:background="@color/colorMilkWhite"/>
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
 
             <Button
                 android:id="@+id/btn_create"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_weight="1"
+                android:background="@color/colorMilkWhite"
                 android:text="@string/create"
-                android:background="@color/colorMilkWhite"/>
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
 
             <Button
                 android:id="@+id/btn_list"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_weight="1"
+                android:background="@color/colorMilkWhite"
                 android:text="@string/list_restaurant"
-                android:background="@color/colorMilkWhite"/>
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Info.Media" />
 
             <Button
                 android:id="@+id/btn_set"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_weight="1"
+                android:background="@color/colorMilkWhite"
                 android:text="@string/set"
-                android:background="@color/colorMilkWhite"/>
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Info.Media" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

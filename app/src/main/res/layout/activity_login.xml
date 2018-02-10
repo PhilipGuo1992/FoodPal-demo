@@ -1,66 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/logoScreenBackground">
 
+
+
     <TextView
+        android:id="@+id/app_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/app_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:text="@string/app_name"
+        android:textColor="#000"
+        android:textSize="23sp"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/app_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
-        android:text="@string/app_name"
-        android:textSize="23sp"
+            android:text="@string/app_login"
         android:textColor="#000"
-        android:typeface="monospace"/>
-    
+        android:textSize="23sp"
+        android:typeface="monospace" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_title"
+        android:layout_below="@+id/app_login"
         android:layout_marginTop="40dp"
-        android:background="@drawable/camera_back_default">
-
+        android:id="@+id/app_username"
+        android:background="@drawable/color_login">
         <ImageView
+            android:id="@+id/icon_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Icon_username"
             android:layout_centerVertical="true"
             android:paddingBottom="15dp"
-            android:paddingLeft="30dp"
+            android:paddingLeft="15dp"
             android:paddingTop="15dp"
-            android:src="@mipmap/icon_username"
-            />
-        
+            android:src="@mipmap/icon_username" />
         <View
+            android:id="@+id/view_username"
             android:layout_width="1dip"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/Icon_username"
-            android:id="@+id/view_username"
-            android:background="@color/colorCursor"/>
-
+            android:layout_toRightOf="@id/icon_username"
+            android:background="@color/colorCursor" />
         <EditText
+            android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/et_username"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/view_username"
+            android:background="@null"
+            android:ems="19"
             android:hint="@string/username"
             android:textColorHint="@color/colorCursor"
-            
-
-            />
-
-
+            android:textCursorDrawable="@drawable/color_cursor" />
+        <ImageView
+            android:id="@+id/icon_username_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/icon_clear"
+            android:visibility="invisible" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_username"
+
+        android:id="@+id/app_password"
+        android:background="@drawable/color_login">
+        <ImageView
+            android:id="@+id/icon_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:src="@mipmap/icon_password" />
+        <View
+            android:id="@+id/view_password"
+            android:layout_width="1dip"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/icon_password"
+            android:background="@color/colorCursor" />
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/view_password"
+            android:background="@null"
+            android:ems="19"
+            android:hint="@string/password"
+            android:textColorHint="@color/colorCursor"
+            android:textCursorDrawable="@drawable/color_cursor" />
+        <ImageView
+            android:id="@+id/icon_password_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/icon_clear"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/app_password"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="10dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_forget_create"
+        android:layout_below="@id/btn_login"
+        android:layout_centerHorizontal="true"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_forget"
+            android:id="@+id/app_forget"
+            android:textSize="15sp"/>
+
+        <View
+            android:id="@+id/view_forget"
+            android:layout_width="1dip"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/app_forget"
+            android:background="@color/colorCursor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_create"
+            android:id="@+id/app_create"
+            android:layout_toRightOf="@id/view_forget"
+            android:paddingLeft="10dp"
+            android:textSize="15sp"/>
+    </RelativeLayout>
 
 
 </RelativeLayout>
