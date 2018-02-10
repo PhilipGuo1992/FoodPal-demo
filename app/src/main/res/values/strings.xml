@@ -5,4 +5,5 @@
     <string name="create">Create Group</string>
     <string name="list_restaurant">List of Res</string>
     <string name="set">Setting</string>
+    <string name="search">Search:</string>
 </resources>
