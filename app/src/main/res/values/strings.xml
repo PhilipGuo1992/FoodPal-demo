@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">foodpal demo</string>
+    <string name="app_name">Food Pal</string>
+    <string name="username">Username</string>
 </resources>
