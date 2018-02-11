@@ -19,6 +19,9 @@
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#999999</color>
     <color name="colorMilkWhite">#FAFFF0</color>
+    <color name="spacegrey">#fafafa</color>
+    <color name="spaceblue">#09c6df</color>
+
     <drawable name="checkbox">#666666</drawable>
     <drawable name="camera_back_press">#1b1b1b</drawable>
     <drawable name="camera_back_default">#2f2f2f</drawable>
