@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 //import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private Button btnLogin;
@@ -27,6 +28,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextPassword;
     private TextView createAccount;
     private TextView forgetPassword;
+    private ImageView imageViewUsernameClear;
+    private ImageView imageViewPasswordClear;
 
     private ProgressDialog progressDialog;
 
@@ -49,10 +52,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextEmail = (EditText) findViewById(R.id.et_username);
         editTextPassword = (EditText) findViewById(R.id.et_password);
         forgetPassword = (TextView) findViewById(R.id.app_forget);
+        imageViewUsernameClear = (ImageView) findViewById(R.id.icon_username_clear);
+        imageViewPasswordClear = (ImageView) findViewById(R.id.icon_password_clear);
 
         createAccount.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         forgetPassword.setOnClickListener(this);
+        imageViewUsernameClear.setOnClickListener(this);
+        imageViewPasswordClear.setOnClickListener(this);
+
+        editTextEmail.getOnFocusChangeListener();
+        editTextPassword.getOnFocusChangeListener();
 
         progressDialog = new ProgressDialog(this);
     }
@@ -60,6 +70,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+
+//        if (editTextEmail.getOnFocusChangeListener().onFocusChange();) {
+//            imageViewUsernameClear.setVisibility(View.VISIBLE);}
+//
+//        if (!password.isEmpty()) {
+//            imageViewPasswordClear.setVisibility(View.VISIBLE);
+//
+//        }
 
         //Log.i(TAG, "UserRegister: here ");
         if(TextUtils.isEmpty(email)) {
@@ -106,7 +124,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == btnLogin) {
             userLogin();
         }
+        if (view == imageViewUsernameClear) {
+            editTextEmail.getText().clear();
+        }
 
+        if (view == imageViewPasswordClear) {
+            editTextPassword.getText().clear();
+        }
 
 
     }
