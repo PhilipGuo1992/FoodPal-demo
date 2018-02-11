@@ -1,6 +1,7 @@
 package com.example.phili.foodpaldemo;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,8 +72,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
                         if (task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         } else
                         {
                             Toast.makeText(RegisterActivity.this, "Could not register", Toast.LENGTH_SHORT).show();
@@ -81,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     }
                 });
 
+
     }
     @Override
     public void onClick(View view) {
@@ -88,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             UserRegister();
         }
         if (view == textViewLogin) {
-            //Flip to Login Page
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 }
