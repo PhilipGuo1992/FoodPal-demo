@@ -11,9 +11,6 @@
     <string name="list_restaurant">List of Res</string>
     <string name="set">Setting</string>
     <string name="search">Search:</string>
-<<<<<<< HEAD
-
-=======
     <string name="register">Register</string>
     <string name="register_name">Name</string>
     <string name="required_info">*</string>
@@ -21,5 +18,4 @@
     <string name="user_register">Register</string>
     <string name="user_descript">Self Description</string>
     <string name="user_major">Major:</string>
->>>>>>> develop
 </resources>
