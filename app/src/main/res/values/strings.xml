@@ -21,7 +21,7 @@
     <string name="user_register">Register</string>
     <string name="user_descript">Self Description</string>
     <string name="user_major">Major:</string>
-
+    <string name="user_password">Password</string>
     <string name="register_to_login">Already had an account? Login here</string>
     <string name="forget_psw">Forgot password?</string>
     <string name="psw_guidence">We will need your register Email to send you password.</string>
