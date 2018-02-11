@@ -18,6 +18,9 @@ public class userProfile {
 
     private String selfDescription;
 
+
+
+
     public String getUserName() {
         return userName;
     }
