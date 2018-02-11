@@ -38,12 +38,14 @@
         android:background="@drawable/color_login">
         <ImageView
             android:id="@+id/icon_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="48dp"
             android:layout_centerVertical="true"
+            android:scaleType="fitXY"
             android:paddingBottom="15dp"
             android:paddingLeft="15dp"
             android:paddingTop="15dp"
+
             android:src="@mipmap/icon_username" />
         <View
             android:id="@+id/view_username"
@@ -61,6 +63,7 @@
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/view_username"
             android:background="@null"
+            android:inputType="textEmailAddress"
             android:ems="19"
             android:hint="@string/username"
             android:textColorHint="@color/colorCursor"
@@ -85,9 +88,10 @@
         android:background="@drawable/color_login">
         <ImageView
             android:id="@+id/icon_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="48dp"
             android:layout_centerVertical="true"
+            android:scaleType="fitXY"
             android:paddingBottom="15dp"
             android:paddingLeft="15dp"
             android:paddingTop="15dp"
@@ -109,6 +113,7 @@
             android:layout_toRightOf="@id/view_password"
             android:background="@null"
             android:ems="19"
+            android:inputType="textPassword"
             android:hint="@string/password"
             android:textColorHint="@color/colorCursor"
             android:textCursorDrawable="@drawable/color_cursor" />
