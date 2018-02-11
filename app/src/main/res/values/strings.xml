@@ -6,10 +6,6 @@
     <string name="app_login">Login or Create Your New Account</string>
     <string name="app_forget">Forget Password?</string>
     <string name="app_create"> Create An Account</string>
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
     <string name="join">Join Group</string>
     <string name="create">Create Group</string>
     <string name="list_restaurant">List of Res</string>

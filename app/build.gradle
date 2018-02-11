@@ -26,12 +26,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //Firebase configuration
-<<<<<<< HEAD
     //compile 'com.google.firebase:firebase-core:11.8.0'
-    compile 'com.google.firebase:firebase-auth:9.2.1'
-=======
+    compile 'com.google.firebase:firebase-auth:11.0.4'
     compile 'com.google.firebase:firebase-core:11.0.4'
->>>>>>> develop
 }
 
 //Apply Firebase

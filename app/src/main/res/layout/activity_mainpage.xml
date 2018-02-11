@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:background="@color/colorMilkWhite"
                 android:text="@string/list_restaurant"
-                android:textAppearance="@style/TextAppearance.Compat.Notification.Info.Media" />
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
 
             <Button
                 android:id="@+id/btn_set"
@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:background="@color/colorMilkWhite"
                 android:text="@string/set"
-                android:textAppearance="@style/TextAppearance.Compat.Notification.Info.Media" />
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
         </TableRow>
     </TableLayout>
 </LinearLayout>
