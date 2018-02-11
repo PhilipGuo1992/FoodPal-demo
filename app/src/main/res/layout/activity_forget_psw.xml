@@ -17,9 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textSize="25sp"
         android:text="@string/forget_psw"/>
 
     <TextView
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -38,12 +41,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/reset_psw_btn"
             android:text="Email"/>
 
         <EditText
             android:id="@+id/reset_psw_email"
             android:layout_width="360dp"
+            android:hint="enter your email"
             android:inputType="textEmailAddress"
             android:layout_height="wrap_content" />
     </LinearLayout>
