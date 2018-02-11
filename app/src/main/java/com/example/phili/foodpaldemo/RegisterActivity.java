@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextPassword;
     private TextView textViewLogin;
     private ProgressDialog progressDialog;
-
+    //private String TAG="feature";
     private FirebaseAuth firebaseAuth;
 
 
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextEmail = (EditText) findViewById(R.id.input_email);
         editTextPassword = (EditText) findViewById(R.id.input_password);
         textViewLogin = (TextView) findViewById(R.id.textViewLogin);
-
+        progressDialog = new ProgressDialog(this);
 
         btnRegister.setOnClickListener(this);
         textViewLogin.setOnClickListener(this);
@@ -50,19 +51,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
+        //Log.i(TAG, "UserRegister: here ");
         if(TextUtils.isEmpty(email)) {
             //If email is empty
             Toast.makeText(this, "Please enter your Email", Toast.LENGTH_SHORT).show();
             return;
         }
         if(TextUtils.isEmpty(password)) {
-            //If email is empty
+            //If password is empty
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             return;
         }
 
         progressDialog.setMessage("Redirecting...");
         progressDialog.show();
+
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this,
                 new OnCompleteListener<AuthResult>() {
