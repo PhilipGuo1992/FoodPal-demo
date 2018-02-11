@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_marginTop="100dp"
+        android:id="@+id/create_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/group_name"
+        android:background="@null"/>
+
+
+    <EditText
+        android:id="@+id/create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_name"
+        android:layout_marginTop="35dp"
+        android:hint="@string/time"
+        android:background="@null"/>
+
+    <EditText
+        android:id="@+id/create_res"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/create_time"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="@null"
+        android:hint="@string/restaurant"/>
+
+    <Button
+        android:layout_marginTop="35dp"
+        android:id="@+id/btn_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_res"
+        android:layout_centerHorizontal="true"
+        android:text="@string/create"
+        android:textAppearance="@style/TextAppearance.Compat.Notification.Media"
+        android:background="@color/colorFloatingActionButton"/>
+
+</RelativeLayout>

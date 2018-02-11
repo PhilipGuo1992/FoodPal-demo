@@ -21,5 +21,8 @@
     <string name="user_descript">Self Description</string>
     <string name="user_major">Major:</string>
 
+    <string name="group_name">Group Name:</string>
+    <string name="time">Meal Time:</string>
+    <string name="restaurant">Restaurant:</string>
     <string name="register_to_login">Already had an account? Login here</string>
 </resources>
