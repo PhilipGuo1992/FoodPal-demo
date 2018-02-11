@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FoodPal-demo.iml" filepath="$PROJECT_DIR$/FoodPal-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+<<<<<<< Updated upstream
+=======
+      <module fileurl="file://C:\Users\tanis\AndroidStudioProjects\Project_Foodpal\New folder3\FoodPal-demo\group-6.iml" filepath="C:\Users\tanis\AndroidStudioProjects\Project_Foodpal\New folder3\FoodPal-demo\group-6.iml" />
+>>>>>>> Stashed changes
     </modules>
   </component>
 </project>
