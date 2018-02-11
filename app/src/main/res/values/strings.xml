@@ -1,20 +1,15 @@
 <resources>
     <string name="app_name">Food Pal</string>
     <string name="username">Username</string>
-<<<<<<< HEAD
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="app_login">Login or Create Your New Account</string>
     <string name="app_forget">Forget Password?</string>
     <string name="app_create"> Create An Account</string>
-=======
     <string name="join">Join Group</string>
     <string name="create">Create Group</string>
     <string name="list_restaurant">List of Res</string>
     <string name="set">Setting</string>
-<<<<<<< HEAD
     <string name="search">Search:</string>
-=======
->>>>>>> develop
->>>>>>> develop
+
 </resources>
