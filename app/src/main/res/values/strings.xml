@@ -25,7 +25,7 @@
     <string name="restaurant">Restaurant:</string>
     <string name="register_to_login">Already had an account? Login here</string>
     <string name="forget_psw">Forgot password?</string>
-    <string name="psw_guidence">We will need your register Email to send you password.</string>
+    <string name="psw_guidence">To reset your password, we will need your register Email, to send you password.</string>
     <string name="reset_btn">RESET PASSWORD</string>
     <string name="back_login">&lt;&lt;BACK</string>
 </resources>

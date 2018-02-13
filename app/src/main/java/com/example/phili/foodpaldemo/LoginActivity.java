@@ -117,6 +117,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this, RegisterActivity.class));
         }
 
+        if (view == forgetPassword){
+            startActivity(new Intent(this, ForgetPswActivity.class));
+        }
+
         if (view == btnLogin) {
             userLogin();
         }
