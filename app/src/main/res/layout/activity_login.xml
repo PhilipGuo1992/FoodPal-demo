@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
-            android:text="@string/app_login"
+        android:text="@string/app_login"
         android:textColor="#000"
         android:textSize="23sp"
         android:typeface="monospace" />
