@@ -26,4 +26,5 @@
     <drawable name="camera_back_press">#1b1b1b</drawable>
     <drawable name="camera_back_default">#2f2f2f</drawable>
     <color name="color_required_info">#f70d38</color>
+    <color name="reset_psw_btn">#0bc684</color>
 </resources>

@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-        <EditText
-            android:id="@+id/text_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search"
-            android:textSize="15dp"/>
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditText
+        android:id="@+id/text_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:textSize="15dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="400dp"
+        app:backgroundTint="@color/colorWhite"
+        app:rippleColor="@color/colorGray"
+        app:elevation="10dp"
+        app:pressedTranslationZ="5dp"
+        app:fabSize="mini"
+        android:src="@mipmap/float_list_icon"/>
+
+
 
     <ListView
+        android:layout_above="@+id/table_button"
+        android:layout_below="@+id/text_search"
         android:id="@+id/join_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="100dp"
         android:descendantFocusability="afterDescendants"
         android:divider="@color/colorWhite"
         android:dividerHeight="10dp"
@@ -29,6 +46,8 @@
     </ListView>
 
     <TableLayout
+        android:id="@+id/table_button"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
@@ -44,15 +63,6 @@
                 android:layout_weight="1"
                 android:background="@color/colorGray"
                 android:text="@string/join"
-                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
-
-            <Button
-                android:id="@+id/btn_create"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:layout_weight="1"
-                android:background="@color/colorMilkWhite"
-                android:text="@string/create"
                 android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
 
             <Button
@@ -74,4 +84,4 @@
                 android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
         </TableRow>
     </TableLayout>
-</LinearLayout>
+</RelativeLayout>
