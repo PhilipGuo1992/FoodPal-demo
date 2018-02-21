@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,13 +35,14 @@ public class ForgetPswActivity extends AppCompatActivity {
         input_email = findViewById(R.id.reset_psw_email);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        final String email_address = input_email.getText().toString().trim();
 
         reset_pwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // check if user entered email or not
-                if(email_address.isEmpty()){
+                final String email_address = input_email.getText().toString().trim();
+
+                if(TextUtils.isEmpty(email_address)){
                     Toast.makeText(getApplicationContext(), "Please enter your email!", Toast.LENGTH_SHORT).show();
                     return;
                 }
