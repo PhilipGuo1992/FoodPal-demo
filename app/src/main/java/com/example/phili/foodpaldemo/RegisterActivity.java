@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Created by yiren on 2018-02-10.
+ */
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btnRegister;
