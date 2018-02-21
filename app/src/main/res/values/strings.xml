@@ -27,5 +27,6 @@
     <string name="forget_psw">Forgot password?</string>
     <string name="psw_guidence">To reset your password, we will need your register Email, to send you password.</string>
     <string name="reset_btn">RESET PASSWORD</string>
-    <string name="back_login">&lt;&lt;BACK</string>
+    <string name="from_register_login">Go back</string>
+    <string name="back_login">&lt;&lt;LOGIN</string>
 </resources>

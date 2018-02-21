@@ -21,7 +21,6 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ForgetPswActivity" />
-        <activity android:name=".ProfilePage"></activity>
     </application>
 
 </manifest>
