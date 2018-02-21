@@ -22,17 +22,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ForgetPswActivity" />
-<<<<<<< Updated upstream
-
-        <activity android:name=".HomePageActivity" />
-
-
         <activity android:name=".CreateGroupActivity"></activity>
-
-=======
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".CreateGroupActivity"></activity>
->>>>>>> Stashed changes
     </application>
 
 </manifest>
