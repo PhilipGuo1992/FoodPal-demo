@@ -29,7 +29,7 @@
     <ListView
         android:layout_above="@+id/table_button"
         android:layout_below="@+id/text_search"
-        android:id="@+id/join_list"
+        android:id="@+id/group_list"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:descendantFocusability="afterDescendants"
