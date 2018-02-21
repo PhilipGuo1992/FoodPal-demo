@@ -53,23 +53,10 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Description: "
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/getGroupDescrip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
-            </LinearLayout>
 
             <TextView
-                android:text="Current group members"
+                android:text="Total group members"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

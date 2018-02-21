@@ -3,6 +3,8 @@ package com.example.phili.foodpaldemo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -38,9 +40,6 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
 
-        // get widges
-        groupListView = findViewById(R.id.group_list);
-
 
         // get firebase auth
         database = FirebaseDatabase.getInstance();
@@ -48,6 +47,23 @@ public class HomePageActivity extends AppCompatActivity {
 
         //
         mAuth = FirebaseAuth.getInstance();
+
+
+        // get widges
+        groupListView = findViewById(R.id.group_list);
+        // set click event
+        groupListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // get current clicked group
+                UserGroup currentGroup = groupList.get(i);
+                //  start a new activity and pass data too.
+                // only pass groupID
+
+            }
+        });
+
+
 
 
     }
@@ -82,6 +98,7 @@ public class HomePageActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser){
 
     }
+
     // load the existing groups from firebase;
     private void loadGroups(){
         //

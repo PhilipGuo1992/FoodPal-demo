@@ -56,7 +56,10 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         TextView groupName = groupViewList.findViewById(R.id.getGroupName);
         TextView grouRest = groupViewList.findViewById(R.id.getResName);
         TextView groupMealTime = groupViewList.findViewById(R.id.getMealTime);
-        TextView groupDescp = groupViewList.findViewById(R.id.getGroupDescrip);
+
+        // only show the total group numbers, after user click the group: show members' name.
+        // only show description when user click the group
+        //TextView groupDescp = groupViewList.findViewById(R.id.getGroupDescrip);
 
 
         // get current group
@@ -65,7 +68,8 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         groupName.setText(userGroup.getGroupName());
         grouRest.setText(userGroup.getRestaurantName());
         groupMealTime.setText(userGroup.getMealTime());
-        groupDescp.setText(userGroup.getDescription());
+
+        //groupDescp.setText(userGroup.getDescription());
 
 
         return groupViewList;
