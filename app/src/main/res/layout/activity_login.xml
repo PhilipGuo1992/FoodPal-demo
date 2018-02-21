@@ -36,16 +36,18 @@
         android:layout_marginTop="40dp"
         android:id="@+id/app_username"
         android:background="@drawable/color_login">
+
         <ImageView
             android:id="@+id/icon_username"
             android:layout_width="36dp"
             android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            android:scaleType="fitXY"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:paddingBottom="15dp"
             android:paddingLeft="15dp"
-            android:paddingTop="15dp"
 
+            android:paddingTop="15dp"
+            android:scaleType="fitXY"
             android:src="@mipmap/icon_username" />
         <View
             android:id="@+id/view_username"

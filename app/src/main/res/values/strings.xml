@@ -8,8 +8,9 @@
     <string name="app_create"> Create An Account</string>
     <string name="join">Join Group</string>
     <string name="create">Create Group</string>
+    <string name="joined">Your Group</string>
     <string name="list_restaurant">List of Res</string>
-    <string name="set">Setting</string>
+    <string name="profile">Profile</string>
     <string name="search">Search:</string>
     <string name="register">Register</string>
     <string name="register_name">Name</string>
@@ -26,6 +27,8 @@
     <string name="register_to_login">Already had an account? Login here</string>
     <string name="forget_psw">Forgot password?</string>
     <string name="psw_guidence">To reset your password, we will need your register Email, to send you password.</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="choose_time">Choose Time</string>
     <string name="reset_btn">RESET PASSWORD</string>
     <string name="from_register_login">Go back</string>
     <string name="back_login">&lt;&lt;LOGIN</string>
