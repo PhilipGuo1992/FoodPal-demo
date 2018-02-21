@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +35,8 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private EditText editTextTime;
     private EditText editTextRestaurant;
 
+    private TextView textViewEmail;
+
     private Button btnCreate;
 
     //Dialog for redirecting
@@ -44,6 +49,8 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_creat_group);
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -63,8 +70,11 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         editTextgName = findViewById(R.id.create_name);
         editTextTime = findViewById(R.id.create_time);
         editTextRestaurant = findViewById(R.id.create_res);
+        textViewEmail = findViewById(R.id.textViewEmail);
 
         btnCreate = findViewById(R.id.btn_create);
+
+        textViewEmail.setText("Welcome" + user.getEmail());
 
         btnCreate.setOnClickListener(this);
     }
@@ -74,7 +84,13 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         String mealTime = editTextTime.getText().toString().trim();
         String restaurantName = editTextRestaurant.getText().toString().trim();
 
-        
+        UserGroup userGroup = new UserGroup(groupName,mealTime,restaurantName);
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        databaseReference.child(user.getUid()).setValue(userGroup);
+
+        Toast.makeText(this, "Group created.", Toast.LENGTH_LONG).show();
 
 
     }

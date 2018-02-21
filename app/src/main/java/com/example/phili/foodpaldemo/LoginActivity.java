@@ -104,7 +104,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
                     finish();
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    //Keep this line
+                    //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    //Test for creating a group
+                    startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Your username or password is incorrect!", Toast.LENGTH_SHORT).show();
