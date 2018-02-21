@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/gradbackground"
     >
-   
+
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,10 +28,9 @@
                 android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/photo"
-                app:sriv_border_color="#FFCC00"
-                app:sriv_border_width="2dp"
-                app:sriv_oval="true" />
+
+
+               />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
