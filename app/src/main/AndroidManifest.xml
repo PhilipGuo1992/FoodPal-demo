@@ -25,7 +25,7 @@
 
         <activity android:name=".HomePageActivity" />
 
-       
+
         <activity android:name=".CreateGroupActivity"></activity>
 
     </application>
