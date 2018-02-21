@@ -1,11 +1,14 @@
 package com.example.phili.foodpaldemo.models;
 
+import java.util.Set;
+
 /**
  * Created by phili on 2018-02-21.
  */
 
 public class User {
 
+    private String userID;
     private String userName;
     private String userEmailAddress;
 
@@ -15,14 +18,14 @@ public class User {
     private String userAddress;
     private String selfDescription;
 
+    // one user can join many groups.
+    private Set<UserGroup> joinedGroups;
 
     // default constructor
     public User(){
 
     }
-    //
-
-
+    // constructor to generate new user.
     public User(String userName, String userEmailAddress, String userMajor, String userSex, String userAddress, String selfDescription) {
         this.userName = userName;
         this.userEmailAddress = userEmailAddress;
