@@ -24,18 +24,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ForgetPswActivity" />
-<<<<<<< HEAD
         <activity android:name=".CreateGroupActivity"></activity>
         <activity android:name=".HomePageActivity" />
-=======
-
-
-        <activity android:name=".HomePageActivity" />
-
-
-        <activity android:name=".CreateGroupActivity"></activity>
-
->>>>>>> develop
     </application>
 
 </manifest>
