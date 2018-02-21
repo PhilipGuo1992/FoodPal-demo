@@ -52,7 +52,7 @@ public class ForgetPswActivity extends AppCompatActivity {
                            @Override
                            public void onComplete(@NonNull Task<Void> task) {
                                if(task.isSuccessful()){
-                                   Toast.makeText(ForgetPswActivity.this, "check your email to reset password.",
+                                   Toast.makeText(ForgetPswActivity.this, "Check your email to reset password.",
                                            Toast.LENGTH_SHORT).show();
                                } else {
                                    Toast.makeText(ForgetPswActivity.this, "Fail to send the " +
