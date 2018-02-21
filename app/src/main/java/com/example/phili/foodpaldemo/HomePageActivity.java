@@ -5,8 +5,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by phili on 2018-02-21.
@@ -14,10 +23,15 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class HomePageActivity extends AppCompatActivity {
 
-    private ListView groupList;
+    private ListView groupListView;
 
     // firebase
     private FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+
+    List<UserGroup> groupList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +39,16 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mainpage);
 
         // get widges
-        groupList = findViewById(R.id.group_list);
-
+        groupListView = findViewById(R.id.group_list);
 
 
         // get firebase auth
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("groups");
+
+        //
         mAuth = FirebaseAuth.getInstance();
+
 
     }
 
@@ -47,7 +65,7 @@ public class HomePageActivity extends AppCompatActivity {
 
             // get the current user information if user logined
             // the current group user has joined?
-            //
+            loadGroups();
 
 
         } else {
@@ -62,6 +80,37 @@ public class HomePageActivity extends AppCompatActivity {
 
     // update the UI when user login in
     private void updateUI(FirebaseUser currentUser){
+
+    }
+    // load the existing groups from firebase;
+    private void loadGroups(){
+        //
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // read from firebase
+                groupList.clear();
+
+                for(DataSnapshot userGroupSnap : dataSnapshot.getChildren()){
+
+                    UserGroup userGroup = userGroupSnap.getValue(UserGroup.class);
+                    // add to list
+                    groupList.add(userGroup);
+                }
+
+                // add listview adapter
+                GroupListAdapter groupListAdapter = new GroupListAdapter(HomePageActivity.this, groupList);
+                // set adapter to listview
+                groupListView.setAdapter(groupListAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 }
