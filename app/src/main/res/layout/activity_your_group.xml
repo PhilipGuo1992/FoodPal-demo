@@ -9,27 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/search"
-        android:textSize="15dp"
-        android:background="@color/colorWhite"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginStart="340dp"
-        app:backgroundTint="@color/colorWhite"
-        app:elevation="10dp"
-        app:fabSize="mini"
-        app:pressedTranslationZ="5dp"
-        app:rippleColor="@color/colorGray"
-        android:background="@mipmap/float_list_icon"/>
-
-
+        android:textSize="15dp"/>
 
     <ListView
         android:layout_above="@+id/table_button"
         android:layout_below="@+id/text_search"
-        android:id="@+id/group_list"
+        android:id="@+id/join_list"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:descendantFocusability="afterDescendants"
@@ -61,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_weight="1"
-                android:background="@color/colorGray"
+                android:background="@color/colorMilkWhite"
                 android:text="@string/join"
                 android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
             <Button
@@ -70,7 +55,7 @@
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:textAppearance="@style/TextAppearance.Compat.Notification.Media"
-                android:background="@color/colorMilkWhite"
+                android:background="@color/colorGray"
                 android:text="@string/joined"/>
 
             <Button

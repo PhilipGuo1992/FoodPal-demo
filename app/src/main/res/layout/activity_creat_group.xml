@@ -4,23 +4,69 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="25dp"
+
+        android:textSize="50sp"
+        />
+
+
+    <TextView
+        android:id="@+id/group_name"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/create_name"
+        android:text="@string/group_name"
+        android:textSize="20dp" />
 
     <EditText
         android:layout_marginTop="100dp"
+        android:layout_marginLeft="137dp"
         android:id="@+id/create_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@null" />
 
+    <TextView
+        android:id="@+id/meal_time"
+        android:layout_below="@+id/group_name"
+        android:layout_width="108dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
+        android:text="@string/time"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_name"
+        android:layout_marginTop="35dp"
+        android:background="@null"/>
+
+
+    <TextView
+        android:id="@+id/restaurant"
+        android:layout_width="108dp"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant"
+        android:layout_below="@+id/meal_time"
+        android:textSize="20dp"
+        android:layout_marginTop="35dp"/>
 
     <EditText
         android:id="@+id/create_res"
         android:layout_width="wrap_content"
+        android:layout_below="@+id/meal_time"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:background="@null"
+        android:layout_marginLeft="110dp"/>
 
     <Button
         android:layout_marginTop="35dp"
@@ -33,7 +79,47 @@
         android:textAppearance="@style/TextAppearance.Compat.Notification.Media"
         android:background="@color/colorFloatingActionButton"/>
 
+    <Button
+        android:id="@+id/choose_date"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/meal_time"
+        android:layout_alignBottom="@+id/meal_time"
+        android:layout_toEndOf="@+id/create_res"
+        android:text="@string/choose_date"
+        android:textAppearance="@style/TextAppearance.Compat.Notification.Media"/>
 
+    <Button
+        android:id="@+id/choose_time"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/choose_date"
+        android:layout_toEndOf="@+id/choose_date"
+        android:text="@string/choose_time"
+        android:textAppearance="@style/TextAppearance.Compat.Notification.Media"/>
+
+    <TimePicker
+        android:timePickerMode="spinner"
+        android:id="@+id/time_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+    </TimePicker>
+
+    <DatePicker
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+    </DatePicker>
 
 
 </RelativeLayout>
