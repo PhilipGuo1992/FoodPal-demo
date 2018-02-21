@@ -20,6 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 //import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * Created by yiren on 2018-02-10.
+ */
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
 
