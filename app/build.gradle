@@ -36,6 +36,7 @@ dependencies {
     //compile 'com.google.firebase:firebase-core:11.8.0'
     // float button
     compile "com.android.support:design:26.1.0"
+    compile 'com.joooonho:selectableroundedimageview:1.0.1'
 
 }
 
