@@ -31,7 +31,7 @@
                     android:layout_height="match_parent"></FrameLayout>
 
                 <ImageButton
-                    android:id="@+id/userphoto"
+                    android:id="@+id/profile_picture"
                     android:layout_width="80dp"
                     android:layout_height="90dp"
                     android:layout_gravity="center"
@@ -52,29 +52,21 @@
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:text="Edit" />
+                    android:text="@string/edit_profile" />
 
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:text="Settings" />
+                    android:text="@string/settings" />
             </RelativeLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:text="Personal Profile"
-                android:textColor="@color/colorBlack" />
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Name"
+                android:hint="@string/register_name"
                 android:inputType="text"
                 android:textColor="@color/colorBlack" />
 
@@ -82,81 +74,79 @@
                 android:id="@+id/major"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Major"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/Address"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Address"
+                android:hint="@string/user_major"
                 android:inputType="text" />
 
             <EditText
                 android:id="@+id/StudentMail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Email"
+                android:hint="@string/user_email"
                 android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/Gender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Gender"
+                android:hint="@string/user_gender"
                 android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/Age"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Age"
+                android:hint="@string/user_age"
                 android:inputType="number" />
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/btn_join"
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_weight="1"
-                    android:text="@string/join"
-                    android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
-
-                <Button
-                    android:id="@+id/btn_joined"
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_weight="1"
-                    android:text="@string/joined"
-                    android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
-
-                <Button
-                    android:id="@+id/btn_list"
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_weight="1"
-                    android:text="@string/list_restaurant"
-                    android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
-
-                <Button
-                    android:id="@+id/btn_set"
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorGray"
-                    android:text="@string/profile"
-                    android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
-            </TableRow>
 
         </LinearLayout>
 
-
     </ScrollView>
 
+    <TableLayout
+        android:id="@+id/table_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:text="@string/join"
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
+
+            <Button
+                android:id="@+id/btn_joined"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:text="@string/joined"
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
+
+            <Button
+                android:id="@+id/btn_list"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:text="@string/list_restaurant"
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
+
+            <Button
+                android:id="@+id/btn_set"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@color/colorGray"
+                android:text="@string/profile"
+                android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>
 
