@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.phili.foodpaldemo.ProfileActivity"
-
-    >
+    tools:context="com.example.phili.foodpaldemo.ProfileActivity">
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,10 +15,8 @@
         android:orientation="vertical">
 
         <LinearLayout
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,12 +40,27 @@
                     android:scaleType="centerCrop" />
             </FrameLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginLeft="300dp"
-                android:onClick="setProfilePhoto"
-                android:text="Edit" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Edit" />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Settings" />
+            </RelativeLayout>
 
 
             <TextView
@@ -80,9 +91,6 @@
                 android:layout_height="match_parent"
                 android:hint="Address"
                 android:inputType="text" />
-
-
-            />
 
             <EditText
                 android:id="@+id/StudentMail"
