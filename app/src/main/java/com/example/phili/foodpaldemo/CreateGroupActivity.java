@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,8 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
+    private FirebaseDatabase firebaseDatabase;
+
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
-
+        firebaseDatabase = FirebaseDatabase.getInstance();
         //If user is not logged on
         if (firebaseAuth.getCurrentUser() == null){
             //Finish the activity
@@ -63,7 +66,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         }
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = firebaseDatabase.getReference("groups");
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
@@ -84,13 +87,23 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         String mealTime = editTextTime.getText().toString().trim();
         String restaurantName = editTextRestaurant.getText().toString().trim();
 
-        UserGroup userGroup = new UserGroup(groupName,mealTime,restaurantName);
+        if (!TextUtils.isEmpty(groupName)) {
+            String gId = databaseReference.push().getKey();
+            UserGroup userGroup = new UserGroup(gId,groupName,mealTime,restaurantName);
+            databaseReference.child(gId).setValue(userGroup);
+            Toast.makeText(this, "Group created.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+        }
+
+
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.child(user.getUid()).setValue(userGroup);
+        //databaseReference.child(user.getUid()).setValue(userGroup);
 
-        Toast.makeText(this, "Group created.", Toast.LENGTH_LONG).show();
+       // databaseReference.setValue("hello!");
+
 
 
     }

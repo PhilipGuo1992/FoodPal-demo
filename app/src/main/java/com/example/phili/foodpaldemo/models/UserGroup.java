@@ -1,7 +1,7 @@
 package com.example.phili.foodpaldemo.models;
 
 import java.util.Map;
-import java.util.Set;
+
 
 /**
  * Created by phili on 2018-02-21.
@@ -26,21 +26,14 @@ public class UserGroup {
 
     }
 
-//    public UserGroup(String groupID, String groupName, String mealTime, String restaurantName, String description) {
-//        this.groupID = groupID;
-//        this.groupName = groupName;
-//        this.mealTime = mealTime;
-//        this.restaurantName = restaurantName;
-//        this.description = description;
-//    }
-    //Test only
-    public UserGroup(String groupName, String mealTime, String restaurantName) {
-        //this.groupID = groupID;
+    public UserGroup(String groupID, String groupName, String mealTime, String restaurantName) {
+        this.groupID = groupID;
         this.groupName = groupName;
         this.mealTime = mealTime;
         this.restaurantName = restaurantName;
         //this.description = description;
     }
+
 
     public String getGroupID() {
         return groupID;
@@ -48,6 +41,14 @@ public class UserGroup {
 
     public void setGroupID(String groupID) {
         this.groupID = groupID;
+    }
+
+    public Map<String, Boolean> getCurrentMembers() {
+        return currentMembers;
+    }
+
+    public void setCurrentMembers(Map<String, Boolean> currentMembers) {
+        this.currentMembers = currentMembers;
     }
 
     public String getGroupName() {
@@ -82,11 +83,5 @@ public class UserGroup {
         this.description = description;
     }
 
-    public Map<String, Boolean> getCurrentMembers() {
-        return currentMembers;
     }
 
-    public void setCurrentMembers(Map<String, Boolean> currentMembers) {
-        this.currentMembers = currentMembers;
-    }
-}
