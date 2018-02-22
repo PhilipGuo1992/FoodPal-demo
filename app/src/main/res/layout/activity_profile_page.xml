@@ -4,55 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.phili.foodpaldemo.ProfileActivity"
     android:orientation="vertical"
+    tools:context="com.example.phili.foodpaldemo.ProfileActivity"
 
     >
-
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        
+        android:orientation="vertical">
+
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
             android:orientation="vertical">
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ProfileActivity"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/camera_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ProfileActivity">
 
-            <ImageButton
-                android:id="@+id/userphoto"
-                android:layout_width="80dp"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
-                android:background="@drawable/profile"
-                android:scaleType="centerCrop"
-                android:padding="20dp"
-                />
-</FrameLayout>
+                <FrameLayout
+                    android:id="@+id/camera_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></FrameLayout>
+
+                <ImageButton
+                    android:id="@+id/userphoto"
+                    android:layout_width="80dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/profile"
+                    android:padding="20dp"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginLeft="300dp"
-                android:text="Edit"
-                android:onClick="setProfilePhoto"/>
+                android:onClick="setProfilePhoto"
+                android:text="Edit" />
 
 
             <TextView
@@ -60,49 +57,53 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:text="Personal Profile"
-                android:textColor="@color/colorBlack"
-                />
+                android:textColor="@color/colorBlack" />
+
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:hint="Name"
                 android:inputType="text"
-                android:textColor="@color/colorBlack"
-                android:hint="Name"/>
+                android:textColor="@color/colorBlack" />
+
             <EditText
                 android:id="@+id/major"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
-                android:hint="Major"/>
+                android:hint="Major"
+                android:inputType="text" />
+
             <EditText
                 android:id="@+id/Address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="text"
-                android:hint="Address"/>
+                android:hint="Address"
+                android:inputType="text" />
 
 
-                />
+            />
+
             <EditText
                 android:id="@+id/StudentMail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
-                android:hint="Email"/>
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
             <EditText
                 android:id="@+id/Gender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textEmailAddress"
-                android:hint="Gender"/>
+                android:hint="Gender"
+                android:inputType="textEmailAddress" />
+
             <EditText
                 android:id="@+id/Age"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"
-                android:hint="Age"/>
-
+                android:hint="Age"
+                android:inputType="number" />
 
 
             <TableRow
@@ -119,11 +120,11 @@
 
                 <Button
                     android:id="@+id/btn_joined"
-                    android:layout_weight="1"
-                    android:layout_height="70dp"
                     android:layout_width="0dp"
-                    android:textAppearance="@style/TextAppearance.Compat.Notification.Media"
-                    android:text="@string/joined"/>
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:text="@string/joined"
+                    android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
 
                 <Button
                     android:id="@+id/btn_list"
@@ -138,8 +139,8 @@
                     android:layout_width="0dp"
                     android:layout_height="70dp"
                     android:layout_weight="1"
-                    android:text="@string/profile"
                     android:background="@color/colorGray"
+                    android:text="@string/profile"
                     android:textAppearance="@style/TextAppearance.Compat.Notification.Media" />
             </TableRow>
 
