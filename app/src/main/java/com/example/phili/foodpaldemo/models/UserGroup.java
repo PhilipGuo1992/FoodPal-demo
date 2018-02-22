@@ -1,5 +1,6 @@
 package com.example.phili.foodpaldemo.models;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -16,9 +17,9 @@ public class UserGroup {
     private String description;
 
 
+    // current members in the group
+    private Map<String, Boolean> currentMembers;
 
-    // one group can have many users
-    private Set<User> currentUsers;
 
     // default constructor
     public UserGroup(){
@@ -81,11 +82,11 @@ public class UserGroup {
         this.description = description;
     }
 
-    public Set<User> getCurrentUsers() {
-        return currentUsers;
+    public Map<String, Boolean> getCurrentMembers() {
+        return currentMembers;
     }
 
-    public void setCurrentUsers(Set<User> currentUsers) {
-        this.currentUsers = currentUsers;
+    public void setCurrentMembers(Map<String, Boolean> currentMembers) {
+        this.currentMembers = currentMembers;
     }
 }
