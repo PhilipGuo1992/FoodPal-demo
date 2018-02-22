@@ -1,11 +1,15 @@
 package com.example.phili.foodpaldemo.models;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by phili on 2018-02-21.
  */
 
 public class User {
 
+    private String userID;
     private String userName;
     private String userEmailAddress;
 
@@ -15,6 +19,8 @@ public class User {
     private String userAddress;
     private String selfDescription;
 
+    // groups: user belongs to
+    private Map<String, Boolean> joinedGroups;
 
     // default constructor
     public User(){
@@ -30,6 +36,22 @@ public class User {
         this.userGender = userSex;
         this.userAddress = userAddress;
         this.selfDescription = selfDescription;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public Map<String, Boolean> getJoinedGroups() {
+        return joinedGroups;
+    }
+
+    public void setJoinedGroups(Map<String, Boolean> joinedGroups) {
+        this.joinedGroups = joinedGroups;
     }
 
     public String getUserName() {
