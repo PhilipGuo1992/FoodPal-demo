@@ -99,15 +99,13 @@
         android:textAppearance="@style/TextAppearance.Compat.Notification.Media"/>
 
     <TimePicker
-        android:timePickerMode="spinner"
         android:id="@+id/time_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dip"
-        android:layout_gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/textViewEmail"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
-    </TimePicker>
+        android:layout_gravity="center"
+        android:timePickerMode="spinner"></TimePicker>
 
     <DatePicker
         android:datePickerMode="spinner"

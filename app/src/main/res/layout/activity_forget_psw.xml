@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
-        android:text="@string/psw_guidence"/>
+        android:text="@string/psw_guidance"/>
 
 
     <LinearLayout
