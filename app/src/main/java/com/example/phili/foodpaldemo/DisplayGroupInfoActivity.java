@@ -57,6 +57,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         super.onStart();
 
         // read data from database
+        // this require active listen
         mDatabaseGroups.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,17 +87,20 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
             Set<String> membersID = members.keySet();
             // query firebase based on members id
             // for each user id , get the related username
-            List<String> userNames = new ArrayList<>();
+            final List<String> userNames = new ArrayList<>();
 
             for (String userID : membersID) {
                 // this does not require active listen
-                
-                mDatabaseUsers.child(userID).addValueEventListener(new ValueEventListener() {
+                // use listen once
+                mDatabaseUsers.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        // get user
                         User currentUser = dataSnapshot.getValue(User.class);
-                        String userName = currentUser.getUserName();
+                        String currentUserName = currentUser.getUserName();
 
+                        // add username to list
+                        userNames.add(currentUserName);
                     }
 
                     @Override
@@ -105,8 +109,11 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
                     }
                 });
 
-
             }
+            // finish adding username
+            // update all members name
+            
+
 
 
         }
