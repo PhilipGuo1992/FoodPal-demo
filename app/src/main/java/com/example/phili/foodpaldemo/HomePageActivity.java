@@ -57,8 +57,9 @@ public class HomePageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // get current clicked group
                 UserGroup currentGroup = groupList.get(i);
-                //  start a new activity and pass data too.
+                //  start a new activity and pass data: the group id .
                 // only pass groupID
+
 
             }
         });
