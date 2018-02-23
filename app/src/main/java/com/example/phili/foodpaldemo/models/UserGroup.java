@@ -9,6 +9,9 @@ import java.util.Map;
 
 public class UserGroup {
 
+    // the group creater: user ID.
+    private String groupCreater;
+
     private String groupID;
     private String groupName;
     private String mealTime;
