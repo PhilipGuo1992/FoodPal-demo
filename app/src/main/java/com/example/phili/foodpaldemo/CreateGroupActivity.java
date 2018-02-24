@@ -104,17 +104,6 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         } else {
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
-
-
-
-
-
-        //databaseReference.child(user.getUid()).setValue(userGroup);
-
-       // databaseReference.setValue("hello!");
-
-
-
     }
 
 

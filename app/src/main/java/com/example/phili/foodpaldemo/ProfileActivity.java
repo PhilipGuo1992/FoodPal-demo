@@ -32,18 +32,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        //setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
 
-        imageButton = findViewById(R.id.profile_picture);
-        edit = findViewById(R.id.edit_button);
-        settings = findViewById(R.id.settings_button);
-        username = findViewById(R.id.username);
-        major = findViewById(R.id.major);
-        email = findViewById(R.id.email);
-        gender = findViewById(R.id.gender);
-        age = findViewById(R.id.age);
+//        imageButton = findViewById(R.id.profile_picture);
+//        edit = findViewById(R.id.edit_button);
+//        settings = findViewById(R.id.settings_button);
+//        username = findViewById(R.id.username);
+//        major = findViewById(R.id.major);
+//        email = findViewById(R.id.email);
+//        gender = findViewById(R.id.gender);
+//        age = findViewById(R.id.age);
         
     }
 
