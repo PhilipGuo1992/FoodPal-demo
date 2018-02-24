@@ -103,6 +103,7 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/click_join_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
@@ -111,6 +112,7 @@
 
 
         <Button
+            android:id="@+id/click_leave_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
