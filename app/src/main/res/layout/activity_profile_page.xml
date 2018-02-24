@@ -1,115 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.phili.foodpaldemo.ProfileActivity">
+    tools:context="com.example.phili.foodpaldemo.ProfileActivity"
+    android:background="@color/graylight">
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="340dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="false"
+            android:layout_centerHorizontal="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+
+                android:id="@+id/cardview1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/display1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="Display"
+                    android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/displaynum1"
+
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:paddingLeft="25dp"
+                        android:text="100"
+                        android:textColor="@color/startblue"
+                        android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/cardview2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/display2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="Display2"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/displaynum2"
+
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:paddingLeft="25dp"
+                    android:text="50"
+                    android:textColor="@color/startblue"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/cardview3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/display3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Display3"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/displaynum3"
+
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:paddingLeft="25dp"
+                        android:text="100"
+                        android:textColor="@color/startblue"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="290dp"
+            android:background="@drawable/gradientbackground"
             android:orientation="vertical">
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".ProfileActivity">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/MaskGroup1" />
 
-                <FrameLayout
-                    android:id="@+id/camera_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"></FrameLayout>
-
-                <ImageButton
-                    android:id="@+id/profile_picture"
-                    android:layout_width="80dp"
-                    android:layout_height="90dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/profile"
-                    android:padding="20dp"
-                    android:scaleType="centerCrop" />
-            </FrameLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/edit_button"
-                    android:layout_width="60dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/edit_profile" />
-
-                <Button
-                    android:id="@+id/settings_button"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/settings" />
-            </RelativeLayout>
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/register_name"
-                android:inputType="text"
-                android:textColor="@color/colorBlack" />
-
-            <EditText
-                android:id="@+id/major"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/user_major"
-                android:inputType="text" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/user_email"
-                android:inputType="textEmailAddress" />
-
-            <EditText
-                android:id="@+id/gender"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/user_gender"
-                android:inputType="textEmailAddress" />
-
-            <EditText
-                android:id="@+id/age"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/user_age"
-                android:inputType="number" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Yi Ren"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
 
     <TableLayout
         android:id="@+id/table_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom">
+        android:layout_alignParentBottom="true">
 
         <TableRow
             android:layout_width="match_parent"
@@ -150,7 +188,7 @@
         </TableRow>
     </TableLayout>
 
-</RelativeLayout>
+</LinearLayout>
 
 
 
