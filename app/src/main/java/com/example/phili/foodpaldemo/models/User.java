@@ -2,7 +2,6 @@ package com.example.phili.foodpaldemo.models;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by phili on 2018-02-21.
@@ -17,7 +16,6 @@ public class User {
     // user major : like CS, math, ..
     private String userMajor;
     private String userGender;
-    private String userAddress;
     private String selfDescription;
 
     // groups: user belongs to
@@ -41,7 +39,6 @@ public class User {
         this.userEmailAddress = userEmailAddress;
         this.userMajor = userMajor;
         this.userGender = userGender;
-        this.userAddress = userAddress;
         this.selfDescription = selfDescription;
     }
 
@@ -91,14 +88,6 @@ public class User {
 
     public void setUserGender(String userGender) {
         this.userGender = userGender;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
     }
 
     public String getSelfDescription() {

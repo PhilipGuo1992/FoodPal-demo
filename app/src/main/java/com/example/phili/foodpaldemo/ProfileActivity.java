@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,14 +18,17 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton imageButton;
+    private ImageView imageViewedit;
+    private ImageView imageViewphoto;
     private Button edit;
     private Button settings;
     private EditText username;
     private EditText major;
     private EditText email;
     private EditText gender;
-    private EditText age;
+    //private EditText age;
+    private EditText birthday;
+    private EditText about;
 
     // firebase
     private FirebaseAuth mAuth;
@@ -32,19 +36,24 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_profile_page);
 
         mAuth = FirebaseAuth.getInstance();
 
-//        imageButton = findViewById(R.id.profile_picture);
-//        edit = findViewById(R.id.edit_button);
-//        settings = findViewById(R.id.settings_button);
-//        username = findViewById(R.id.username);
-//        major = findViewById(R.id.major);
-//        email = findViewById(R.id.email);
-//        gender = findViewById(R.id.gender);
-//        age = findViewById(R.id.age);
-        
+        imageViewedit = findViewById(R.id.editprofile);
+        imageViewphoto = findViewById(R.id.editphoto);
+        username = findViewById(R.id.profileName);
+        email = findViewById(R.id.email);
+        gender = findViewById(R.id.gender);
+        birthday = findViewById(R.id.birthday);
+        major = findViewById(R.id.major);
+        about = findViewById(R.id.selfdes);
+
+
+
+
+
+
     }
 
     @Override

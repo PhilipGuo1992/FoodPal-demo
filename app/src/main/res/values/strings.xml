@@ -18,7 +18,8 @@
     <string name="user_age">Age:</string>
     <string name="user_password">Password</string>
     <string name="required_info">*</string>
-    <string name="user_email">E-mail</string>
+    <string name="user_email">E-mail:</string>
+    <string name="user_bod">Birthday:</string>
     <string name="user_register">Register</string>
     <string name="user_description">Self Description</string>
     <string name="user_major">Major:</string>
