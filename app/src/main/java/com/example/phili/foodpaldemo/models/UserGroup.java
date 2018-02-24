@@ -10,7 +10,7 @@ import java.util.Map;
 public class UserGroup {
 
     // the group creater: user ID.
-    private String groupCreater;
+    private String groupCreaterID;
 
     private String groupID;
     private String groupName;
@@ -29,12 +29,17 @@ public class UserGroup {
 
     }
 
-    public UserGroup(String groupID, String groupName, String mealTime, String restaurantName) {
+    public UserGroup(String groupID, String groupCreaterID , String groupName,
+                     String mealTime, String restaurantName, String description , Map<String, Boolean> currentMembers ) {
         this.groupID = groupID;
+        this.groupCreaterID = groupCreaterID;
         this.groupName = groupName;
         this.mealTime = mealTime;
         this.restaurantName = restaurantName;
-        //this.description = description;
+        this.description = description;
+
+        this.currentMembers = currentMembers;
+
     }
 
 
