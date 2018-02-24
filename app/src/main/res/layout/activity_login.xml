@@ -57,6 +57,7 @@
             android:paddingRight="20dp"
             android:paddingTop="15dp"
             android:textColorHint="@color/colorCursor"
+            android:textCursorDrawable="@drawable/color_cursor"
             />
 
         <ImageView
