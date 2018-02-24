@@ -23,6 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -86,19 +88,26 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         String groupName = editTextgName.getText().toString().trim();
         String mealTime = editTextTime.getText().toString().trim();
         String restaurantName = editTextRestaurant.getText().toString().trim();
+        //String description =
 
         if (!TextUtils.isEmpty(groupName)) {
             String gId = databaseReference.push().getKey();
-            UserGroup userGroup = new UserGroup(gId,groupName,mealTime,restaurantName);
+            //Construct a map to manage users and groups
+            Map<String, Boolean> members = new HashMap<>();
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            String uId = user.getUid();
+            //Put user to the current group
+            members.put(uId,true);
+            UserGroup userGroup = new UserGroup(gId,uId,groupName,mealTime,restaurantName,members);
             databaseReference.child(gId).setValue(userGroup);
-            Toast.makeText(this, "Group created.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, members.toString(), Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
 
 
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+
 
         //databaseReference.child(user.getUid()).setValue(userGroup);
 
