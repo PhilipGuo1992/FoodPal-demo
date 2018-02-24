@@ -112,7 +112,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
             }
             // finish adding username
             // update all members name
-            
+
 
 
 
