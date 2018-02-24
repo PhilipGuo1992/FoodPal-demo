@@ -1,5 +1,6 @@
 package com.example.phili.foodpaldemo.models;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,7 +21,10 @@ public class User {
     private String selfDescription;
 
     // groups: user belongs to
-    private Map<String, Boolean> joinedGroups;
+    private Map<String, Boolean> joinedGroups = new HashMap<>();
+
+
+
 
     // default constructor
     public User(){
@@ -29,11 +33,14 @@ public class User {
     //
 
 
-    public User(String userName, String userEmailAddress, String userMajor, String userSex, String userAddress, String selfDescription) {
+    public User(String userID, String userName, String userEmailAddress, String userMajor, String userGender,
+                String userAddress, String selfDescription) {
+        this.userID = userID;
+
         this.userName = userName;
         this.userEmailAddress = userEmailAddress;
         this.userMajor = userMajor;
-        this.userGender = userSex;
+        this.userGender = userGender;
         this.userAddress = userAddress;
         this.selfDescription = selfDescription;
     }
