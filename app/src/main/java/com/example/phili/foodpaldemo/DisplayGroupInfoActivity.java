@@ -3,10 +3,15 @@ package com.example.phili.foodpaldemo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,12 +27,19 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
     // group id
     String groupID;
-    private DatabaseReference mDatabaseGroups;
+    private DatabaseReference mDatabaseGroup;
     private DatabaseReference mDatabaseUsers;
     //
     private TextView groupName, mealTime, restaurantName, description, memberNames;
+    private Button joinGroup, leaveGroup;
 
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser currentUser;
+    private String userID;
+    // group-members
+    Map<String, Boolean> members;
+    // user-groups
+    Map<String, Boolean> userGroups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,10 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         restaurantName = findViewById(R.id.display_rest_name);
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
+        // get buttons
+        joinGroup = findViewById(R.id.click_join_group);
+        leaveGroup = findViewById(R.id.click_leave_group);
+
 
 
         // get group id from intent
@@ -47,8 +63,9 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         groupID = intent.getStringExtra(HomePageActivity.GROUP_ID);
         // query firebase using group id
         // get firebase
-        mDatabaseGroups = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
+        mDatabaseGroup = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
+
 
     }
 
@@ -58,7 +75,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
         // read data from database
         // this require active listen
-        mDatabaseGroups.addValueEventListener(new ValueEventListener() {
+        mDatabaseGroup.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // convert to java object
@@ -72,6 +89,32 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
             }
         });
+
+        //
+        // get current user
+        currentUser = firebaseAuth.getCurrentUser();
+        if(currentUser != null && members != null){
+
+            userID = currentUser.getUid();
+
+            joinGroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //join the group
+                    userJoinGroup(view);
+                }
+            });
+            leaveGroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // leave  the group
+                    userLeaveGroup();
+                }
+            });
+
+        }
+
+
     }
 
     private void updateUI(UserGroup currentGroup){
@@ -82,42 +125,65 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         description.setText(currentGroup.getDescription());
 //        members.setText(currentGroup.getCurrentMembers());
         // members is a Map.
-        Map<String, Boolean> members = currentGroup.getCurrentMembers();
+        members = currentGroup.getCurrentMembers();
+
         if(members != null){
+            // get all members ID
             Set<String> membersID = members.keySet();
             // query firebase based on members id
             // for each user id , get the related username
             final List<String> userNames = new ArrayList<>();
 
-            for (String userID : membersID) {
-                // this does not require active listen
-                // use listen once
-                mDatabaseUsers.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // get user
-                        User currentUser = dataSnapshot.getValue(User.class);
-                        String currentUserName = currentUser.getUserName();
+            Log.i("test", membersID.toString());
 
-                        // add username to list
-                        userNames.add(currentUserName);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-            // finish adding username
-            // update all members name
-
-
-
+//            for (String userID : membersID) {
+//                // this does not require active listen
+//                // use listen once
+//                mDatabaseUsers.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        // get user
+//                        User currentUser = dataSnapshot.getValue(User.class);
+//                        String currentUserName = currentUser.getUserName();
+//
+//                        // add username to list
+//                        userNames.add(currentUserName);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+//
+//            }
 
         }
 
 
     }
+
+    // user want to join the group.
+    // check if current user already joined this group: if joined, then disable the join button.
+    private void userJoinGroup(View view){
+        // check if member contains uid
+        if( members.containsKey(userID)) {
+            //
+            joinGroup.setEnabled(false);
+        }
+        // first: update the group member info
+        members.put(userID, true);
+
+        // second: update the user's group info
+
+
+
+    }
+
+    // user want to leave the group.
+    // check if current user not in this group : if not in, then disable the leave button.
+    private void userLeaveGroup(){
+
+    }
+
 }
