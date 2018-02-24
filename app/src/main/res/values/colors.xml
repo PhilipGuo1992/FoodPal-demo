@@ -22,7 +22,7 @@
     <color name="spacegrey">#fafafa</color>
     <color name="spaceblue">#09c6df</color>
     <color name="imageview">#FFCC00</color>
-
+    <color name="generalBackground">#0089C9</color>
     <drawable name="checkbox">#666666</drawable>
     <drawable name="camera_back_press">#1b1b1b</drawable>
     <drawable name="camera_back_default">#2f2f2f</drawable>

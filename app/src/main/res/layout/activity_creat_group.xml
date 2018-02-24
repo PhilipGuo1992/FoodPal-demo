@@ -11,8 +11,7 @@
         android:layout_marginEnd="22dp"
         android:layout_marginTop="25dp"
 
-        android:textSize="50sp"
-        />
+        android:textSize="30sp" />
 
 
     <TextView
@@ -79,45 +78,15 @@
         android:textAppearance="@style/TextAppearance.Compat.Notification.Media"
         android:background="@color/colorFloatingActionButton"/>
 
-    <Button
-        android:id="@+id/choose_date"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/meal_time"
-        android:layout_alignBottom="@+id/meal_time"
-        android:layout_toEndOf="@+id/create_res"
-        android:text="@string/choose_date"
-        android:textAppearance="@style/TextAppearance.Compat.Notification.Media"/>
-
-    <Button
-        android:id="@+id/choose_time"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/choose_date"
-        android:layout_toEndOf="@+id/choose_date"
-        android:text="@string/choose_time"
-        android:textAppearance="@style/TextAppearance.Compat.Notification.Media"/>
-
-    <TimePicker
-        android:id="@+id/time_picker"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="60dp"
-        android:layout_height="120dp"
-        android:layout_below="@+id/textViewEmail"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:timePickerMode="spinner"></TimePicker>
-
-    <DatePicker
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        android:id="@+id/date_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dip"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
-    </DatePicker>
+        android:layout_height="100dp"
+        android:layout_below="@+id/btn_create"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="23dp"
+        android:layout_toEndOf="@+id/create_time"
+        android:text="12334" />
 
 
 </RelativeLayout>
