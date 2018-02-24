@@ -93,7 +93,8 @@
         android:paddingRight="20dp"
         android:paddingTop="15dp"
         android:text="@string/user_register"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"/>
 
     <TextView
         android:id="@+id/textViewLogin"
