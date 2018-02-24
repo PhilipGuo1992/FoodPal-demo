@@ -1,92 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.example.phili.foodpaldemo.RegisterActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-    <LinearLayout
+        tools:context="com.example.phili.foodpaldemo.RegisterActivity"
+        >
+
+
+    <ImageView
+        android:id="@+id/imagelogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_marginTop="40dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:src="@drawable/foodpal_logo" />
 
 
-
-    <ImageView android:src="@drawable/foodpal_logo"
+    <RelativeLayout
+        android:id="@+id/layoutemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imagelogo"
         android:layout_marginTop="30dp"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/userEmail"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-
-            android:text="@string/user_email"/>
 
         <EditText
             android:id="@+id/input_email"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edittext_layout"
+            android:fontFamily="@font/nunito_semibold"
+            android:hint="@string/user_email"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
 
-    </LinearLayout>
+            android:textCursorDrawable="@drawable/color_cursor" />
 
-    <LinearLayout
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutpsw"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/userPwd"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/user_password"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/layoutemail"
+        android:layout_marginTop="10dp">
 
         <EditText
             android:id="@+id/input_password"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/edittext_layout"
+            android:fontFamily="@font/nunito_semibold"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
+            android:textCursorDrawable="@drawable/color_cursor"/>
 
-    </LinearLayout>
-
+    </RelativeLayout>
 
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user_register"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/layoutpsw"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
         android:layout_gravity="center"
-        android:padding="10dp"
-        />
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/nunito_semibold"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp"
+        android:text="@string/user_register"
+        android:textSize="18sp"
+        android:textColor="@color/colorWhite"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/register_to_login"
-            android:layout_below = "@id/btn_register"
-            android:layout_centerHorizontal="true"
-            android:textSize="15sp"
-            android:id="@+id/textViewLogin"
-            android:layout_gravity="center"
-            android:padding="10dp"/>
-    </LinearLayout>
-</ScrollView>
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_register"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:fontFamily="@font/nunito_semibold"
+        android:padding="10dp"
+        android:text="@string/register_to_login"
+        android:textSize="15sp" />
+    </RelativeLayout>

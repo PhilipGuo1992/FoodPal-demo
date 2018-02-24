@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/logoScreenBackground">
-
+    tools:context="com.example.phili.foodpaldemo.LoginActivity">
 
 
     <TextView
@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
+        android:fontFamily="@font/nunito_bold"
         android:text="@string/app_name"
         android:textColor="#000"
-        android:textSize="23sp"
+        android:textSize="40sp"
         android:typeface="monospace" />
 
     <TextView
@@ -24,52 +25,41 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
+        android:fontFamily="@font/nunito_semibold"
         android:text="@string/app_login"
         android:textColor="#000"
         android:textSize="23sp"
         android:typeface="monospace" />
 
     <RelativeLayout
+        android:id="@+id/app_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/app_login"
-        android:layout_marginTop="40dp"
-        android:id="@+id/app_username"
-        android:background="@drawable/color_login">
+        android:layout_marginTop="100dp">
 
-        <ImageView
-            android:id="@+id/icon_username"
-            android:layout_width="36dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-
-            android:paddingTop="15dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/icon_username" />
-        <View
-            android:id="@+id/view_username"
-            android:layout_width="1dip"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/icon_username"
-            android:background="@color/colorCursor" />
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/view_username"
-            android:background="@null"
-            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edittext_layout"
             android:ems="19"
+            android:fontFamily="@font/nunito_semibold"
             android:hint="@string/username"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
             android:textColorHint="@color/colorCursor"
-            android:textCursorDrawable="@drawable/color_cursor" />
+            android:textCursorDrawable="@drawable/color_cursor"
+            />
+
         <ImageView
             android:id="@+id/icon_username_clear"
             android:layout_width="wrap_content"
@@ -78,84 +68,85 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@mipmap/icon_clear"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:textCursorDrawable="@drawable/color_cursor"/>
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/app_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/app_username"
 
-        android:id="@+id/app_password"
-        android:background="@drawable/color_login">
-        <ImageView
-            android:id="@+id/icon_password"
-            android:layout_width="36dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            android:scaleType="fitXY"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:src="@mipmap/icon_password" />
-        <View
-            android:id="@+id/view_password"
-            android:layout_width="1dip"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/icon_password"
-            android:background="@color/colorCursor" />
+        android:layout_below="@id/app_username"
+        android:layout_marginTop="10dp"
+        >
+
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/view_password"
-            android:background="@null"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/edittext_layout"
             android:ems="19"
-            android:inputType="textPassword"
+            android:fontFamily="@font/nunito_semibold"
             android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
             android:textColorHint="@color/colorCursor"
             android:textCursorDrawable="@drawable/color_cursor" />
+
         <ImageView
             android:id="@+id/icon_password_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_alignParentLeft="true"
+
+            android:layout_marginLeft="93dp"
             android:src="@mipmap/icon_clear"
             android:visibility="invisible" />
     </RelativeLayout>
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/app_password"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
         android:gravity="center"
-        android:padding="10dp"
-        />
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp"
+
+        android:text="@string/login"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
 
     <RelativeLayout
+        android:id="@+id/app_forget_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/app_forget_create"
         android:layout_below="@id/btn_login"
         android:layout_centerHorizontal="true"
-        >
+        android:layout_marginTop="10dp">
+
         <TextView
+            android:id="@+id/app_forget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_forget"
-            android:id="@+id/app_forget"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:fontFamily="@font/nunito_semibold"/>
 
         <View
             android:id="@+id/view_forget"
@@ -167,13 +158,14 @@
             android:background="@color/colorCursor" />
 
         <TextView
+            android:id="@+id/app_create"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_create"
-            android:id="@+id/app_create"
             android:layout_toRightOf="@id/view_forget"
             android:paddingLeft="10dp"
-            android:textSize="15sp"/>
+            android:text="@string/app_create"
+            android:textSize="15sp"
+            android:fontFamily="@font/nunito_semibold"/>
     </RelativeLayout>
 
 

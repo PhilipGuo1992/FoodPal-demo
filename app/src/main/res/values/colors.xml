@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03497D</color>
+    <color name="colorPrimary">#0089C9</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorFloatingActionButton">#008CEE</color>
@@ -15,14 +15,14 @@
     <color name="logoScreenBackground">#F7F7F7</color>
     <color name="colorTransparent">#ffffff</color>
     <color name="colorWhiteGray">#CCCCCC</color>
-    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#999999</color>
     <color name="colorMilkWhite">#FAFFF0</color>
     <color name="spacegrey">#fafafa</color>
     <color name="spaceblue">#09c6df</color>
     <color name="imageview">#FFCC00</color>
-
+    <color name="generalBackground">#0089C9</color>
     <drawable name="checkbox">#666666</drawable>
     <drawable name="camera_back_press">#1b1b1b</drawable>
     <drawable name="camera_back_default">#2f2f2f</drawable>

@@ -29,6 +29,10 @@
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".DisplayGroupInfoActivity"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
