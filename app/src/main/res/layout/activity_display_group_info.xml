@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:gravity="center_horizontal"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.phili.foodpaldemo.DisplayGroupInfoActivity">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:text="Leave the group"
-        android:layout_height="wrap_content" />
 
 
     <TextView
+        android:id="@+id/display_group_name"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="groupName"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/display_group_members"
         android:layout_width="wrap_content"
         android:text="Group Members: "
+        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/display_rest_name"
+        android:layout_width="wrap_content"
+        android:text="restaurant name"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/display_mealTime"
+        android:text="meal time"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
@@ -23,22 +42,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="Group Description: "
-            android:layout_height="wrap_content" />
+            android:layout_height="71dp"
+            android:text="Group Description: " />
         <TextView
-            android:id="@+id/currentGroupDescrip"
+            android:id="@+id/display_group_descrip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:text="Join the group"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:text="Join group"
+            />
 
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Leave group"
+             />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

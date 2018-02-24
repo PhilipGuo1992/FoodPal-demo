@@ -25,6 +25,8 @@ import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    public static final String GROUP_ID = "groupID";
+
     private ListView groupListView;
 
     // firebase
@@ -59,7 +61,12 @@ public class HomePageActivity extends AppCompatActivity {
                 UserGroup currentGroup = groupList.get(i);
                 //  start a new activity and pass data: the group id .
                 // only pass groupID
-
+               String currentGroupID = currentGroup.getGroupID();
+               // start intent
+                Intent intent = new Intent(getApplicationContext(), DisplayGroupInfoActivity.class);
+                // put id to intent
+                intent.putExtra(GROUP_ID, currentGroupID);
+                startActivity(intent);
 
             }
         });
