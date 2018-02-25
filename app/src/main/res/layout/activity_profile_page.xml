@@ -144,13 +144,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Yi Ren"
                 android:layout_marginTop="10dp"
-                android:textColor="@android:color/white"
                 android:background="@null"
-                android:textSize="25sp"
-                />
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -208,7 +206,6 @@
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="1@dal.ca"
                 android:textSize="16sp" />
 
 
@@ -250,7 +247,6 @@
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="Male"
                 android:textSize="16sp" />
 
 
@@ -289,7 +285,6 @@
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="05/11/1994"
                 android:textSize="16sp" />
 
 
@@ -330,7 +325,6 @@
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="Computer Science"
                 android:textSize="16sp" />
 
 
@@ -370,7 +364,6 @@
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="I am Yi Ren. Hola, soy Yi Ren."
                 android:textSize="16sp" />
 
 
