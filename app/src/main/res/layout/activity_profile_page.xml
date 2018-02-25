@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="340dp">
 
+
+
         <android.support.v7.widget.CardView
             android:layout_width="300dp"
             android:layout_height="100dp"
@@ -122,11 +124,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/editprofile"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="top|right"
-                android:src="@drawable/ic_edit_black_24dp" />
+            android:id="@+id/editprofile"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="top|right"
+            android:src="@drawable/ic_edit_black_24dp" />
+
+
 
             <ImageView
                 android:layout_width="150dp"
@@ -140,18 +144,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Yi Ren"
                 android:layout_marginTop="10dp"
-                android:textColor="@android:color/white"
                 android:background="@null"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@android:color/white"
                 android:textSize="25sp"
-                android:editable="false"
-                />
+                android:inputType="textNoSuggestions"
+                android:focusable="false"/>
 
         </LinearLayout>
 
-
+        <ImageView
+            android:id="@+id/editsubmit"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="top|end"
+            android:layout_marginLeft="380dp"
+            android:visibility="invisible"
+            android:src="@drawable/ic_done_black_24dp" />
 
 
     </RelativeLayout>
@@ -160,7 +170,7 @@
         android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -195,9 +205,9 @@
                 android:background="@null"
                 android:editable="false"
                 android:enabled="true"
+                android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="1@dal.ca"
                 android:textSize="16sp" />
 
 
@@ -235,11 +245,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
-                android:editable="false"
                 android:enabled="true"
+                android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="Male"
                 android:textSize="16sp" />
 
 
@@ -274,11 +283,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
-                android:editable="false"
                 android:enabled="true"
+                android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="05/11/1994"
                 android:textSize="16sp" />
 
 
@@ -315,11 +323,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
-                android:editable="false"
                 android:enabled="true"
+                android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="Computer Science"
                 android:textSize="16sp" />
 
 
@@ -355,18 +362,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
-                android:editable="false"
                 android:enabled="true"
+                android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:text="I am Yi Ren. Hola, soy Yi Ren."
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:inputType="textNoSuggestions"/>
+
+
 
 
         </LinearLayout>
 
 
     </LinearLayout>
+
+
 
     <TableLayout
         android:id="@+id/table_button"
