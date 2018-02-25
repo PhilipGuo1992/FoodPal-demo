@@ -20,8 +20,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private ImageView imageViewedit;
     private ImageView imageViewphoto;
-    private Button edit;
-    private Button settings;
+    private ImageView imageViewsubmit;
+    //private Button btnedit;
+    //private Button settings;
     private EditText username;
     private EditText major;
     private EditText email;
@@ -42,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         imageViewedit = findViewById(R.id.editprofile);
         imageViewphoto = findViewById(R.id.editphoto);
+        imageViewsubmit = findViewById(R.id.editsubmit);
         username = findViewById(R.id.profileName);
         email = findViewById(R.id.email);
         gender = findViewById(R.id.gender);
@@ -49,16 +51,71 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
 
-
-
-
+        imageViewedit.setOnClickListener(this);
+        imageViewsubmit.setOnClickListener(this);
 
 
     }
 
+    private void setEdit() {
+        //Set Visibility of 2 image buttons
+        imageViewedit.setVisibility(View.INVISIBLE);
+        imageViewsubmit.setVisibility(View.VISIBLE);
+        //cannot set focus so that it can be edited.
+        username.setFocusable(true);
+        username.setFocusableInTouchMode(true);
+        username.requestFocus();
+
+        email.setFocusable(true);
+        email.setFocusableInTouchMode(true);
+
+        gender.setFocusable(true);
+        gender.setFocusableInTouchMode(true);
+
+        birthday.setFocusable(true);
+        birthday.setFocusableInTouchMode(true);
+
+        major.setFocusable(true);
+        major.setFocusableInTouchMode(true);
+
+        about.setFocusable(true);
+        about.setFocusableInTouchMode(true);
+    }
+
+    private void save() {
+
+        //Set Visibility of 2 image buttons
+        imageViewedit.setVisibility(View.VISIBLE);
+        imageViewsubmit.setVisibility(View.INVISIBLE);
+        //cannot set focus so that it can be edited.
+        username.setFocusable(false);
+        username.setFocusableInTouchMode(false);
+
+        email.setFocusable(false);
+        email.setFocusableInTouchMode(false);
+
+        gender.setFocusable(false);
+        gender.setFocusableInTouchMode(false);
+
+        birthday.setFocusable(false);
+        birthday.setFocusableInTouchMode(false);
+
+        major.setFocusable(false);
+        major.setFocusableInTouchMode(false);
+
+        about.setFocusable(false);
+        about.setFocusableInTouchMode(false);
+
+    }
     @Override
     public void onClick(View view) {
+        if (view == imageViewedit) {
+            setEdit();
+        }
 
+        if (view == imageViewsubmit) {
+            save();
+        }
     }
 
 
