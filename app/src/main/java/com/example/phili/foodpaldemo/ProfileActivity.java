@@ -143,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //Map<String, Boolean> members = new HashMap<>();
 
         User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday,uAbout);
-        mDatabaseUsers.child(uId).setValue(user);
+        mDatabaseUsers.setValue(user);
 
         Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
 

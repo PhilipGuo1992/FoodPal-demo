@@ -148,7 +148,9 @@
                 android:background="@null"
                 android:fontFamily="@font/nunito_bold"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:inputType="textNoSuggestions"
+                android:focusable="false"/>
 
         </LinearLayout>
 
@@ -364,7 +366,8 @@
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:inputType="textNoSuggestions"/>
 
 
 
