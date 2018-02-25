@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +30,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseUsers;
     //
     private TextView groupName, mealTime, restaurantName, description, memberNames;
-    private Button joinGroup, leaveGroup;
+    private Button joinGroupBtn, leaveGroupBtn;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
@@ -53,8 +52,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
         // get buttons
-        joinGroup = findViewById(R.id.click_join_group);
-        leaveGroup = findViewById(R.id.click_leave_group);
+        joinGroupBtn = findViewById(R.id.click_join_group);
+        leaveGroupBtn = findViewById(R.id.click_leave_group);
 
 
 
@@ -97,18 +96,44 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
             userID = currentUser.getUid();
 
-            joinGroup.setOnClickListener(new View.OnClickListener() {
+            // check if current user already joined this group: if joined, then disable the join button.
+            //join the group
+            // check if member contains uid
+            if( members.containsKey(userID)) {
+                joinGroupBtn.setEnabled(false);
+            }
+            // check if current user not in this group : if not in, then disable the leave button.
+            if(!members.containsKey(userID)){
+                leaveGroupBtn.setEnabled(false);
+            }
+
+
+            joinGroupBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //join the group
-                    userJoinGroup(view);
+                    // user want to join the group.
+
+                    // first: update the group member info
+                    mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                    // update UI or not?
+
+                    // second: update the user's group info
+                    mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+
                 }
             });
-            leaveGroup.setOnClickListener(new View.OnClickListener() {
+            leaveGroupBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // leave  the group
-                    userLeaveGroup();
+                    // user want to leave the group.
+                    // first: update the group member info
+                    mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+                    // update UI or not?
+
+                    // second: update the user's group info
+                    mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+
+
                 }
             });
 
@@ -163,27 +188,5 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
     }
 
-    // user want to join the group.
-    // check if current user already joined this group: if joined, then disable the join button.
-    private void userJoinGroup(View view){
-        // check if member contains uid
-        if( members.containsKey(userID)) {
-            //
-            joinGroup.setEnabled(false);
-        }
-        // first: update the group member info
-        members.put(userID, true);
-
-        // second: update the user's group info
-
-
-
-    }
-
-    // user want to leave the group.
-    // check if current user not in this group : if not in, then disable the leave button.
-    private void userLeaveGroup(){
-
-    }
 
 }
