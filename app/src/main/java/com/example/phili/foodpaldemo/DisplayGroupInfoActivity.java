@@ -53,6 +53,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         restaurantName = findViewById(R.id.display_rest_name);
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
+
         // get buttons
         joinGroupBtn = findViewById(R.id.click_join_group);
         leaveGroupBtn = findViewById(R.id.click_leave_group);
@@ -74,8 +75,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         // query firebase using group id
         // get firebase
         mDatabaseGroup = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
-
-
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
@@ -130,7 +129,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
             userID = currentUser.getUid();
 
-            // check if current user already joined this group: if joined, then disable the join button.
+            // check if current user already joined this group: if joined,
+            // then disable the join button; or hide the join button.
             //join the group
             // check if member contains uid
 //            if( currentMembers.containsKey(userID)) {
@@ -205,8 +205,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
 
             for (String userID : membersID) {
-
-
 
                 // this does not require active listen
                 // use listen once
