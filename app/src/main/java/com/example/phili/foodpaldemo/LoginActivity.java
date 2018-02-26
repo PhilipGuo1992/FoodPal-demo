@@ -107,7 +107,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //Keep this line
                     //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     //Test for creating a group
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                   // startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    // go to home page
+                     startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                    // test create group
+                   // startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Your username or password is incorrect!", Toast.LENGTH_SHORT).show();
