@@ -35,7 +35,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
     private Button joinGroupBtn, leaveGroupBtn;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser currentUser;
+    private FirebaseUser firebaseUser;
+
     private String userID;
     // group-currentMembers
     Map<String, Boolean> currentMembers;
@@ -103,7 +104,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
         // read data from database
 
-
+        // get current user
+        firebaseUser = firebaseAuth.getCurrentUser();
 
         // this require active listen
         mDatabaseGroup.addValueEventListener(new ValueEventListener() {
@@ -122,12 +124,14 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         });
 
         //
-        // get current user
-        currentUser = firebaseAuth.getCurrentUser();
 
-        if(currentUser != null && currentMembers != null){
 
-            userID = currentUser.getUid();
+        if(firebaseUser != null && currentMembers != null){
+
+            userID = firebaseUser.getUid();
+
+
+
 
             // check if current user already joined this group: if joined,
             // then disable the join button; or hide the join button.
