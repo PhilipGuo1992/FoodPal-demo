@@ -3,6 +3,7 @@ package com.example.phili.foodpaldemo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by phili on 2018-02-21.
@@ -33,6 +35,7 @@ public class HomePageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference myRef;
+    FirebaseUser currentUser;
 
     List<UserGroup> groupList = new ArrayList<>();
 
@@ -49,7 +52,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         //
         mAuth = FirebaseAuth.getInstance();
-
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
 
         // get widges
         groupListView = findViewById(R.id.group_list);
@@ -62,6 +65,29 @@ public class HomePageActivity extends AppCompatActivity {
                 //  start a new activity and pass data: the group id .
                 // only pass groupID
                String currentGroupID = currentGroup.getGroupID();
+
+               // before user click: to check if current user already in the group
+                // if not, show the button of join the group
+                final String userId = currentUser.getUid();
+                myRef.child(currentGroupID).child("currentMembers").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // if contains the value
+                        if (dataSnapshot.child(userId).exists()) {
+                            // contain the user
+                            Log.i("test", "group contains the user");
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
                // start intent
                 Intent intent = new Intent(getApplicationContext(), DisplayGroupInfoActivity.class);
                 // put id to intent
@@ -81,7 +107,7 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         // check if current user is sign in or not
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
 
         if (currentUser != null){
@@ -119,9 +145,13 @@ public class HomePageActivity extends AppCompatActivity {
                 for(DataSnapshot userGroupSnap : dataSnapshot.getChildren()){
 
                     UserGroup userGroup = userGroupSnap.getValue(UserGroup.class);
+
                     // add to list
                     groupList.add(userGroup);
                 }
+
+                // check the group list if it is correct
+               Log.i("test", groupList.toString());
 
                 // add listview adapter
                 GroupListAdapter groupListAdapter = new GroupListAdapter(HomePageActivity.this, groupList);

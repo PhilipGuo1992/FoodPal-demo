@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,26 +82,31 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         groupMealTime.setText(userGroup.getMealTime());
 
         // only show the total group numbers, after user click the group: show currentMembers' name.
+
+        // need to fix dabase first: some group has no members.
+
         int members = userGroup.getCurrentMembers().size();
-        groupTotalMember.setText(members);
-        // show the creater name
+        Log.i("test", members+"");
+        // need to convert int to string first
+        groupTotalMember.setText(members + "");
+//        // show the creater name
         String groupCreaterID =  userGroup.getGroupCreaterID();
-        // read firebaase to get the creater's name
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
+//        // read firebaase to get the creater's name
+       // mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
 
-        mDatabaseUser.child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // get user name, and set user name
-                String username = dataSnapshot.getValue(String.class);
-                createrName.setText(username);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        mDatabaseUser.child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // get user name, and set user name
+//                String username = dataSnapshot.getValue(String.class);
+//                createrName.setText(username);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
         return groupViewList;

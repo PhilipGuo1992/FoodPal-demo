@@ -109,6 +109,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //Test for creating a group
                    // startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     // go to home page
+
+                    // add current user to the firebase
+                    //
+
                      startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                     // test create group
                    // startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
