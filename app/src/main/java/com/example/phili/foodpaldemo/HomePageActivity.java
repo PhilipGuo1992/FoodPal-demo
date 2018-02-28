@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -35,6 +36,12 @@ public class HomePageActivity extends AppCompatActivity {
 
     private FloatingActionButton createGroup;
 
+    // fields for the four sections
+    private ImageView imageViewJoinGroup;
+    private ImageView imageViewGroupList;
+    private ImageView imageViewRestaurant;
+    private ImageView imageViewProfile;
+
     // firebase
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -61,6 +68,14 @@ public class HomePageActivity extends AppCompatActivity {
         // get widges
         groupListView = findViewById(R.id.group_list);
         createGroup = findViewById(R.id.create_group);
+
+        imageViewJoinGroup = findViewById(R.id.join_group_main);
+        imageViewGroupList = findViewById(R.id.group_list_main);
+        imageViewRestaurant = findViewById(R.id.restaurant_list_main);
+        imageViewProfile = findViewById(R.id.profile_main);
+
+
+
         // set click event
         groupListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -116,6 +131,34 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+            }
+        });
+
+        //Bottom images onClick event
+        imageViewJoinGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //return
+            }
+        });
+        imageViewGroupList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //go to myGroup
+            }
+        });
+        imageViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //look up restaurant
+
+            }
+        });
+        imageViewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //go to profile
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
 
