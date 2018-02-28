@@ -76,8 +76,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mDatabaseUsers = firebaseDatabase.getReference("users").child(uId);
 
 
-
-
         imageViewedit = findViewById(R.id.editprofile);
         imageViewphoto = findViewById(R.id.editphoto);
         imageViewsubmit = findViewById(R.id.editsubmit);
@@ -96,8 +94,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
 
-
-
+        btnJoin.setOnClickListener(this);
+        btnJoined.setOnClickListener(this);
+        btnList.setOnClickListener(this);
+        btnSet.setOnClickListener(this);
     }
 
     private void setEdit() {
@@ -155,12 +155,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //Map<String, Boolean> currentMembers = new HashMap<>();
 
-        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday,uAbout);
+        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout);
         mDatabaseUsers.setValue(user);
 
         Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
 
     }
+
     @Override
     public void onClick(View view) {
         if (view == imageViewedit) {
