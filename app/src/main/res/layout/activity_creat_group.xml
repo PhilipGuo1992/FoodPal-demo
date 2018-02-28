@@ -68,15 +68,19 @@
         android:layout_marginLeft="110dp"/>
 
     <Button
-        android:layout_marginTop="35dp"
         android:id="@+id/btn_create"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/create_res"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/nunito_semibold"
         android:text="@string/create"
-        android:textAppearance="@style/TextAppearance.Compat.Notification.Media"
-        android:background="@color/colorFloatingActionButton"/>
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView"
