@@ -19,6 +19,9 @@ public class User {
     private String selfDescription;
     private String userBirthday;
 
+
+    private String photoUrl;
+
     // groups: user belongs to
     private Map<String, Boolean> joinedGroups = new HashMap<>();
 
@@ -51,6 +54,7 @@ public class User {
         this.userGender = userGender;
         this.selfDescription = selfDescription;
         this.userBirthday = userBirthday;
+        //this.photoUrl = photoUrl;
     }
 
     public String getUserID() {
@@ -108,4 +112,12 @@ public class User {
     public void setSelfDescription(String selfDescription) {
         this.selfDescription = selfDescription;
     }
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
 }

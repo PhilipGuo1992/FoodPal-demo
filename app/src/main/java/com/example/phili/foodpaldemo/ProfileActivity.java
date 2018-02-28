@@ -1,7 +1,11 @@
 package com.example.phili.foodpaldemo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.phili.foodpaldemo.models.User;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +25,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,12 +54,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private String uId;
 
+    private static final int IMAGE_REQUEST = 100;
+    private Uri filePath;
+
     // firebase
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabaseGroup;
     private DatabaseReference mDatabaseUsers;
 
     private FirebaseDatabase firebaseDatabase;
+    //StorageReference for images
+    private StorageReference imageStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +73,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        imageStorage = FirebaseStorage.getInstance().getReference();
 
         if (firebaseAuth.getCurrentUser() == null) {
             //Finish the activity
@@ -83,6 +99,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
+        imageViewphoto.setOnClickListener(this);
 
 
     }
@@ -137,6 +154,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         String uMajor = major.getText().toString().trim();
         String uAbout = about.getText().toString().trim();
 
+
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String uId = firebaseUser.getUid();
 
@@ -144,8 +162,62 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday,uAbout);
         mDatabaseUsers.setValue(user);
-
         Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
+    }
+
+    //onClick event for image choosing and uploading
+    private void imageChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select an image"), IMAGE_REQUEST);
+    }
+
+    private void uploadImage() {
+
+        if (filePath != null){
+            StorageReference riversRef = imageStorage.child("images/profile.jpg");
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading");
+            progressDialog.show();
+
+            riversRef.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // Get a URL to the uploaded content
+                           progressDialog.dismiss();
+                           Toast.makeText(getApplicationContext(), "Photo uploaded", Toast.LENGTH_LONG).show();
+
+                           String imgUrl = taskSnapshot.getDownloadUrl().toString();
+
+
+                           mDatabaseUsers.child("photoUrl").setValue(imgUrl);
+
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                            // ...
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
+                    progressDialog.setMessage(progress + "% uploaded");
+                }
+            });
+        } else {
+            //Error toast
+            Toast.makeText(getApplicationContext(), "File path is empty", Toast.LENGTH_LONG).show();
+
+        }
 
     }
     @Override
@@ -157,8 +229,28 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (view == imageViewsubmit) {
             save();
         }
+
+        if (view == imageViewphoto){
+            //open image chooser
+            imageChooser();
+            uploadImage();
+        }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMAGE_REQUEST && requestCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                imageViewphoto.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     protected void onStart() {
