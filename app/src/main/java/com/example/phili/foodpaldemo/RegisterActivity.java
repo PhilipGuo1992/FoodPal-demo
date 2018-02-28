@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by yiren on 2018-02-10.
  */
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnRegister;
     private EditText editTextEmail;
@@ -52,17 +52,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    public void UserRegister(){
+    public void UserRegister() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
         //Log.i(TAG, "UserRegister: here ");
-        if(TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) {
             //If email is empty
             Toast.makeText(this, "Please enter your Email", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) {
             //If password is empty
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             return;
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         progressDialog.show();
 
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this,
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this,
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,8 +81,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        } else
-                        {
+                        } else {
                             Toast.makeText(RegisterActivity.this, "Could not register", Toast.LENGTH_SHORT).show();
 
                         }
@@ -91,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+
     @Override
     public void onClick(View view) {
         if (view == btnRegister) {
