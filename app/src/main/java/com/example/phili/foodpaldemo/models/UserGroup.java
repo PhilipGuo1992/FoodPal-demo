@@ -18,6 +18,9 @@ public class UserGroup {
     private String restaurantName;
     private String description;
 
+    // default constructor **DO NOT REMOVE THE constructor**
+    public UserGroup() {
+    }
 
     // current members in the group
     private Map<String, Boolean> currentMembers;

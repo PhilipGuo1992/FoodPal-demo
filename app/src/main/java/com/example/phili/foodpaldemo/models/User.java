@@ -20,6 +20,10 @@ public class User {
     private String userBirthday;
     private String photoUrl;
 
+    // default constructor   **DO NOT REMOVE THE constructor**
+    public User() {
+    }
+
     // groups: user belongs to
     private Map<String, Boolean> joinedGroups = new HashMap<>();
 
