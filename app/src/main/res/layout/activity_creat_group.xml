@@ -82,15 +82,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="60dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/btn_create"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="23dp"
-        android:layout_toEndOf="@+id/create_time"
-        android:text="12334" />
+
 
 
 </RelativeLayout>
