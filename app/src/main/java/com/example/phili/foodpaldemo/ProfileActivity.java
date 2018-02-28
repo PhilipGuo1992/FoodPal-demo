@@ -43,6 +43,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private EditText birthday;
     private EditText about;
 
+    // fields for the four sections
+    private Button btnJoin;
+    private Button btnJoined;
+    private Button btnList;
+    private Button btnSet;
+
     private String uId;
 
     // firebase
@@ -81,6 +87,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         birthday = findViewById(R.id.birthday);
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
+
+        btnJoin = findViewById(R.id.btn_join);
+        btnJoined = findViewById(R.id.btn_joined);
+        btnList = findViewById(R.id.btn_list);
+        btnSet = findViewById(R.id.btn_set);
 
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
