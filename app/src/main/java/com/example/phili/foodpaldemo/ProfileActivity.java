@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.phili.foodpaldemo.models.CameraActivity;
 import com.example.phili.foodpaldemo.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,8 +33,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView imageViewedit;
     private ImageView imageViewphoto;
     private ImageView imageViewsubmit;
-    //private Button btnedit;
-    //private Button settings;
+    private Button btnedit;
+    private Button settings;
     private EditText username;
     private EditText major;
     private EditText email;
@@ -62,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (firebaseAuth.getCurrentUser() == null) {
             //Finish the activity
             finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, ProfileActivity.class));
         }
         FirebaseUser user = firebaseAuth.getCurrentUser();
         uId = user.getUid();
@@ -83,6 +84,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
+
 
 
     }
