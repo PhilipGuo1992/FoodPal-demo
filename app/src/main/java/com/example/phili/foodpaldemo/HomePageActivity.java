@@ -28,6 +28,7 @@ import java.util.Map;
 public class HomePageActivity extends AppCompatActivity {
 
     public static final String GROUP_ID = "groupID";
+    public static final String GROUP_CONTAIN_USER= "IF_CONTAIN_USER";
 
     private ListView groupListView;
 
@@ -64,7 +65,7 @@ public class HomePageActivity extends AppCompatActivity {
                 UserGroup currentGroup = groupList.get(i);
                 //  start a new activity and pass data: the group id .
                 // only pass groupID
-               String currentGroupID = currentGroup.getGroupID();
+               final String  currentGroupID = currentGroup.getGroupID();
 
                // before user click: to check if current user already in the group
                 // if not, show the button of join the group
@@ -76,7 +77,21 @@ public class HomePageActivity extends AppCompatActivity {
                         if (dataSnapshot.child(userId).exists()) {
                             // contain the user
                             Log.i("test", "group contains the user");
+
+                            // start intent
+                            Intent intent = new Intent(getApplicationContext(), DisplayGroupInfoActivity.class);
+                            // put id to intent
+                            intent.putExtra(GROUP_ID, currentGroupID);
+                            intent.putExtra(GROUP_CONTAIN_USER, true);
+                            startActivity(intent);
+
                         } else {
+                            // start intent
+                            Intent intent = new Intent(getApplicationContext(), DisplayGroupInfoActivity.class);
+                            // put id to intent
+                            intent.putExtra(GROUP_ID, currentGroupID);
+                            intent.putExtra(GROUP_CONTAIN_USER, false);
+                            startActivity(intent);
 
                         }
                     }
@@ -88,11 +103,7 @@ public class HomePageActivity extends AppCompatActivity {
                 });
 
 
-               // start intent
-                Intent intent = new Intent(getApplicationContext(), DisplayGroupInfoActivity.class);
-                // put id to intent
-                intent.putExtra(GROUP_ID, currentGroupID);
-                startActivity(intent);
+
 
             }
         });
@@ -107,8 +118,8 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         // check if current user is sign in or not
-
-
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null){
             updateUI(currentUser);

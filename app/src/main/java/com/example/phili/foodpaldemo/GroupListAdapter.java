@@ -32,15 +32,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
     // list to store the groups
     private List<UserGroup> userGroups;
 
-
     private DatabaseReference mDatabaseUser;
-
-
-//    private String groupName;
-//    private String mealTime;
-//    private String restaurantName;
-//
-//    private String description;
 
 
     // one group can have many users
@@ -91,28 +83,32 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         groupTotalMember.setText(members + "");
 //        // show the creater name
         String groupCreaterID =  userGroup.getGroupCreaterID();
+        Log.i("test", groupCreaterID+" , the creater ID");
+            // it does not have creater yet.
 //        // read firebaase to get the creater's name
-        try{
-            mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
-        } catch (Exception e){
-            Log.i("test", e+"");
+        if (groupCreaterID != null) {
+            mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
+
+            mDatabaseUser.child(groupCreaterID).child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // get user name, and set user name
+                            String username = dataSnapshot.getValue(String.class);
+                            createrName.setText(username);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
         }
-       // mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
-
-//        mDatabaseUser.child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // get user name, and set user name
-//                String username = dataSnapshot.getValue(String.class);
-//                createrName.setText(username);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
+//        try{
+//            mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
+//        } catch (Exception e){
+//            Log.i("test", e+"");
+//        }
 
         return groupViewList;
     }
