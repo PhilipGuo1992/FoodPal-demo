@@ -35,7 +35,7 @@ public class UserGroup {
 
     }
 
-    public String getGroupCreaterID() {
+    public String getGroupCreatorID() {
         return groupCreatorID;
     }
 
