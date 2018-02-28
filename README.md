@@ -17,4 +17,5 @@ Users, i.e., the students at Dalhousie, sometimes can be hungry, alone, looking 
 ## Tech Stack
 
 OS: Android 6.0
+
 Database: Firebase
