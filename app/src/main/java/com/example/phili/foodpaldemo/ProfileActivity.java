@@ -170,6 +170,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (view == imageViewsubmit) {
             save();
         }
+
+        if (view == btnJoin) {
+
+        }
+
+        if (view == btnJoined) {
+
+        }
+
+        if (view == btnList) {
+
+        }
+
+        if (view == btnSet) {
+
+        }
     }
 
 
