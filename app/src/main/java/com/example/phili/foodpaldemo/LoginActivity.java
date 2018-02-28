@@ -103,7 +103,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
+
                     finish();
+
                     //Keep this line
                     //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     //Test for creating a group

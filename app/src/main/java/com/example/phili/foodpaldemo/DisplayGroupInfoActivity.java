@@ -1,6 +1,7 @@
 package com.example.phili.foodpaldemo;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,8 @@ import java.util.Set;
 
 public class DisplayGroupInfoActivity extends AppCompatActivity {
 
+    // tag for dialog
+    private static final String LEAVE_GROUP = "DialogLeave";
     // group id
     String groupID;
     private DatabaseReference mDatabaseGroup;
@@ -95,12 +98,12 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
                 // user want to join the group.
 
                 // first: update the group member info
-                // mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
                 // update UI or not?
                 // update the current-member-UI ?
 
                 // second: update the user's group info
-                // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+                mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
 
                 // disable join group button
                 Log.i("test","click join group");
@@ -113,6 +116,13 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         leaveGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // start a dialog first
+               // android.app.FragmentManager manager = getFragmentManager();
+                FragmentManager manager = getSupportFragmentManager();
+                LeaveGroupConfirmFragment dialog = new LeaveGroupConfirmFragment();
+                dialog.show(manager, LEAVE_GROUP);
+
+
                 // user want to leave the group.
                 // first: update the group member info
                 //  mDatabaseGroup.child("currentMembers").child(userID).removeValue();
@@ -164,10 +174,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         if(firebaseUser != null && currentMembers != null){
 
             userID = firebaseUser.getUid();
-
-
-
-
 
 
         }
