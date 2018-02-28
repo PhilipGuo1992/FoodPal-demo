@@ -107,7 +107,7 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         // check if current user is sign in or not
-
+        currentUser = mAuth.getCurrentUser();
 
 
         if (currentUser != null){

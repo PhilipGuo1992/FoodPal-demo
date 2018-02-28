@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        imageStorage = FirebaseStorage.getInstance().getReference();
+        //imageStorage = FirebaseStorage.getInstance().getReference();
 
         if (firebaseAuth.getCurrentUser() == null) {
             //Finish the activity
@@ -100,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
-        imageViewphoto.setOnClickListener(this);
+        //imageViewphoto.setOnClickListener(this);
 
 
 
@@ -234,8 +234,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         if (view == imageViewphoto){
             //open image chooser
-            imageChooser();
-            uploadImage();
+            //imageChooser();
+           // uploadImage();
         }
     }
 

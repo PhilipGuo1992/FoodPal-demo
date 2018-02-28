@@ -13,10 +13,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.phili.foodpaldemo.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by yiren on 2018-02-10.
@@ -31,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ProgressDialog progressDialog;
     //private String TAG="feature";
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -39,6 +45,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        //databaseReference = firebaseDatabase.getReference().child()
 
         btnRegister = (Button) findViewById(R.id.btn_register);
         editTextEmail = (EditText) findViewById(R.id.input_email);
@@ -78,6 +86,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) {
+
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            String uId = firebaseUser.getUid();
+                            String uEmail = firebaseUser.getEmail();
+                            databaseReference = firebaseDatabase.getReference("users").child(uId);
+                            User user = new User(uId,"",uEmail,"","","","");
+                            databaseReference.setValue(user);
+
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
