@@ -36,6 +36,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private Boolean if_contain_user;
 
     private String userID;
     // group-currentMembers
@@ -73,28 +74,62 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         // get group id from intent
         Intent intent = getIntent();
         groupID = intent.getStringExtra(HomePageActivity.GROUP_ID);
+        if_contain_user = intent.getBooleanExtra(HomePageActivity.GROUP_CONTAIN_USER, false);
+        // disable the related button
+        if(if_contain_user){
+            joinGroupBtn.setEnabled(false);
+        } else {
+            leaveGroupBtn.setEnabled(false);
+        }
+
         // query firebase using group id
         // get firebase
         mDatabaseGroup = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
-        //
-//        mDatabaseGroup.child("currentMembers").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // check if contain current user
-//                if(dataSnapshot.hasChild(currentUser.getUid())){
-//                    Log.i("testing", "exist or ");
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
+
+        joinGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // user want to join the group.
+
+                // first: update the group member info
+                // mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                // update UI or not?
+                // update the current-member-UI ?
+
+                // second: update the user's group info
+                // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+
+                // disable join group button
+                Log.i("test","click join group");
+
+
+                Toast.makeText(DisplayGroupInfoActivity.this, "add group success", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        leaveGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // user want to leave the group.
+                // first: update the group member info
+                //  mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+                // update UI or not?1
+
+                // second: update the user's group info
+                //  mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+
+                // disable join group button
+                Log.i("test","click leave group");
+
+                Toast.makeText(DisplayGroupInfoActivity.this, "leave group success", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
 
     }
 
@@ -133,59 +168,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
 
 
-            // check if current user already joined this group: if joined,
-            // then disable the join button; or hide the join button.
-            //join the group
-            // check if member contains uid
-//            if( currentMembers.containsKey(userID)) {
-//                joinGroupBtn.setEnabled(false);
-//            }
-//            // check if current user not in this group : if not in, then disable the leave button.
-//            if(!currentMembers.containsKey(userID)){
-//                leaveGroupBtn.setEnabled(false);
-//            }
 
-
-            joinGroupBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // user want to join the group.
-
-                    // first: update the group member info
-                   // mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
-                    // update UI or not?
-                    // update the current-member-UI ?
-
-                    // second: update the user's group info
-                   // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
-
-                    // disable join group button
-                    Log.i("test","click join group");
-
-
-                    Toast.makeText(DisplayGroupInfoActivity.this, "add group success", Toast.LENGTH_SHORT).show();
-
-                }
-            });
-            leaveGroupBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // user want to leave the group.
-                    // first: update the group member info
-                  //  mDatabaseGroup.child("currentMembers").child(userID).removeValue();
-                    // update UI or not?1
-
-                    // second: update the user's group info
-                  //  mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
-
-                    // disable join group button
-                    Log.i("test","click leave group");
-
-                    Toast.makeText(DisplayGroupInfoActivity.this, "leave group success", Toast.LENGTH_SHORT).show();
-
-
-                }
-            });
 
         }
     }

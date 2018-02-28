@@ -107,11 +107,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //Keep this line
                     //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     //Test for creating a group
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                   startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                     // go to home page
-                    //
+                    //@
                     // test create group
-                   // startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+                   //startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
 
 
                 } else {
