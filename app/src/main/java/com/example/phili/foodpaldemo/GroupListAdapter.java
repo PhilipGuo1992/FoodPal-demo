@@ -92,6 +92,11 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 //        // show the creater name
         String groupCreaterID =  userGroup.getGroupCreaterID();
 //        // read firebaase to get the creater's name
+        try{
+            mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
+        } catch (Exception e){
+            Log.i("test", e+"");
+        }
        // mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);
 
 //        mDatabaseUser.child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
