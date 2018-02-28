@@ -53,6 +53,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private EditText birthday;
     private EditText about;
 
+    // fields for the four sections
+    private Button btnJoin;
+    private Button btnJoined;
+    private Button btnList;
+    private Button btnSet;
+
     private String uId;
 
     private static final int IMAGE_REQUEST = 100;
@@ -86,8 +92,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mDatabaseUsers = firebaseDatabase.getReference("users").child(uId);
 
 
-
-
         imageViewedit = findViewById(R.id.editprofile);
         imageViewphoto = findViewById(R.id.editphoto);
         imageViewsubmit = findViewById(R.id.editsubmit);
@@ -98,12 +102,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
 
+        btnJoin = findViewById(R.id.btn_join);
+        btnJoined = findViewById(R.id.btn_joined);
+        btnList = findViewById(R.id.btn_list);
+        btnSet = findViewById(R.id.btn_set);
+
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
         //imageViewphoto.setOnClickListener(this);
 
-
-
+        btnJoin.setOnClickListener(this);
+        btnJoined.setOnClickListener(this);
+        btnList.setOnClickListener(this);
+        btnSet.setOnClickListener(this);
     }
 
     private void setEdit() {
@@ -162,7 +173,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //Map<String, Boolean> currentMembers = new HashMap<>();
 
-        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday,uAbout);
+        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout);
         mDatabaseUsers.setValue(user);
         Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
     }
@@ -222,6 +233,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
     }
+
     @Override
     public void onClick(View view) {
         if (view == imageViewedit) {
@@ -236,6 +248,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             //open image chooser
             //imageChooser();
            // uploadImage();
+        }
+
+        if (view == btnJoin) {
+
+        }
+
+        if (view == btnJoined) {
+
+        }
+
+        if (view == btnList) {
+
+        }
+
+        if (view == btnSet) {
+
         }
     }
 
