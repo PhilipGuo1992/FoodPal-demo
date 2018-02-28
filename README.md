@@ -10,7 +10,7 @@ FoodPal is here for you. FoodPal is a Food & Social application. It is designed 
 
 This application is a good opportunity for people to try different foods, meet new people, and build friendships. FoodPal is a fantastic application. It can also help students improve their social skills by meeting new people **offline!**
 
-## Targeted Audiences
+## Target Audiences
 
 Users, i.e., the students at Dalhousie, sometimes can be hungry, alone, looking to try some new restaurants, but may not find anyone, or are just bored. They can use our application to find someone who shares the same interests as they do, and dine out together. The app would use **Android-based mobile phones or tablets** and users are expected to using this app on campus, at home or anywhere they have network access.
 
