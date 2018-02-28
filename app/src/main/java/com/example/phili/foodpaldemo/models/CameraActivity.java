@@ -18,14 +18,14 @@ import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class CameraActivity extends AppCompatActivity {
 
-   private ImageView editsubmit;
+   private ImageView editphoto;
 
    //Below Code reference From Android Developer
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
 
-        editsubmit= (ImageView)findViewById(R.id.editsubmit);
+        editphoto= (ImageView)findViewById(R.id.editphoto);
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -38,7 +38,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            editsubmit.setImageBitmap(imageBitmap);
+            editphoto.setImageBitmap(imageBitmap);
         }
     }
 }

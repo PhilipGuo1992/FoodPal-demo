@@ -33,8 +33,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView imageViewedit;
     private ImageView imageViewphoto;
     private ImageView imageViewsubmit;
-    //private Button btnedit;
-    //private Button settings;
+    private Button btnedit;
+    private Button settings;
     private EditText username;
     private EditText major;
     private EditText email;
@@ -63,7 +63,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (firebaseAuth.getCurrentUser() == null) {
             //Finish the activity
             finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, ProfileActivity.class));
         }
         FirebaseUser user = firebaseAuth.getCurrentUser();
         uId = user.getUid();
@@ -82,17 +82,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
 
-        //imageViewedit.setOnClickListener(this);
-        //imageViewsubmit.setOnClickListener(this);
-
-        imageViewsubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent imageIntent = new Intent(view.getContext(), CameraActivity.class);
-                startActivityForResult(imageIntent, 0);
-
-            }
-        });
+        imageViewedit.setOnClickListener(this);
+        imageViewsubmit.setOnClickListener(this);
 
 
 
