@@ -2,6 +2,7 @@ package com.example.phili.foodpaldemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     private ListView groupListView;
 
+    private FloatingActionButton createGroup;
+
     // firebase
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -56,6 +59,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         // get widges
         groupListView = findViewById(R.id.group_list);
+        createGroup = findViewById(R.id.create_group);
         // set click event
         groupListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,6 +98,13 @@ public class HomePageActivity extends AppCompatActivity {
                 intent.putExtra(GROUP_ID, currentGroupID);
                 startActivity(intent);
 
+            }
+        });
+
+        createGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
             }
         });
 

@@ -90,7 +90,8 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         // need to convert int to string first
         groupTotalMember.setText(members + "");
 //        // show the creater name
-        String groupCreaterID =  userGroup.getGroupCreaterID();
+        //String groupCreaterID =  userGroup.getGroupCreaterID();
+        String groupCreaterID = userGroup.getGroupCreatorID();
 //        // read firebaase to get the creater's name
         try{
             mDatabaseUser = FirebaseDatabase.getInstance().getReference("users").child(groupCreaterID);

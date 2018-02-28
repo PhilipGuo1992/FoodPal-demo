@@ -13,6 +13,7 @@
         android:background="@color/colorWhite"/>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/create_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"

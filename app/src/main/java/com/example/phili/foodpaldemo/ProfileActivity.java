@@ -54,10 +54,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private EditText about;
 
     // fields for the four sections
-    private Button btnJoin;
-    private Button btnJoined;
-    private Button btnList;
-    private Button btnSet;
+    private ImageView imageViewJoinGroup;
+    private ImageView imageViewGroupList;
+    private ImageView imageViewRestaurant;
+    private ImageView imageViewProfile;
+
 
     private String uId;
 
@@ -102,19 +103,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
 
-        btnJoin = findViewById(R.id.btn_join);
-        btnJoined = findViewById(R.id.btn_joined);
-        btnList = findViewById(R.id.btn_list);
-        btnSet = findViewById(R.id.btn_set);
+        imageViewJoinGroup = findViewById(R.id.join_group);
+        imageViewGroupList = findViewById(R.id.group_list);
+        imageViewRestaurant = findViewById(R.id.restaurant_list);
+        imageViewProfile = findViewById(R.id.profile);
 
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
         imageViewphoto.setOnClickListener(this);
 
-        btnJoin.setOnClickListener(this);
-        btnJoined.setOnClickListener(this);
-        btnList.setOnClickListener(this);
-        btnSet.setOnClickListener(this);
+        imageViewJoinGroup.setOnClickListener(this);
+        imageViewGroupList.setOnClickListener(this);
+        imageViewRestaurant.setOnClickListener(this);
+        imageViewProfile.setOnClickListener(this);
     }
 
     private void setEdit() {
@@ -250,20 +251,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             uploadImage();
         }
 
-        if (view == btnJoin) {
+        if (view == imageViewJoinGroup) {
+
+            startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+        }
+
+        if (view == imageViewGroupList) {
+            //startActivity(new Intent(getApplicationContext(), .class));
 
         }
 
-        if (view == btnJoined) {
-
+        if (view == imageViewRestaurant) {
+            //look up restaurant list
         }
 
-        if (view == btnList) {
-
-        }
-
-        if (view == btnSet) {
-
+        if (view == imageViewProfile) {
+            //return
         }
     }
 
