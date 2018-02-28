@@ -264,7 +264,7 @@
                 android:layout_height="36dp"
                 android:layout_gravity="center"
 
-                android:src="@drawable/ic_email_black_24dp" />
+                android:src="@drawable/ic_cake_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -302,7 +302,7 @@
                 android:layout_height="36dp"
                 android:layout_gravity="center"
 
-                android:src="@drawable/ic_email_black_24dp" />
+                android:src="@drawable/ic_account_balance_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -342,7 +342,7 @@
                 android:layout_height="36dp"
                 android:layout_gravity="center"
 
-                android:src="@drawable/ic_email_black_24dp" />
+                android:src="@drawable/ic_info_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -485,6 +485,7 @@
 
         
     </TableLayout>
+
 
 </LinearLayout>
 
