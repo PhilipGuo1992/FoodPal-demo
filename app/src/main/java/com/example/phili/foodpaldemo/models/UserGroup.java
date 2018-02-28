@@ -9,30 +9,23 @@ import java.util.Map;
 
 public class UserGroup {
 
-    // the group creater: user ID.
-    private String groupCreaterID;
+    // the group creator: user ID.
+    private String groupCreatorID;
 
     private String groupID;
     private String groupName;
     private String mealTime;
     private String restaurantName;
-
     private String description;
 
 
     // current members in the group
     private Map<String, Boolean> currentMembers;
 
-
-    // default constructor
-    public UserGroup(){
-
-    }
-
-    public UserGroup(String groupID, String groupCreaterID , String groupName,
-                     String mealTime, String restaurantName,  Map<String, Boolean> currentMembers ) {
+    public UserGroup(String groupID, String groupCreatorID, String groupName,
+                     String mealTime, String restaurantName, Map<String, Boolean> currentMembers) {
         this.groupID = groupID;
-        this.groupCreaterID = groupCreaterID;
+        this.groupCreatorID = groupCreatorID;
         this.groupName = groupName;
         this.mealTime = mealTime;
         this.restaurantName = restaurantName;
@@ -43,11 +36,11 @@ public class UserGroup {
     }
 
     public String getGroupCreaterID() {
-        return groupCreaterID;
+        return groupCreatorID;
     }
 
-    public void setGroupCreaterID(String groupCreaterID) {
-        this.groupCreaterID = groupCreaterID;
+    public void setGroupCreatorID(String groupCreatorID) {
+        this.groupCreatorID = groupCreatorID;
     }
 
     public String getGroupID() {
@@ -98,5 +91,5 @@ public class UserGroup {
         this.description = description;
     }
 
-    }
+}
 
