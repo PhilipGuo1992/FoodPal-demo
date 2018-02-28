@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.phili.foodpaldemo.models.CameraActivity;
 import com.example.phili.foodpaldemo.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -81,8 +82,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
 
-        imageViewedit.setOnClickListener(this);
-        imageViewsubmit.setOnClickListener(this);
+        //imageViewedit.setOnClickListener(this);
+        //imageViewsubmit.setOnClickListener(this);
+
+        imageViewsubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent imageIntent = new Intent(view.getContext(), CameraActivity.class);
+                startActivityForResult(imageIntent, 0);
+
+            }
+        });
+
 
 
     }
