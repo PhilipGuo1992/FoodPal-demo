@@ -1,4 +1,4 @@
-# FoodPal - a social dining applicatio
+# FoodPal - a social dining application
 
 We intend to create a mobile application called **FoodPal** that is an easy-to-use social dining application for students at Dalhousie. Since the target users for this application are students at Dalhousie, they need to have a Dalhousie email address to register for an account. Users can use this application to do several things: create a dine out group that other users can join, join an existing group that was created by other users, check a list of restaurants near **Dalhousie University** and in Halifax, and modify their profiles.
 
