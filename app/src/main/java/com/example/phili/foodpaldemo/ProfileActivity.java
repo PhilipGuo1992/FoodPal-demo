@@ -158,7 +158,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String uId = firebaseUser.getUid();
 
-        //Map<String, Boolean> members = new HashMap<>();
+        //Map<String, Boolean> currentMembers = new HashMap<>();
 
         User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday,uAbout);
         mDatabaseUsers.setValue(user);

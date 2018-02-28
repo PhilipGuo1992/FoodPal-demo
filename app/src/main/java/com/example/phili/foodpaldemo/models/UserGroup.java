@@ -42,6 +42,13 @@ public class UserGroup {
 
     }
 
+    public String getGroupCreaterID() {
+        return groupCreaterID;
+    }
+
+    public void setGroupCreaterID(String groupCreaterID) {
+        this.groupCreaterID = groupCreaterID;
+    }
 
     public String getGroupID() {
         return groupID;

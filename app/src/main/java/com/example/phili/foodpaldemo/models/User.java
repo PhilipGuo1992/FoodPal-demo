@@ -25,8 +25,10 @@ public class User {
     // groups: user belongs to
     private Map<String, Boolean> joinedGroups = new HashMap<>();
 
-
-
+    @Override
+    public String toString() {
+        return "userID "+ userID + ". userName: "+ userName + ". user joined groups: "+joinedGroups;
+    }
 
     // default constructor
     public User(){

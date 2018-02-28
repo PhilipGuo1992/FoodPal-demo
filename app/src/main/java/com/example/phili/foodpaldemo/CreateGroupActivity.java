@@ -47,7 +47,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     //Firebase
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference, userDataReference;
 
     private FirebaseDatabase firebaseDatabase;
 
@@ -69,6 +69,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         }
 
         databaseReference = firebaseDatabase.getReference("groups");
+        userDataReference = firebaseDatabase.getReference("users");
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
@@ -96,6 +97,11 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             Map<String, Boolean> members = new HashMap<>();
             FirebaseUser user = firebaseAuth.getCurrentUser();
             String uId = user.getUid();
+
+            // add the group id to the user
+            //  update the user's group info
+            userDataReference.child(uId).child("joinedGroups").child(gId).setValue(true);
+
             //Put user to the current group
             members.put(uId,true);
             UserGroup userGroup = new UserGroup(gId,uId,groupName,mealTime,restaurantName,members);
