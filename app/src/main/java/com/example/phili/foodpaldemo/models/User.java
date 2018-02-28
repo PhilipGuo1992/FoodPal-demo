@@ -18,21 +18,15 @@ public class User {
     private String userGender;
     private String selfDescription;
     private String userBirthday;
+    private String photoUrl;
 
     // groups: user belongs to
     private Map<String, Boolean> joinedGroups = new HashMap<>();
 
     @Override
     public String toString() {
-        return "userID "+ userID + ". userName: "+ userName + ". user joined groups: "+joinedGroups;
+        return "userID " + userID + ". userName: " + userName + ". user joined groups: " + joinedGroups;
     }
-
-    // default constructor
-    public User(){
-
-    }
-    //
-
 
     public String getUserBirthday() {
         return userBirthday;
@@ -42,17 +36,17 @@ public class User {
         this.userBirthday = userBirthday;
     }
 
-    public User(String userID, String userName, String userEmailAddress, String userMajor, String userGender,
+    public User(String userID, String userName, String userEmailAddress, String userMajor,
+                String userGender, String userBirthday, String selfDescription) {
 
-                String userBirthday, String selfDescription) {
         this.userID = userID;
-
         this.userName = userName;
         this.userEmailAddress = userEmailAddress;
         this.userMajor = userMajor;
         this.userGender = userGender;
         this.selfDescription = selfDescription;
         this.userBirthday = userBirthday;
+        //this.photoUrl = photoUrl;
     }
 
     public String getUserID() {
@@ -110,4 +104,13 @@ public class User {
     public void setSelfDescription(String selfDescription) {
         this.selfDescription = selfDescription;
     }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
 }
