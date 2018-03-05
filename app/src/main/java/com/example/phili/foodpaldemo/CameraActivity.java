@@ -1,4 +1,4 @@
-package com.example.phili.foodpaldemo.models;
+package com.example.phili.foodpaldemo;
 
 import android.content.Intent;
 import android.content.Context;
