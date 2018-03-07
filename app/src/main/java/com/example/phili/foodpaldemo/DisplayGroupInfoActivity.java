@@ -125,14 +125,16 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
                 LeaveGroupConfirmFragment dialog = new LeaveGroupConfirmFragment();
                 dialog.show(manager, LEAVE_GROUP);
 
+                // if creater leave this group, the group should be deleted from firebase.
+
 
                 // user want to leave the group.
                 // first: update the group member info
-                mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+               // mDatabaseGroup.child("currentMembers").child(userID).removeValue();
                 // update UI or not?1
 
                 // second: update the user's group info
-                 mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+                // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
 
                 // disable join group button
                 Log.i("test","click leave group");
