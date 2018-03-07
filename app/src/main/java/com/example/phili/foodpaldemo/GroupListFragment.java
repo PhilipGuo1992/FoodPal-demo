@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,8 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     private List<UserGroup> allGroups = new ArrayList<>();
     // widegs
     private ListView groupList;
+    private FloatingActionButton createGroup;
+
 
     // firebase
     private FirebaseAuth mAuth;
@@ -64,6 +67,13 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
         // get view elements
         groupList = groupListView.findViewById(R.id.group_list);
+        createGroup = groupListView.findViewById(R.id.create_group);
+        createGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CreateGroupActivity.class));
+            }
+        });
 
         updateFragmentView();
 
