@@ -82,8 +82,9 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         // need to convert int to string first
         groupTotalMember.setText(members + "");
 //        // show the creater name
+
         String groupCreaterID =  userGroup.getGroupCreatorID();
-        Log.i("test", groupCreaterID+" , the creater ID");
+        Log.i("test", userGroup.getGroupID()+" , the creater ID");
             // it does not have creater yet.
 //        // read firebaase to get the creater's name
         if (groupCreaterID != null) {

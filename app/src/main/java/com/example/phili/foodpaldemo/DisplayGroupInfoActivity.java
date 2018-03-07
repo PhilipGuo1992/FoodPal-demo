@@ -86,30 +86,33 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         }
 
         // query firebase using group id
-        // get firebase
         mDatabaseGroup = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
+        firebaseUser = firebaseAuth.getCurrentUser();
+        userID = firebaseUser.getUid();
 
         joinGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // user want to join the group.
-
-                // first: update the group member info
-                mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
-                // update UI or not?
-                // update the current-member-UI ?
-
-                // second: update the user's group info
-                mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
-
-                // disable join group button
                 Log.i("test","click join group");
 
+                // first: update the group member info
+                try {
+                    mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
 
-                Toast.makeText(DisplayGroupInfoActivity.this, "add group success", Toast.LENGTH_SHORT).show();
+                } catch (Exception e){
+                    Log.i("test","click join group, " + e);
+
+                }
+                // second: update the user's group info
+               mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+
+                Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
+
+                // go to the group chat acvitity
 
             }
         });
@@ -125,16 +128,16 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
                 // user want to leave the group.
                 // first: update the group member info
-                //  mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+                mDatabaseGroup.child("currentMembers").child(userID).removeValue();
                 // update UI or not?1
 
                 // second: update the user's group info
-                //  mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+                 mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
 
                 // disable join group button
                 Log.i("test","click leave group");
 
-                Toast.makeText(DisplayGroupInfoActivity.this, "leave group success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DisplayGroupInfoActivity.this, "leave the group success", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -147,11 +150,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        // read data from database
-
-        // get current user
-        firebaseUser = firebaseAuth.getCurrentUser();
-
+        // get current group info from firebase
         // this require active listen
         mDatabaseGroup.addValueEventListener(new ValueEventListener() {
             @Override
@@ -161,22 +160,13 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
                 // updateUI
                 updateUI(currentGroup);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
-        //
 
-
-        if(firebaseUser != null && currentMembers != null){
-
-            userID = firebaseUser.getUid();
-
-
-        }
     }
 
     private void updateUI(UserGroup currentGroup){
@@ -185,41 +175,31 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         mealTime.setText(currentGroup.getMealTime());
         restaurantName.setText(currentGroup.getRestaurantName());
         description.setText(currentGroup.getDescription());
-//        currentMembers.setText(currentGroup.getCurrentMembers());
         // currentMembers is a Map.
         currentMembers = currentGroup.getCurrentMembers();
 
         if(currentMembers != null){
             // get all currentMembers ID
             Set<String> membersID = currentMembers.keySet();
-            // query firebase based on currentMembers id
-            // for each user id , get the related username
+
             final List<String> userNamesList = new ArrayList<>();
-
-
+            // for each user id , get the related username
             for (String userID : membersID) {
 
                 // this does not require active listen
-                // use listen once
                 mDatabaseUsers.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // get user
+
                         User currentUser = dataSnapshot.getValue(User.class);
-
-                        Log.i("test", currentUser.toString());
-
                         String currentUserName = currentUser.getUserName();
-                        Log.i("test", currentUserName);
+
                         // add username to list
                         userNamesList.add(currentUserName);
-                        Log.i("test", "this is working, " + userNamesList.toString());
 
-
-                        // is there another way to do this?
-
-                        // this is the callback function.. that is why.
-                        memberNames.setText(userNamesList.toString());
+                        // update ui
+                        int listLength = userNamesList.toString().length();
+                        memberNames.setText(userNamesList.toString().substring(1, listLength-1));
                     }
 
                     @Override
@@ -229,11 +209,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
                 });
 
             }
-
-            // show all the group currentMembers.
-            Log.i("test", "mmm, " + userNamesList.toString());
-
-
 
         }
 
