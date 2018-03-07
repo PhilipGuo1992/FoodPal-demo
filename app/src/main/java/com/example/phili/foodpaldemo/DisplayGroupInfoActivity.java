@@ -76,8 +76,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
         // get group id from intent
         Intent intent = getIntent();
-        groupID = intent.getStringExtra(HomePageActivity.GROUP_ID);
-        if_contain_user = intent.getBooleanExtra(HomePageActivity.GROUP_CONTAIN_USER, false);
+        groupID = intent.getStringExtra(GroupListFragment.GROUP_ID);
+        if_contain_user = intent.getBooleanExtra(GroupListFragment.GROUP_CONTAIN_USER, false);
         // disable the related button
         if(if_contain_user){
             joinGroupBtn.setEnabled(false);
@@ -101,14 +101,14 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
                 // first: update the group member info
                 try {
-                    mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                  //  mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
 
                 } catch (Exception e){
                     Log.i("test","click join group, " + e);
 
                 }
                 // second: update the user's group info
-               mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+              // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
