@@ -39,4 +39,14 @@
     <string name="leave_group_confirm">Are you sure to leave group?</string>
     <string name="cancel">Cancel</string>
     <string name="leave">Leave</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main_home">MainHomeActivity</string>
+    <string name="title_home">Join</string>
+    <string name="title_mygroup">Group</string>
+    <string name="title_restaurant">Restaurant</string>
+    <string name="title_settings">Me</string>
+
+
 </resources>

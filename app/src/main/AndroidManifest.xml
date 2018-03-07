@@ -5,9 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera"
-        android:required="false"  />
-
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -30,11 +30,15 @@
         <activity android:name=".ForgetPswActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".DisplayGroupInfoActivity"></activity>
+        <activity android:name=".DisplayGroupInfoActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".MainHomeActivity"
+            android:label="@string/title_activity_main_home"></activity>
     </application>
 
 </manifest>
