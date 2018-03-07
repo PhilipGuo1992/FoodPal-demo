@@ -1,21 +1,38 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/group_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:descendantFocusability="afterDescendants"
-    android:divider="@color/colorDividItem"
-    android:dividerHeight="10dp"
-    android:fastScrollEnabled="false"
-    android:scrollbarAlwaysDrawHorizontalTrack="true"
-    android:scrollbarFadeDuration="10"
-    android:scrollbarStyle="outsideInset"
-    android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
-    android:scrollbarTrackVertical="@drawable/scrollbar_vertical_track"
-    android:scrollbars="none"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.phili.foodpaldemo.GroupListFragment">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/create_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="450dp" />
 
-</ListView>
+    <ListView
+        android:id="@+id/group_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:descendantFocusability="afterDescendants"
+        android:divider="@color/colorDividItem"
+        android:dividerHeight="10dp"
+        android:fastScrollEnabled="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarFadeDuration="10"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
+        android:scrollbarTrackVertical="@drawable/scrollbar_vertical_track"
+        android:scrollbars="none">
+
+
+
+
+    </ListView>
+
+
+</FrameLayout>
 

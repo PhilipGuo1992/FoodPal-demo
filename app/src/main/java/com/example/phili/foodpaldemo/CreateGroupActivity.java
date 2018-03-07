@@ -7,6 +7,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,7 +107,10 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             members.put(uId,true);
             UserGroup userGroup = new UserGroup(gId,uId,groupName,mealTime,restaurantName,members);
             databaseReference.child(gId).setValue(userGroup);
-            Toast.makeText(this, members.toString(), Toast.LENGTH_LONG).show();
+            Log.i("test", "add group success");
+
+            Toast.makeText(this, "create group success", Toast.LENGTH_LONG).show();
+
         } else {
             Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
         }
