@@ -10,6 +10,7 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -165,6 +166,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     //save current changes to user information
     private void saveChange() {
 
+        Toast toast;
         //Set Visibility of 2 image buttons
         imageViewedit.setVisibility(View.VISIBLE);
         imageViewsubmit.setVisibility(View.INVISIBLE);
@@ -199,7 +201,11 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout);
         userReference.setValue(user);
-        Toast.makeText(getContext(), "Changes submitted", Toast.LENGTH_LONG).show();
+
+        toast = Toast.makeText(getContext(), "Changes submitted", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+
 
     }
 
@@ -226,5 +232,11 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         about.setFocusable(true);
         about.setFocusableInTouchMode(true);
+    }
+
+    //upload image to firebase
+    private void uploadImage() {
+
+
     }
 }
