@@ -47,8 +47,9 @@ android:background="@color/graylight">
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_semibold"
-                        android:paddingLeft="25dp"
+                        android:paddingLeft="35dp"
                         android:text="100"
+                        android:textAlignment="gravity"
                         android:textColor="@color/startblue"
                         android:textSize="22sp" />
 
@@ -75,8 +76,9 @@ android:background="@color/graylight">
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_semibold"
-                        android:paddingLeft="25dp"
+                        android:paddingLeft="35dp"
                         android:text="50"
+                        android:textAlignment="gravity"
                         android:textColor="@color/startblue"
                         android:textSize="22sp" />
 
@@ -103,8 +105,9 @@ android:background="@color/graylight">
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_semibold"
-                        android:paddingLeft="25dp"
+                        android:paddingLeft="35dp"
                         android:text="100"
+                        android:textAlignment="gravity"
                         android:textColor="@color/startblue"
                         android:textSize="22sp" />
                 </LinearLayout>
@@ -166,7 +169,7 @@ android:background="@color/graylight">
         android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="160dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -214,19 +217,17 @@ android:background="@color/graylight">
             android:layout_marginLeft="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
 
-                android:paddingLeft="2dp"
-                android:src="@drawable/couple" />
+                android:src="@drawable/ic_face_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="14dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="8dp"
                 android:fontFamily="@font/nunito_semibold"
                 android:singleLine="true"
