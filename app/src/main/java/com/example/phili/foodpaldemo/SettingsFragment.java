@@ -158,9 +158,67 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
     //save current changes to user information
     private void saveChange() {
+
+        //Set Visibility of 2 image buttons
+        imageViewedit.setVisibility(View.VISIBLE);
+        imageViewsubmit.setVisibility(View.INVISIBLE);
+        //cannot set focus so that it can be edited.
+        username.setFocusable(false);
+        username.setFocusableInTouchMode(false);
+
+        gender.setFocusable(false);
+        gender.setFocusableInTouchMode(false);
+
+        birthday.setFocusable(false);
+        birthday.setFocusableInTouchMode(false);
+
+        major.setFocusable(false);
+        major.setFocusableInTouchMode(false);
+
+        about.setFocusable(false);
+        about.setFocusableInTouchMode(false);
+        //Get current value
+        String uName = username.getText().toString().trim();
+        String uEmail = email.getText().toString().trim();
+        String uGender = gender.getText().toString().trim();
+        String uBirthday = birthday.getText().toString().trim();
+        String uMajor = major.getText().toString().trim();
+        String uAbout = about.getText().toString().trim();
+
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String uId = firebaseUser.getUid();
+
+        //Map<String, Boolean> currentMembers = new HashMap<>();
+
+        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout);
+        userReference.setValue(user);
+        //Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
+
     }
 
     //set edit view to focusable
     private void setEditable() {
+
+        //Set Visibility of 2 image buttons
+        imageViewedit.setVisibility(View.INVISIBLE);
+        imageViewsubmit.setVisibility(View.VISIBLE);
+
+        //cannot set focus so that it can be edited.
+        username.setFocusable(true);
+        username.setFocusableInTouchMode(true);
+        username.requestFocus();
+
+        gender.setFocusable(true);
+        gender.setFocusableInTouchMode(true);
+
+        birthday.setFocusable(true);
+        birthday.setFocusableInTouchMode(true);
+
+        major.setFocusable(true);
+        major.setFocusableInTouchMode(true);
+
+        about.setFocusable(true);
+        about.setFocusableInTouchMode(true);
     }
 }
