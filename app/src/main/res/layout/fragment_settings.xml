@@ -145,11 +145,12 @@ android:background="@color/graylight">
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:background="@null"
+                android:focusable="false"
                 android:fontFamily="@font/nunito_bold"
-                android:textColor="@android:color/white"
-                android:textSize="25sp"
                 android:inputType="textNoSuggestions"
-                android:focusable="false"/>
+                android:textColor="@android:color/white"
+                android:textCursorDrawable="@drawable/color_white_cursor"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -201,12 +202,13 @@ android:background="@color/graylight">
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:editable="false"
+                android:inputType="textNoSuggestions"
                 android:enabled="true"
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:paddingLeft="20dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                />
 
 
         </LinearLayout>
@@ -244,6 +246,7 @@ android:background="@color/graylight">
                 android:enabled="true"
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
+                android:inputType="textNoSuggestions"
                 android:paddingLeft="20dp"
                 android:textSize="16sp" />
 
@@ -282,6 +285,7 @@ android:background="@color/graylight">
                 android:enabled="true"
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
+                android:inputType="textNoSuggestions"
                 android:paddingLeft="20dp"
                 android:textSize="16sp" />
 
@@ -322,6 +326,7 @@ android:background="@color/graylight">
                 android:enabled="true"
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
+                android:inputType="textNoSuggestions"
                 android:paddingLeft="20dp"
                 android:textSize="16sp" />
 

@@ -154,6 +154,12 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
     //open image chooser
     private void imageChooser() {
+
+        Intent intent = new Intent();
+        intent.setType("*/images");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+
     }
 
     //save current changes to user information
@@ -177,6 +183,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         about.setFocusable(false);
         about.setFocusableInTouchMode(false);
+
         //Get current value
         String uName = username.getText().toString().trim();
         String uEmail = email.getText().toString().trim();
@@ -185,7 +192,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         String uMajor = major.getText().toString().trim();
         String uAbout = about.getText().toString().trim();
 
-
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String uId = firebaseUser.getUid();
 
@@ -193,7 +199,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout);
         userReference.setValue(user);
-        //Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Changes submitted", Toast.LENGTH_LONG).show();
 
     }
 
