@@ -1,4 +1,4 @@
-package com.example.phili.foodpaldemo;
+package com.example.phili.foodpaldemo.Fragment;
 
 
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.phili.foodpaldemo.CreateGroupActivity;
+import com.example.phili.foodpaldemo.DisplayGroupInfoActivity;
+import com.example.phili.foodpaldemo.GroupListAdapter;
+import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -1,7 +1,6 @@
-package com.example.phili.foodpaldemo;
+package com.example.phili.foodpaldemo.Function;
 
 import android.content.Intent;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.example.phili.foodpaldemo.R;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 /**
  * Created by tanis on 2018-02-27.

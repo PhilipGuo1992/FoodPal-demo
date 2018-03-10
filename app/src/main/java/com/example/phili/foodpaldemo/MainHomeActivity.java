@@ -6,8 +6,11 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ListView;
-import android.widget.TextView;
+
+import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
+import com.example.phili.foodpaldemo.Fragment.MyGroupsFragment;
+import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
+import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
 
 public class MainHomeActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener{

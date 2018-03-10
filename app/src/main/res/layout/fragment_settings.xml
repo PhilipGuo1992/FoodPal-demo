@@ -3,7 +3,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context="com.example.phili.foodpaldemo.SettingsFragment"
+tools:context="com.example.phili.foodpaldemo.Fragment.SettingsFragment"
 android:background="@color/graylight">
     <RelativeLayout
         android:layout_width="match_parent"

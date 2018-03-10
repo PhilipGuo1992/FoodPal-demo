@@ -1,4 +1,4 @@
-package com.example.phili.foodpaldemo;
+package com.example.phili.foodpaldemo.Fragment;
 
 
 import android.app.ProgressDialog;
@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
