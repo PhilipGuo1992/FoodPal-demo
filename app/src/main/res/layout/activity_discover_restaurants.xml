@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/discover_restaurant_heading"
+        android:id="@+id/restaurant_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/discover_restaurants_heading"
+        android:layout_marginTop="10dp"
+        android:text="@string/restaurant"
         android:textAlignment="center"
-        android:textSize="30sp"/>
+        android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/api_credits"
+        android:id="@+id/api"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/restaurant_heading"
+        android:layout_marginTop="10dp"
         android:text="@string/api_credit"
         android:textAlignment="center"
-        android:textSize="12sp"/>
+        android:textSize="15sp" />
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/api"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/your_location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:text="@string/your_location_text"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/location_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/search_for_restaurants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_layout"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:hint="@string/search_for_restaurant" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_for_restaurants"
+        android:layout_centerInParent="true"
+        android:text="@string/restaurant_search_btn" />
+
+</RelativeLayout>
