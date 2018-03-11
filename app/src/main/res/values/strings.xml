@@ -48,6 +48,7 @@
     <string name="your_location_text">Your Location:</string>
     <string name="search_for_restaurant">Search for restaurants…</string>
     <string name="restaurant_search_btn">Go</string>
+    <string name="title_activity_main_home">123</string>
 
 
     <string-array name="hours_array">
