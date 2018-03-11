@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.phili.foodpaldemo.DisplayGroupInfoActivity">
@@ -12,10 +11,11 @@
     <TextView
         android:id="@+id/display_group_name"
         android:layout_width="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textSize="40sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
         android:text="groupName"
-        android:layout_height="wrap_content" />
+        android:textSize="30sp" />
 
 
 
@@ -23,12 +23,16 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="15dp"
+        android:gravity="center"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+
             android:text="group members: "
             android:layout_height="wrap_content" />
 
@@ -46,11 +50,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginLeft="15dp"
+        android:gravity="center"
+
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content">
 
         <TextView
             android:text="restaurant name: "
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -69,10 +77,14 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="10dp"
+        android:gravity="center"
+
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:text="Meal time: "
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_height="wrap_content" />
 
         <TextView
@@ -90,13 +102,16 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginLeft="15dp"
+        android:gravity="center"
+
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="71dp"
-
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:text="Group Description: " />
         <TextView
             android:id="@+id/display_group_descrip"
@@ -105,33 +120,25 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    <Button
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content">
+        android:id="@+id/click_join_group"
+        android:layout_width="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:text="Join group"
+        />
 
-        <Button
-            android:id="@+id/click_join_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:text="Join group"
-            />
-
-
-        <Button
-            android:id="@+id/click_leave_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Leave group"
-             />
-
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/click_leave_group"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:textColor="@color/colorWhite"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Leave group"
+        />
 
 
 </LinearLayout>

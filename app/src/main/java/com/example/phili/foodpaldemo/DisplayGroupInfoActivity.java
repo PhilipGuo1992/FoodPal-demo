@@ -82,8 +82,11 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         // disable the related button
         if(if_contain_user){
             joinGroupBtn.setEnabled(false);
+            joinGroupBtn.setBackgroundResource(R.color.joinBtn);
+
         } else {
             leaveGroupBtn.setEnabled(false);
+            leaveGroupBtn.setBackgroundResource(R.color.leaveBtn);
         }
 
         // query firebase using group id

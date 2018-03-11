@@ -32,5 +32,7 @@
     <color name="startblue">#09c6df</color>
     <color name="endblue">#0bcce6</color>
     <color name="colorDividItem">#88d1d4d4</color>
+    <color name="joinBtn">#14e233</color>
+    <color name="leaveBtn">#ec0d0d</color>
 
 </resources>
