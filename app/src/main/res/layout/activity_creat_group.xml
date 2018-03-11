@@ -16,6 +16,7 @@
 
     <TextView
         android:id="@+id/group_name"
+        android:layout_marginLeft="15dp"
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -33,6 +34,7 @@
 
     <TextView
         android:id="@+id/meal_time"
+        android:layout_marginLeft="15dp"
         android:layout_below="@+id/group_name"
         android:layout_width="108dp"
         android:layout_height="wrap_content"
@@ -52,20 +54,33 @@
     <TextView
         android:id="@+id/restaurant"
         android:layout_width="108dp"
+        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content"
         android:text="@string/restaurant"
         android:layout_below="@+id/meal_time"
         android:textSize="20dp"
         android:layout_marginTop="35dp"/>
 
-    <EditText
+    <ImageButton
         android:id="@+id/create_res"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/meal_time"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:background="@null"
-        android:layout_marginLeft="110dp"/>
+        android:layout_below="@+id/meal_time"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="23dp"
+        android:layout_toEndOf="@+id/group_name"
+        android:onClick="onClick"
+        android:src="@drawable/ic_action_place"
+        android:text="Choose a Place" />
+
+    <TextView
+        android:id="@+id/place_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/restaurant"
+        android:layout_marginStart="27dp"
+        android:layout_toEndOf="@+id/create_res"
+         />
 
     <Button
         android:id="@+id/btn_create"
