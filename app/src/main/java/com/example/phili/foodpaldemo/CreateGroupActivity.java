@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,11 +54,56 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     private FirebaseDatabase firebaseDatabase;
 
+
+    public static final String message_month = "MONTH";
+    public static final String message_date = "DATE";
+    public static final String message_hour = "HOUR";
+    public static final String message_minute = "MINUTE";
+
+    private Spinner spinnerMinute, spinnerDate, spinnerHour, spinnerMonth;
+
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_creat_group);
+
+        spinnerDate = findViewById(R.id.spinnerDate);
+        spinnerMonth = findViewById(R.id.spinnerMonth);
+        spinnerHour = findViewById(R.id.spinnerHour);
+        spinnerMinute = findViewById(R.id.spinnerMinute);
+
+        ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(this,
+                R.array.month_array, R.layout.spinner_item);
+        MonthAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        spinnerMonth.setAdapter(MonthAdapter);
+
+        ArrayAdapter<CharSequence> DateAdapter = ArrayAdapter.createFromResource(this,
+                R.array.date_array, R.layout.spinner_item);
+        DateAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        spinnerDate.setAdapter(DateAdapter);
+
+        ArrayAdapter<CharSequence> minuteAdapter = ArrayAdapter.createFromResource(this,
+                R.array.minute_array, R.layout.spinner_item);
+        minuteAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        spinnerMinute.setAdapter(minuteAdapter);
+
+        ArrayAdapter<CharSequence> HourAdapter = ArrayAdapter.createFromResource(this,
+                R.array.hours_array, R.layout.spinner_item);
+        HourAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        spinnerHour.setAdapter(HourAdapter);
+
+        Intent intent = new Intent();
+
+        intent.putExtra(message_date,spinnerDate.getSelectedItem().toString());
+        intent.putExtra(message_minute,spinnerMinute.getSelectedItem().toString());
+        intent.putExtra(message_month,spinnerMonth.getSelectedItem().toString());
+        intent.putExtra(message_hour,spinnerHour.getSelectedItem().toString());
+
 
         //Initialize firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -88,7 +135,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     private void createGroup(){
         String groupName = editTextgName.getText().toString().trim();
-        String mealTime = editTextTime.getText().toString().trim();
+        String mealTime = message_month+"."+message_date+"."+message_hour+"."+message_minute+".";
         String restaurantName = editTextRestaurant.getText().toString().trim();
         //String description =
 
@@ -125,3 +172,5 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         }
     }
 }
+
+

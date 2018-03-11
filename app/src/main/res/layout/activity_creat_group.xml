@@ -82,7 +82,74 @@
         android:textColor="@color/colorWhite"
         android:textSize="18sp" />
 
+    <Spinner
+        android:id="@+id/spinnerMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/create_name"
+        android:layout_marginLeft="110dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/meal_time"
+        android:layout_alignBottom="@+id/meal_time"
+        android:layout_toEndOf="@+id/spinnerMonth"
+        android:text="M"
+        android:textSize="20dp"
+        android:id="@+id/textYear" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/meal_time"
+        android:layout_alignBottom="@+id/meal_time"
+        android:layout_toEndOf="@+id/spinnerDate"
+        android:text="D"
+        android:textSize="20dp"
+        android:id="@+id/textMonth" />
+
+    <Spinner
+        android:id="@+id/spinnerDate"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/spinnerMonth"
+        android:layout_toEndOf="@+id/textYear" />
+
+    <Spinner
+        android:id="@+id/spinnerHour"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/spinnerMonth"
+        android:layout_toEndOf="@+id/textMonth" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/meal_time"
+        android:layout_alignBottom="@+id/meal_time"
+        android:layout_toEndOf="@+id/spinnerHour"
+        android:text="H"
+        android:textSize="20dp"
+        android:id="@+id/textHour" />
+
+    <Spinner
+        android:id="@+id/spinnerMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/spinnerMonth"
+        android:layout_toEndOf="@+id/textHour" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/meal_time"
+        android:layout_alignBottom="@+id/meal_time"
+        android:layout_toEndOf="@+id/spinnerMinute"
+        android:text="M"
+        android:textSize="20dp"
+        android:id="@+id/textMinute" />
 
 
 </RelativeLayout>

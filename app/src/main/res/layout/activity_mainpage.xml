@@ -65,6 +65,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
+                    android:background="@color/colorGray"
                     >
                     <ImageView
                         android:id="@+id/join_group_main"
