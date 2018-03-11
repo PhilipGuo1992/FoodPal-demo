@@ -11,11 +11,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.phili.foodpaldemo.models.UserGroup;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +49,13 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private TextView textViewEmail;
 
     private Button btnCreate;
+
+    // google place
+    private ImageButton choosePlace;
+    private final static int PLACE_PICKER_REQUEST = 1;
+    private final static LatLngBounds bounds = new LatLngBounds(new LatLng( 44.623740,-63.645071), new LatLng(44.684002, -63.557137));
+    private TextView placeName;
+
 
     //Dialog for redirecting
     private ProgressDialog progressDialog;
@@ -76,7 +90,9 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         editTextgName = findViewById(R.id.create_name);
         editTextTime = findViewById(R.id.create_time);
-        editTextRestaurant = findViewById(R.id.create_res);
+        choosePlace = findViewById(R.id.create_res);
+        placeName = findViewById(R.id.place_name);
+
         textViewEmail = findViewById(R.id.textViewEmail);
 
         btnCreate = findViewById(R.id.btn_create);
@@ -89,7 +105,11 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private void createGroup(){
         String groupName = editTextgName.getText().toString().trim();
         String mealTime = editTextTime.getText().toString().trim();
+
         String restaurantName = editTextRestaurant.getText().toString().trim();
+
+
+
         //String description =
 
         if (!TextUtils.isEmpty(groupName)) {
@@ -116,12 +136,56 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    private void chooseRestaurant(){
+
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        builder.setLatLngBounds(bounds);
+
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+
+                Place place = PlacePicker.getPlace(CreateGroupActivity.this, data);
+                //PlaceEntity{id=ChIJ19nmdTAiWksRA1TUEF1FjHQ, placeTypes=[94, 1013, 34], locale=null, name=Dalhousie University,
+                // address=6299 South St, Halifax, NS B3H 4R2, Canada, phoneNumber=+1 902-494-2211,
+                // latlng=lat/lng: (44.636581199999995,-63.591655499999995), viewport=LatLngBounds{southwest=lat/lng: (44.63575445,-63.60206124999999),
+
+                if(place != null){
+                    placeName.setText(place.getName());
+
+                }else {
+                    Toast.makeText(this, "Please choose a restaurant", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // northeast=lat/lng: (44.63906144999999,-63.58057544999999)}, websiteUri=http://www.dal.ca/, isPermanentlyClosed=false, priceLevel=-1}
+
+            }
+        }
+    }
+
 
 
     @Override
     public void onClick(View view) {
         if (view == btnCreate) {
             createGroup();
+        }
+
+        if (view == choosePlace) {
+            // start the place picker
+            chooseRestaurant();
+
+
         }
     }
 }
