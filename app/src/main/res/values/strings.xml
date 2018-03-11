@@ -134,4 +134,9 @@
         <item>31</item>
     </string-array>
 
+    <string-array name="locations_array">
+        <item>Halifax</item>
+        <item>Dartmouth</item>
+    </string-array>
+
 </resources>
