@@ -1,5 +1,7 @@
 package com.example.phili.foodpaldemo.models;
 
+import com.google.android.gms.location.places.Place;
+
 import java.util.Map;
 
 
@@ -17,6 +19,7 @@ public class UserGroup {
     private String mealTime;
     private String restaurantName;
     private String description;
+    private Place choosedPlace;
 
     // default constructor **DO NOT REMOVE THE constructor**
     public UserGroup() {
@@ -94,5 +97,12 @@ public class UserGroup {
         this.description = description;
     }
 
+    public Place getChoosedPlace() {
+        return choosedPlace;
+    }
+
+    public void setChoosedPlace(Place choosedPlace) {
+        this.choosedPlace = choosedPlace;
+    }
 }
 
