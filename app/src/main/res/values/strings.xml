@@ -39,6 +39,10 @@
     <string name="leave_group_confirm">Are you sure leaving the group?</string>
     <string name="leave">Leave</string>
     <string name="cancel">Cancel</string>
+    <string name="title_home">Home</string>
+    <string name="title_mygroup">My Group</string>
+    <string name="title_restaurant">Restaurants</string>
+    <string name="title_settings">Settings</string>
 
     <string-array name="hours_array">
         <item>1</item>
