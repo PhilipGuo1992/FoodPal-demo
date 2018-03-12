@@ -57,6 +57,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private final static int PLACE_PICKER_REQUEST = 1;
     private final static LatLngBounds bounds = new LatLngBounds(new LatLng( 44.623740,-63.645071), new LatLng(44.684002, -63.557137));
     private TextView placeName;
+    private Place place;
 
 
     //Dialog for redirecting
@@ -158,7 +159,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         //String description =
 
-        if (!TextUtils.isEmpty(groupName)) {
+        if (!TextUtils.isEmpty(groupName) && place != null) {
             String gId = databaseReference.push().getKey();
             //Construct a map to manage users and groups
             Map<String, Boolean> members = new HashMap<>();
@@ -171,7 +172,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
             //Put user to the current group
             members.put(uId,true);
-            UserGroup userGroup = new UserGroup(gId,uId,groupName,mealTime,restaurantName,members);
+            UserGroup userGroup = new UserGroup(gId,uId,groupName,"Friday 5pm",place,members);
             databaseReference.child(gId).setValue(userGroup);
             Log.i("test", "add group success");
 
@@ -201,7 +202,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
 
-                Place place = PlacePicker.getPlace(CreateGroupActivity.this, data);
+                place = PlacePicker.getPlace(CreateGroupActivity.this, data);
                 //PlaceEntity{id=ChIJ19nmdTAiWksRA1TUEF1FjHQ, placeTypes=[94, 1013, 34], locale=null, name=Dalhousie University,
                 // address=6299 South St, Halifax, NS B3H 4R2, Canada, phoneNumber=+1 902-494-2211,
                 // latlng=lat/lng: (44.636581199999995,-63.591655499999995), viewport=LatLngBounds{southwest=lat/lng: (44.63575445,-63.60206124999999),
