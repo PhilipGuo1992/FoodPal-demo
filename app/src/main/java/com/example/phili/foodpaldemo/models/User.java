@@ -53,6 +53,11 @@ public class User {
         //this.photoUrl = photoUrl;
     }
 
+    //this constructor is used to save uri of profile image
+    public User(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     public String getUserID() {
         return userID;
     }

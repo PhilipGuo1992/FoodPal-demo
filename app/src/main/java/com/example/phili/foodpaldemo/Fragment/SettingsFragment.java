@@ -35,6 +35,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +44,8 @@ import com.google.firebase.storage.UploadTask;
 public class SettingsFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
 
     //declare all view components
-    private ImageView imageViewedit, imageViewphoto, imageViewsubmit;
+    private ImageView imageViewedit, imageViewsubmit;
+    private CircleImageView circleImageViewPhoto;
     private EditText username, major, email,
             gender, birthday, about;
 
@@ -51,7 +54,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
     //used to store and upload image
     private static final int IMAGE_REQUEST = 100;
-    private Uri filePath;
+    private Uri imageUri;
 
     //firebase settings
     private FirebaseAuth firebaseAuth;
@@ -59,6 +62,9 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     private DatabaseReference userReference;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser firebaseUser;
+    private StorageReference imageReference;
+    private FirebaseStorage imageStore;
+
 
     //empty constructor for fragment
     public SettingsFragment(){}
@@ -71,7 +77,11 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
+        imageReference = FirebaseStorage.getInstance().getReference().child("images");
+        imageStore = FirebaseStorage.getInstance();
 
+
+        imageUri = null;
     }
 
     @Override
@@ -88,7 +98,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         //controller -- view
         imageViewedit = settingView.findViewById(R.id.editprofile);
-        imageViewphoto = settingView.findViewById(R.id.editphoto);
+        circleImageViewPhoto = (CircleImageView) settingView.findViewById(R.id.circleImage);
         imageViewsubmit = settingView.findViewById(R.id.editsubmit);
         username = settingView.findViewById(R.id.profileName);
         email = settingView.findViewById(R.id.email);
@@ -100,7 +110,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         //bind onClick event to those image views
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
-        imageViewphoto.setOnClickListener(this);
+        circleImageViewPhoto.setOnClickListener(this);
 
         updateFragmentView();
 
@@ -148,7 +158,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             saveChange();
         }
 
-        if (view == imageViewphoto) {
+        if (view == circleImageViewPhoto) {
             imageChooser();
         }
 
@@ -160,6 +170,10 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         Intent intent = new Intent();
         intent.setType("*/images");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        //image select
+        startActivityForResult(Intent.createChooser(intent, "Select a picture"), IMAGE_REQUEST);
+
+
 
 
     }
@@ -237,6 +251,21 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
     //upload image to firebase
     private void uploadImage() {
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMAGE_REQUEST) {
+
+            //save uri of the image
+            imageUri = data.getData();
+            circleImageViewPhoto.setImageURI(imageUri);
+
+        }
 
 
     }
