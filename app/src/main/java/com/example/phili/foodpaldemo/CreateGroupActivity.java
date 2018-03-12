@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -131,7 +132,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         }
 
-        databaseReference = firebaseDatabase.getReference("groups");
+        databaseReference = firebaseDatabase.getReference();
         userDataReference = firebaseDatabase.getReference("users");
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -153,18 +154,27 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private void createGroup(){
         String groupName = editTextgName.getText().toString().trim();
         String mealTime = message_month+"."+message_date+"."+message_hour+"."+message_minute+".";
-        String restaurantName = editTextRestaurant.getText().toString().trim();
+       // String restaurantName = editTextRestaurant.getText().toString().trim();
 
 
 
         //String description =
 
         if (!TextUtils.isEmpty(groupName) && place != null) {
-            String gId = databaseReference.push().getKey();
+            // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
+            // get the restaurant
+
+            Restaurant restaurant = new Restaurant(place.getId(), place.getName().toString(), place.getAddress().toString(),
+                        place.getPhoneNumber().toString(), place.getWebsiteUri(), place.getLatLng());
+
+
+            String gId = databaseReference.child("groups").push().getKey();
             //Construct a map to manage users and groups
             Map<String, Boolean> members = new HashMap<>();
             FirebaseUser user = firebaseAuth.getCurrentUser();
             String uId = user.getUid();
+
+
 
             // add the group id to the user
             //  update the user's group info
@@ -172,8 +182,17 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
             //Put user to the current group
             members.put(uId,true);
-            UserGroup userGroup = new UserGroup(gId,uId,groupName,"Friday 5pm",place,members);
-            databaseReference.child(gId).setValue(userGroup);
+            UserGroup userGroup = new UserGroup(gId,uId,groupName,"Friday 5pm",place.getId(),members);
+            try {
+                databaseReference.child("groups").child(gId).setValue(userGroup);
+
+                databaseReference.child("restaurants").child(place.getId()).setValue("whay");
+
+                databaseReference.child("restaurants").child(place.getId()).setValue(restaurant);
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             Log.i("test", "add group success");
 
             Toast.makeText(this, "create group success", Toast.LENGTH_LONG).show();
