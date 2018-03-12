@@ -2,6 +2,7 @@ package com.example.phili.foodpaldemo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -9,10 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.PlacePhotoMetadata;
+import com.google.android.gms.location.places.PlacePhotoMetadataBuffer;
+import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
+import com.google.android.gms.location.places.PlacePhotoResponse;
+import com.google.android.gms.location.places.Places;
+
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +63,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         // inflate the view
         View groupViewList = inflater.inflate(R.layout.groups_list_layout, null, true);
         // get widges from layout
+        final ImageView resImage = groupViewList.findViewById(R.id.res_image);
         TextView groupName = groupViewList.findViewById(R.id.getGroupName);
         TextView grouRest = groupViewList.findViewById(R.id.getResName);
         TextView groupMealTime = groupViewList.findViewById(R.id.getMealTime);
@@ -61,9 +74,10 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
         // get current group
         UserGroup userGroup = userGroups.get(position);
+
         // update the UI
         groupName.setText(userGroup.getGroupName());
-        grouRest.setText(userGroup.getRestaurantName());
+        grouRest.setText("remove it");
         groupMealTime.setText(userGroup.getMealTime());
 
         // only show the total group numbers, after user click the group: show currentMembers' name.
@@ -74,6 +88,12 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         Log.i("test", members+"");
         // need to convert int to string first
         groupTotalMember.setText(members + "");
+
+        // get the picture
+        String resID = userGroup.getRestaurantID();
+        setRestaurantPhoto(resID, resImage);
+
+
 //        // show the creater name
 
         String groupCreaterID =  userGroup.getGroupCreatorID();
@@ -108,5 +128,46 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         }
 
         return groupViewList;
+    }
+
+    private void setRestaurantPhoto(String resID, final ImageView resImage) {
+
+
+
+        final GeoDataClient mGeoDataClient ;
+        mGeoDataClient = Places.getGeoDataClient(context, null);
+
+        String placeId = resID;
+
+        final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
+        photoMetadataResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoMetadataResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<PlacePhotoMetadataResponse> task) {
+                // Get the list of photos.
+                PlacePhotoMetadataResponse photos = task.getResult();
+                // Get the PlacePhotoMetadataBuffer (metadata for all of the photos).
+                PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
+                // Get the first photo in the list.
+                PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
+                // Get the attribution text.
+                CharSequence attribution = photoMetadata.getAttributions();
+                // Get a full-size bitmap for the photo.
+                Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
+                photoResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoResponse>() {
+                    @Override
+                    public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
+                        PlacePhotoResponse photo = task.getResult();
+                        Bitmap bitmap = photo.getBitmap();
+
+                        // set up map
+                        resImage.setImageBitmap(bitmap);
+
+                    }
+                });
+            }
+        });
+
+
+
     }
 }

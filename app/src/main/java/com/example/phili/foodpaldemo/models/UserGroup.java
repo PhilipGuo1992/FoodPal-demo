@@ -19,7 +19,8 @@ public class UserGroup {
     private String mealTime;
     private String restaurantName;
     private String description;
-    private Place choosedPlace;
+    private String restaurantID;
+
 
     // default constructor **DO NOT REMOVE THE constructor**
     public UserGroup() {
@@ -29,12 +30,13 @@ public class UserGroup {
     private Map<String, Boolean> currentMembers;
 
     public UserGroup(String groupID, String groupCreatorID, String groupName,
-                     String mealTime, String restaurantName, Map<String, Boolean> currentMembers) {
+                     String mealTime, String restaurantID, Map<String, Boolean> currentMembers) {
         this.groupID = groupID;
         this.groupCreatorID = groupCreatorID;
         this.groupName = groupName;
         this.mealTime = mealTime;
-        this.restaurantName = restaurantName;
+        this.restaurantID = restaurantID;
+        //this.restaurantName = restaurantName;
         //this.description = description;
 
         this.currentMembers = currentMembers;
@@ -97,12 +99,12 @@ public class UserGroup {
         this.description = description;
     }
 
-    public Place getChoosedPlace() {
-        return choosedPlace;
+    public String getRestaurantID() {
+        return restaurantID;
     }
 
-    public void setChoosedPlace(Place choosedPlace) {
-        this.choosedPlace = choosedPlace;
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 }
 

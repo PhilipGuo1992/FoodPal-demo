@@ -18,10 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -57,6 +59,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private final static int PLACE_PICKER_REQUEST = 1;
     private final static LatLngBounds bounds = new LatLngBounds(new LatLng( 44.623740,-63.645071), new LatLng(44.684002, -63.557137));
     private TextView placeName;
+    private Place place;
 
 
     //Dialog for redirecting
@@ -130,7 +133,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         }
 
-        databaseReference = firebaseDatabase.getReference("groups");
+        databaseReference = firebaseDatabase.getReference();
         userDataReference = firebaseDatabase.getReference("users");
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -152,14 +155,21 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private void createGroup(){
         String groupName = editTextgName.getText().toString().trim();
         String mealTime = message_month+"."+message_date+"."+message_hour+"."+message_minute+".";
-        String restaurantName = editTextRestaurant.getText().toString().trim();
+       // String restaurantName = editTextRestaurant.getText().toString().trim();
 
 
 
         //String description =
 
-        if (!TextUtils.isEmpty(groupName)) {
-            String gId = databaseReference.push().getKey();
+        if (!TextUtils.isEmpty(groupName) && place != null) {
+            // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
+            // get the restaurant
+
+            Restaurant restaurant = new Restaurant(place.getId(), place.getName().toString(), place.getAddress().toString(),
+                        place.getPhoneNumber().toString(), place.getWebsiteUri().toString(), place.getLatLng());
+
+
+            String gId = databaseReference.child("groups").push().getKey();
             //Construct a map to manage users and groups
             Map<String, Boolean> members = new HashMap<>();
             FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -171,14 +181,23 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
             //Put user to the current group
             members.put(uId,true);
-            UserGroup userGroup = new UserGroup(gId,uId,groupName,mealTime,restaurantName,members);
-            databaseReference.child(gId).setValue(userGroup);
+
+            UserGroup userGroup = new UserGroup(gId,uId,groupName,"Friday 5pm",place.getId(),members);
+            try {
+                // only store restaurant id in group.
+                databaseReference.child("groups").child(gId).setValue(userGroup);
+
+                databaseReference.child("restaurants").child(place.getId()).setValue(restaurant);
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             Log.i("test", "add group success");
 
             Toast.makeText(this, "create group success", Toast.LENGTH_LONG).show();
 
         } else {
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter a name or choose a place", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -201,7 +220,8 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
 
-                Place place = PlacePicker.getPlace(CreateGroupActivity.this, data);
+
+                place = PlacePicker.getPlace(CreateGroupActivity.this, data);
                 //PlaceEntity{id=ChIJ19nmdTAiWksRA1TUEF1FjHQ, placeTypes=[94, 1013, 34], locale=null, name=Dalhousie University,
                 // address=6299 South St, Halifax, NS B3H 4R2, Canada, phoneNumber=+1 902-494-2211,
                 // latlng=lat/lng: (44.636581199999995,-63.591655499999995), viewport=LatLngBounds{southwest=lat/lng: (44.63575445,-63.60206124999999),
