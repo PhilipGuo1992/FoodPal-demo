@@ -13,14 +13,14 @@ public class Restaurant {
     private String resName;
     private String resAddress;
     private String resPhoneNum;
-    private Uri resWebsite;
+    private String resWebsite;
     private LatLng resLatLng;
 
     public Restaurant(){
 
     }
 
-    public Restaurant(String resID, String resName, String resAddress, String resPhoneNum, Uri resWebsite, LatLng resLatLng) {
+    public Restaurant(String resID, String resName, String resAddress, String resPhoneNum, String resWebsite, LatLng resLatLng) {
         this.resID = resID;
         this.resName = resName;
         this.resAddress = resAddress;
@@ -61,11 +61,11 @@ public class Restaurant {
         this.resPhoneNum = resPhoneNum;
     }
 
-    public Uri getResWebsite() {
+    public String getResWebsite() {
         return resWebsite;
     }
 
-    public void setResWebsite(Uri resWebsite) {
+    public void setResWebsite(String resWebsite) {
         this.resWebsite = resWebsite;
     }
 

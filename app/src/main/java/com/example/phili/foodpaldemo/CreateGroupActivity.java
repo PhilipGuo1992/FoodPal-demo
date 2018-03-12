@@ -23,6 +23,7 @@ import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -165,7 +166,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             // get the restaurant
 
             Restaurant restaurant = new Restaurant(place.getId(), place.getName().toString(), place.getAddress().toString(),
-                        place.getPhoneNumber().toString(), place.getWebsiteUri(), place.getLatLng());
+                        place.getPhoneNumber().toString(), place.getWebsiteUri().toString(), place.getLatLng());
 
 
             String gId = databaseReference.child("groups").push().getKey();
@@ -174,19 +175,17 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             FirebaseUser user = firebaseAuth.getCurrentUser();
             String uId = user.getUid();
 
-
-
             // add the group id to the user
             //  update the user's group info
             userDataReference.child(uId).child("joinedGroups").child(gId).setValue(true);
 
             //Put user to the current group
             members.put(uId,true);
+
             UserGroup userGroup = new UserGroup(gId,uId,groupName,"Friday 5pm",place.getId(),members);
             try {
+                // only store restaurant id in group.
                 databaseReference.child("groups").child(gId).setValue(userGroup);
-
-                databaseReference.child("restaurants").child(place.getId()).setValue("whay");
 
                 databaseReference.child("restaurants").child(place.getId()).setValue(restaurant);
 
@@ -198,7 +197,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "create group success", Toast.LENGTH_LONG).show();
 
         } else {
-            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter a name or choose a place", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -220,6 +219,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
+
 
                 place = PlacePicker.getPlace(CreateGroupActivity.this, data);
                 //PlaceEntity{id=ChIJ19nmdTAiWksRA1TUEF1FjHQ, placeTypes=[94, 1013, 34], locale=null, name=Dalhousie University,
