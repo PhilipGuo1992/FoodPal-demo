@@ -136,7 +136,8 @@ android:background="@color/graylight">
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/photo2" />
+                android:src="@drawable/photo2"
+                />
 
             <EditText
                 android:id="@+id/profileName"
