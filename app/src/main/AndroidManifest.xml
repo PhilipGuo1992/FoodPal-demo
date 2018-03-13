@@ -53,7 +53,11 @@
         <activity
             android:name=".MainHomeActivity"
             android:label="@string/title_activity_main_home" />
-        <activity android:name=".DiscoverRestaurantActivity"></activity>
+        <activity android:name=".DiscoverRestaurantActivity" />
+        <activity android:name=".DisplayRestaurantsActivity"
+            android:label="Go Back"
+            android:parentActivityName=".DiscoverRestaurantActivity">
+        </activity>
     </application>
 
 </manifest>
