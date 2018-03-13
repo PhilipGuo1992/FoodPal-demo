@@ -3,13 +3,17 @@ package com.example.phili.foodpaldemo.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +23,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.phili.foodpaldemo.MainHomeActivity;
+import com.example.phili.foodpaldemo.Manifest;
 import com.example.phili.foodpaldemo.R;
+import com.example.phili.foodpaldemo.RegisterActivity;
 import com.example.phili.foodpaldemo.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +41,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -63,7 +81,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     private FirebaseDatabase firebaseDatabase;
     private FirebaseUser firebaseUser;
     private StorageReference imageReference;
-    private FirebaseStorage imageStore;
+    private FirebaseFirestore imageStore;
 
 
     //empty constructor for fragment
@@ -78,9 +96,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         firebaseUser = firebaseAuth.getCurrentUser();
 
         imageReference = FirebaseStorage.getInstance().getReference().child("images");
-        imageStore = FirebaseStorage.getInstance();
-
-
+        imageStore = FirebaseFirestore.getInstance();
         imageUri = null;
     }
 
@@ -90,11 +106,21 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         View settingView = inflater.inflate(R.layout.fragment_settings, container, false);
+
+
+
+        //get current userID
+        uId = firebaseUser.getUid();
+
+        //firebase instance
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        //user DatabaseReference
+        userReference = firebaseDatabase.getReference("users").child(uId);
 
         //controller -- view
         imageViewedit = settingView.findViewById(R.id.editprofile);
@@ -107,24 +133,20 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         major = settingView.findViewById(R.id.major);
         about = settingView.findViewById(R.id.selfdes);
 
+
+
         //bind onClick event to those image views
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
-        circleImageViewPhoto.setOnClickListener(this);
-
-        updateFragmentView();
-
-        return settingView;
-    }
-
-    private void updateFragmentView() {
-
-        //get current userID
-        uId = firebaseUser.getUid();
-        //firebase instance
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        //user DatabaseReference
-        userReference = firebaseDatabase.getReference("users").child(uId);
+        circleImageViewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select a picture"), IMAGE_REQUEST);
+            }
+        });
 
         userReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -138,6 +160,25 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                 birthday.setText(currentUser.getUserBirthday());
                 major.setText(currentUser.getUserMajor());
                 about.setText(currentUser.getSelfDescription());
+                //circleImageViewPhoto.setImageURI(currentUser.getPhotoUrl());
+//                imageStore.collection("users").document(uId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                        String userImage = documentSnapshot.getString("photoUrl");
+//                        Log.i("test", userImage);
+//
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.placeholder(R.drawable.photo2);
+//
+//                        Glide.with(container.getContext())
+//                        .setDefaultRequestOptions(requestOptions)
+//                                .load(userImage)
+//                                .into(circleImageViewPhoto);
+//                    }
+//                });
+
+                Glide.with(container.getContext()).setDefaultRequestOptions(requestOptions).
+                        load(currentUser.getPhotoUrl()).into(circleImageViewPhoto);
             }
 
             @Override
@@ -145,6 +186,16 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
             }
         });
+
+        return settingView;
+    }
+
+    private void updateFragmentView() {
+
+
+
+
+
     }
 
     @Override
@@ -158,25 +209,10 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             saveChange();
         }
 
-        if (view == circleImageViewPhoto) {
-            imageChooser();
-        }
-
-    }
-
-    //open image chooser
-    private void imageChooser() {
-
-        Intent intent = new Intent();
-        intent.setType("*/images");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        //image select
-        startActivityForResult(Intent.createChooser(intent, "Select a picture"), IMAGE_REQUEST);
-
-
 
 
     }
+
 
     //save current changes to user information
     private void saveChange() {
@@ -209,13 +245,18 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         String uMajor = major.getText().toString().trim();
         String uAbout = about.getText().toString().trim();
 
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        String uId = firebaseUser.getUid();
 
-        //Map<String, Boolean> currentMembers = new HashMap<>();
+        Map<String, Object> users = new HashMap<>();
+        users.put("userName", uName);
+        users.put("userGender", uGender);
+        users.put("userBirthday", uBirthday);
+        users.put("userMajor", uMajor);
+        users.put("selfDescription", uAbout);
 
-        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout);
-        userReference.setValue(user);
+        userReference.updateChildren(users);
+
+//        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout,"");
+//        userReference.setValue(user);
 
         toast = Toast.makeText(getContext(), "Changes submitted", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -259,10 +300,62 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == IMAGE_REQUEST) {
+        if (requestCode == IMAGE_REQUEST ) {
 
             //save uri of the image
             imageUri = data.getData();
+
+            StorageReference userProfile = imageReference.child(uId + ".jpg");
+
+            userProfile.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        String downloadUrl = task.getResult().getDownloadUrl().toString();
+                        Map<String, Object> userMap = new HashMap<>();
+                        userMap.put("photoUrl", downloadUrl);
+                        userReference.updateChildren(userMap);
+                        imageStore.collection("users").document(uId).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getActivity(), SettingsFragment.class);
+                                startActivity(intent);
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getActivity(),"Error!",Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+//            userProfile.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    String downloadUrl = taskSnapshot.getDownloadUrl().toString();
+//                        Map<String, Object> userMap = new HashMap<>();
+//                        userMap.put("photoUrl", downloadUrl);
+//                        userReference.setValue(userMap);
+//                        imageStore.collection("users").document(uId).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                startActivity(new Intent(getContext(),SettingsFragment.class));
+//                                Toast.makeText(getContext(), "Success!", Toast.LENGTH_LONG).show();
+//                            }
+//                        });
+//
+//
+//                }
+//            })
+//             .addOnFailureListener(new OnFailureListener() {
+//                 @Override
+//                 public void onFailure(@NonNull Exception e) {
+//                     Toast.makeText(getContext(),"Error!", Toast.LENGTH_LONG).show();
+//                 }
+//             });
+
+
             circleImageViewPhoto.setImageURI(imageUri);
 
         }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "711476943458-3qopc78rsog9uudecla98tjkhda5vrbl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phili.foodpaldemo",
+            "certificate_hash": "0d2bb9dbfef5edbb6a7238c8e965776e881e1eb1"
+          }
+        },
+        {
           "client_id": "711476943458-um4kpg2jivqvm8d26huooop72133ng0e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
