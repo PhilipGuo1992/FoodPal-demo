@@ -56,7 +56,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         // widges
         groupName = findViewById(R.id.display_group_name);
         mealTime = findViewById(R.id.display_mealTime);
-        restaurantName = findViewById(R.id.display_rest_name);
+       // restaurantName = findViewById(R.id.display_rest_name);
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
 
@@ -79,14 +79,17 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         groupID = intent.getStringExtra(GroupListFragment.GROUP_ID);
         if_contain_user = intent.getBooleanExtra(GroupListFragment.GROUP_CONTAIN_USER, false);
+
         // disable the related button
         if(if_contain_user){
             joinGroupBtn.setEnabled(false);
-            joinGroupBtn.setBackgroundResource(R.color.joinBtn);
+            // hide this button
+            joinGroupBtn.setVisibility(View.GONE);
 
         } else {
             leaveGroupBtn.setEnabled(false);
-            leaveGroupBtn.setBackgroundResource(R.color.leaveBtn);
+            leaveGroupBtn.setVisibility(View.GONE);
+
         }
 
         // query firebase using group id
@@ -179,7 +182,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 //        private TextView groupName, mealTime, restaurantName, description, currentMembers;
         groupName.setText(currentGroup.getGroupName());
         mealTime.setText(currentGroup.getMealTime());
-        restaurantName.setText(currentGroup.getRestaurantName());
+      //  restaurantName.setText(currentGroup.getRestaurantName());
         description.setText(currentGroup.getDescription());
         // currentMembers is a Map.
         currentMembers = currentGroup.getCurrentMembers();
