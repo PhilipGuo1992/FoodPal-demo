@@ -160,7 +160,21 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
                         Bitmap bitmap = photo.getBitmap();
 
                         // set up map
-                        resImage.setImageBitmap(bitmap);
+                       // resImage.getMaxWidth()
+
+                        int oldWidth = bitmap.getWidth();
+                        int oldHeight = bitmap.getHeight();
+                        int ratio = oldHeight/oldWidth;
+
+                        int newWidth = resImage.getMaxWidth();
+                        int newHeight = newWidth * ratio;
+
+
+                        Bitmap resized = Bitmap.createScaledBitmap(bitmap,
+                               newWidth, newHeight, true );
+
+
+                        resImage.setImageBitmap(resized);
 
                     }
                 });
