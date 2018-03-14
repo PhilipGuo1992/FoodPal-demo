@@ -44,10 +44,10 @@
     <string name="title_restaurant">Restaurants</string>
     <string name="title_settings">Settings</string>
     <string name="discover_restaurants_heading">Discover Restaurants</string>
-    <string name="api_credit">Powered by Zomato API</string>
+    <string name="zomato_api_credit">Powered by Zomato API</string>
     <string name="your_location_text">Your Location:</string>
     <string name="search_for_restaurant">Search for restaurants…</string>
-    <string name="restaurant_search_btn">Go</string>
+    <string name="btn_discover_restaurant">Go</string>
     <string name="title_activity_main_home">123</string>
 
 
@@ -135,7 +135,7 @@
         <item>31</item>
     </string-array>
 
-    <string-array name="locations_array">
+    <string-array name="cities_array">
         <item>Halifax</item>
         <item>Dartmouth</item>
     </string-array>
