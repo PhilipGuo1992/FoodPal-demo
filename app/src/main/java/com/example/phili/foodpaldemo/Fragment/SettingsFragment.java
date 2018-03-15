@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.phili.foodpaldemo.MainHomeActivity;
@@ -52,6 +54,9 @@ import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +75,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     private CircleImageView circleImageViewPhoto;
     private EditText username, major, email,
             gender, birthday, about;
+
+    private TimePickerView timePickerView;
 
     //store the current user ID
     private String uId;
@@ -95,13 +102,9 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //deploy firebase connection and user
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-
-        imageReference = FirebaseStorage.getInstance().getReference().child("images");
-        imageStore = FirebaseFirestore.getInstance();
-        imageUri = null;
+        initFirebase();
+        initImageStore();
+        initTimePickView();
     }
 
     @Override
@@ -115,14 +118,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         // Inflate the layout for this fragment
         View settingView = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        //get current userID
-        uId = firebaseUser.getUid();
-
-        //firebase instance
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        //user DatabaseReference
-        userReference = firebaseDatabase.getReference("users").child(uId);
 
         //controller -- view
         imageViewedit = settingView.findViewById(R.id.editprofile);
@@ -148,6 +143,18 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                         .start(getContext(), SettingsFragment.this);
             }
         });
+
+        birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timePickerView.setDate(Calendar.getInstance());
+                timePickerView.show(view);
+               // timePickerView.setDate();
+                setVisibility();
+            }
+        });
+
+
 
         userReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -249,8 +256,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     private void setEditable() {
 
         //Set Visibility of 2 image buttons
-        imageViewedit.setVisibility(View.INVISIBLE);
-        imageViewsubmit.setVisibility(View.VISIBLE);
+        setVisibility();
 
         //cannot set focus so that it can be edited.
         username.setFocusable(true);
@@ -270,6 +276,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         about.setFocusableInTouchMode(true);
     }
 
+    //CropImage.activity on Activity Result
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -319,5 +326,67 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         getActivity().finishActivity(CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
+    public void initFirebase() {
+
+        //deploy firebase connection and user
+        firebaseAuth = FirebaseAuth.getInstance();
+        //get current user
+        firebaseUser = firebaseAuth.getCurrentUser();
+        //get current userID
+        uId = firebaseUser.getUid();
+        //firebase instance
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        //user DatabaseReference
+        userReference = firebaseDatabase.getReference("users").child(uId);
+    }
+
+    public void initImageStore() {
+
+        //set up image reference
+        imageReference = FirebaseStorage.getInstance().getReference().child("images");
+        //use firebase firestore
+        imageStore = FirebaseFirestore.getInstance();
+        //init image uri
+        imageUri = null;
+    }
+
+    public void initTimePickView() {
+
+        Calendar selectedDate = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        Calendar currentDate = Calendar.getInstance();
+
+        timePickerView = new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                EditText editText = (EditText) v;
+                editText.setText(getTime(date));
+            }
+        })
+                //year/month/day/hour/minute/second
+                .setType(new boolean[]{true,true,true,false,false,false})
+                .setLabel("","","","","","")
+                .isCenterLabel(false)
+                //IOS-liked color
+                .setDividerColor(Color.DKGRAY)
+                .setContentSize(18)
+                .setDate(selectedDate)
+                .setDecorView(null)
+                .build();
+    }
+
+    private String getTime(Date date) {
+
+        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return sdFormat.format(date);
+    }
+
+    private void setVisibility() {
+        //Set Visibility of 2 image buttons
+        imageViewedit.setVisibility(View.INVISIBLE);
+        imageViewsubmit.setVisibility(View.VISIBLE);
+
+    }
 
 }
