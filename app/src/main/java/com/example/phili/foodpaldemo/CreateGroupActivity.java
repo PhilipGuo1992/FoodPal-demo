@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,7 +76,9 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     private FirebaseDatabase firebaseDatabase;
 
-
+    
+    private ArrayList<String> dataDay = new ArrayList<String>();
+    private ArrayAdapter<String> adapterSpDay;
     public static final String message_month = "MONTH";
     public static final String message_date = "DATE";
     public static final String message_hour = "HOUR";
@@ -98,11 +103,32 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         spinnerMonth.setAdapter(MonthAdapter);
 
-        ArrayAdapter<CharSequence> DateAdapter = ArrayAdapter.createFromResource(this,
-                R.array.date_array, R.layout.spinner_item);
-        DateAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        adapterSpDay = new ArrayAdapter<String>(this, R.layout.spinner_item, dataDay);
+        adapterSpDay.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
-        spinnerDate.setAdapter(DateAdapter);
+        spinnerDate.setAdapter(adapterSpDay);
+        spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                Integer year;
+                dataDay.clear();
+                Calendar cal = Calendar.getInstance();
+                year = cal.get(Calendar.YEAR);
+                cal.set(Calendar.YEAR, Integer.valueOf(year.toString()));
+
+                cal.set(Calendar.MONTH, arg2);
+                int dayofm = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                for(int i = 1;i<=dayofm;i++){
+                    dataDay.add(""+(i<10 ? "0"+ i:i));
+                }
+                adapterSpDay.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         ArrayAdapter<CharSequence> minuteAdapter = ArrayAdapter.createFromResource(this,
                 R.array.minute_array, R.layout.spinner_item);
@@ -156,11 +182,8 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     private void createGroup(){
         String groupName = editTextgName.getText().toString().trim();
-        String mealTime = message_month+"."+message_date+"."+message_hour+"."+message_minute+".";
-       // String restaurantName = editTextRestaurant.getText().toString().trim();
-
-
-
+        String mealTime = message_month+"."+message_date+"."+message_hour+":"+message_minute+".";
+        String restaurantName = editTextRestaurant.getText().toString().trim();
         //String description =
 
         if (!TextUtils.isEmpty(groupName) && place != null) {
