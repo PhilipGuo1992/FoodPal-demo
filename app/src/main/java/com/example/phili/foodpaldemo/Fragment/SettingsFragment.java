@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import com.example.phili.foodpaldemo.Manifest;
 import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.RegisterActivity;
 import com.example.phili.foodpaldemo.models.User;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,6 +49,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -112,8 +116,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         // Inflate the layout for this fragment
         View settingView = inflater.inflate(R.layout.fragment_settings, container, false);
 
-
-
         //get current userID
         uId = firebaseUser.getUid();
 
@@ -133,18 +135,17 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         major = settingView.findViewById(R.id.major);
         about = settingView.findViewById(R.id.selfdes);
 
-
-
         //bind onClick event to those image views
         imageViewedit.setOnClickListener(this);
         imageViewsubmit.setOnClickListener(this);
         circleImageViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select a picture"), IMAGE_REQUEST);
+                CropImage.activity()
+                        .setGuidelines(CropImageView.Guidelines.ON)
+                        .setCropShape(CropImageView.CropShape.OVAL)
+                        .setAspectRatio(1,1)
+                        .start(getContext(), SettingsFragment.this);
             }
         });
 
@@ -160,25 +161,14 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                 birthday.setText(currentUser.getUserBirthday());
                 major.setText(currentUser.getUserMajor());
                 about.setText(currentUser.getSelfDescription());
-                //circleImageViewPhoto.setImageURI(currentUser.getPhotoUrl());
-//                imageStore.collection("users").document(uId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        String userImage = documentSnapshot.getString("photoUrl");
-//                        Log.i("test", userImage);
-//
+
                 RequestOptions requestOptions = new RequestOptions();
                 requestOptions.placeholder(R.drawable.photo2);
-//
-//                        Glide.with(container.getContext())
-//                        .setDefaultRequestOptions(requestOptions)
-//                                .load(userImage)
-//                                .into(circleImageViewPhoto);
-//                    }
-//                });
 
-                Glide.with(container.getContext()).setDefaultRequestOptions(requestOptions).
-                        load(currentUser.getPhotoUrl()).into(circleImageViewPhoto);
+                Glide.with(container.getContext())
+                        .setDefaultRequestOptions(requestOptions)
+                        .load(currentUser.getPhotoUrl())
+                        .into(circleImageViewPhoto);
             }
 
             @Override
@@ -191,10 +181,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     }
 
     private void updateFragmentView() {
-
-
-
-
 
     }
 
@@ -212,7 +198,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
 
     }
-
 
     //save current changes to user information
     private void saveChange() {
@@ -245,7 +230,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         String uMajor = major.getText().toString().trim();
         String uAbout = about.getText().toString().trim();
 
-
         Map<String, Object> users = new HashMap<>();
         users.put("userName", uName);
         users.put("userGender", uGender);
@@ -255,13 +239,9 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
         userReference.updateChildren(users);
 
-//        User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout,"");
-//        userReference.setValue(user);
-
         toast = Toast.makeText(getContext(), "Changes submitted", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
-
 
     }
 
@@ -290,76 +270,54 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         about.setFocusableInTouchMode(true);
     }
 
-    //upload image to firebase
-    private void uploadImage() {
-
-
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == IMAGE_REQUEST ) {
-
-            //save uri of the image
-            imageUri = data.getData();
-
-            StorageReference userProfile = imageReference.child(uId + ".jpg");
-
-            userProfile.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        String downloadUrl = task.getResult().getDownloadUrl().toString();
-                        Map<String, Object> userMap = new HashMap<>();
-                        userMap.put("photoUrl", downloadUrl);
-                        userReference.updateChildren(userMap);
-                        imageStore.collection("users").document(uId).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-
-                                Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getActivity(), SettingsFragment.class);
-                                startActivity(intent);
-                            }
-                        });
-                    } else {
-                        Toast.makeText(getActivity(),"Error!",Toast.LENGTH_LONG).show();
+        //retrieved from https://github.com/ArthurHub/Android-Image-Cropper
+        //Image-Cropper
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE ) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
+                imageUri = result.getUri();
+                StorageReference userProfile = imageReference.child(uId + ".jpg");
+                //put uri into users
+                userProfile.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            String downloadUrl = task.getResult().getDownloadUrl().toString();
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put("photoUrl", downloadUrl);
+                            userReference.updateChildren(userMap);
+                            imageStore.collection("users").document(uId).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
+                                    goToFragment();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getActivity(),"Error!",Toast.LENGTH_LONG).show();
+                        }
                     }
-                }
-            });
+                });
 
-//            userProfile.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    String downloadUrl = taskSnapshot.getDownloadUrl().toString();
-//                        Map<String, Object> userMap = new HashMap<>();
-//                        userMap.put("photoUrl", downloadUrl);
-//                        userReference.setValue(userMap);
-//                        imageStore.collection("users").document(uId).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                startActivity(new Intent(getContext(),SettingsFragment.class));
-//                                Toast.makeText(getContext(), "Success!", Toast.LENGTH_LONG).show();
-//                            }
-//                        });
-//
-//
-//                }
-//            })
-//             .addOnFailureListener(new OnFailureListener() {
-//                 @Override
-//                 public void onFailure(@NonNull Exception e) {
-//                     Toast.makeText(getContext(),"Error!", Toast.LENGTH_LONG).show();
-//                 }
-//             });
+                circleImageViewPhoto.setImageURI(imageUri);
 
-
-            circleImageViewPhoto.setImageURI(imageUri);
-
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
         }
 
 
     }
+
+    // use getActivity() method from fragment for Intents.
+    public void goToFragment() {
+        Intent intent = new Intent(getActivity(), SettingsFragment.class);
+        startActivity(intent);
+        getActivity().finishActivity(CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
+
+
 }
