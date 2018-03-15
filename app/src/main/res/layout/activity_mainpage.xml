@@ -30,7 +30,7 @@
         android:id="@+id/group_list"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_above="@+id/fragment_container"
+        android:layout_alignEnd="@+id/create_group"
         android:layout_below="@+id/text_search"
         android:background="@color/colorWhite"
         android:descendantFocusability="afterDescendants"
