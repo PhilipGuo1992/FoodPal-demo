@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="1dp"
+        android:id="@+id/card_view"
         android:layout_marginLeft="1dp"
         android:elevation="@dimen/cardview_compat_inset_shadow"
         >
