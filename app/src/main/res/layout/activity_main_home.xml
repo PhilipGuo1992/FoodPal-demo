@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:text="@string/search"
-        android:textSize="15sp"/>
+        android:hint="@string/search"
+        android:textSize="15sp"
+        android:fontFamily="@font/nunito_semibold"/>
 
     <FrameLayout
 
