@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -170,7 +173,6 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
 
                 place = PlacePicker.getPlace(CreateGroupActivity.this, data);
-                //PlaceEntity{id=ChIJ19nmdTAiWksRA1TUEF1FjHQ, placeTypes=[94, 1013, 34], locale=null, name=Dalhousie University,
                 // address=6299 South St, Halifax, NS B3H 4R2, Canada, phoneNumber=+1 902-494-2211,
                 // latlng=lat/lng: (44.636581199999995,-63.591655499999995), viewport=LatLngBounds{southwest=lat/lng: (44.63575445,-63.60206124999999),
 
@@ -181,7 +183,6 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
                     Toast.makeText(this, "Please choose a restaurant", Toast.LENGTH_LONG).show();
                     return;
                 }
-                // northeast=lat/lng: (44.63906144999999,-63.58057544999999)}, websiteUri=http://www.dal.ca/, isPermanentlyClosed=false, priceLevel=-1}
 
             }
         }
