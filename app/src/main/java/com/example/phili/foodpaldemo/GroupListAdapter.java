@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
     private Activity context;
     // list to store the groups
     private List<UserGroup> userGroups;
+    private CardView cardView;
 
     private DatabaseReference mDatabaseUser;
     private Set<User> currentUsers;
@@ -68,6 +70,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         TextView grouRest = groupViewList.findViewById(R.id.getResName);
         TextView groupMealTime = groupViewList.findViewById(R.id.getMealTime);
         TextView groupTotalMember = groupViewList.findViewById(R.id.total_members);
+        cardView = groupViewList.findViewById(R.id.card_view);
         final TextView createrName = groupViewList.findViewById(R.id.getCreaterName);
 
         // only show description when user click the group
@@ -164,14 +167,11 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
                         int oldWidth = bitmap.getWidth();
                         int oldHeight = bitmap.getHeight();
-                        int ratio = oldHeight/oldWidth;
 
-                        int newWidth = resImage.getMaxWidth();
-                        int newHeight = newWidth * ratio;
 
 
                         Bitmap resized = Bitmap.createScaledBitmap(bitmap,
-                               newWidth, newHeight, true );
+                                oldWidth*2, oldHeight*2, true );
 
 
                         resImage.setImageBitmap(resized);
