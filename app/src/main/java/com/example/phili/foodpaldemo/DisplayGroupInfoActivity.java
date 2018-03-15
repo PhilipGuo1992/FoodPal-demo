@@ -30,6 +30,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
     // tag for dialog
     private static final String LEAVE_GROUP = "DialogLeave";
+
     // group id
     String groupID;
     private DatabaseReference mDatabaseGroup;
@@ -104,22 +105,19 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // user want to join the group.
-                Log.i("test","click join group");
-
                 // first: update the group member info
-                try {
-                  //  mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
-
-                } catch (Exception e){
-                    Log.i("test","click join group, " + e);
-
-                }
+                mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
                 // second: update the user's group info
-              // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+                mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
-                // go to the group chat acvitity
+                // go to my group acvitity
+                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                // put id to intent
+                intent.putExtra("loadMyGroup", true);
+                startActivity(intent);
+
 
             }
         });
@@ -137,18 +135,22 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
                 // user want to leave the group.
                 // first: update the group member info
-               // mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+              // mDatabaseGroup.child("currentMembers").child(userID).removeValue();
                 // update UI or not?1
 
                 // second: update the user's group info
-                // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+             //   mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
 
                 // disable join group button
                 Log.i("test","click leave group");
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "leave the group success", Toast.LENGTH_SHORT).show();
 
-
+                // go to my group acvitity
+                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                // put id to intent
+                intent.putExtra("loadMyGroup", true);
+                startActivity(intent);
             }
         });
 

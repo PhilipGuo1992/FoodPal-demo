@@ -48,16 +48,12 @@
     <string name="your_location_text">Your Location:</string>
     <string name="search_for_restaurant">Search for restaurants…</string>
     <string name="btn_discover_restaurant">Go</string>
-    <string name="title_activity_main_home">123</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main_home">MainHomeActivity</string>
-    <string name="title_home">Join</string>
-    <string name="title_mygroup">Group</string>
-    <string name="title_restaurant">Restaurant</string>
-    <string name="title_settings">Me</string>
+
 
 
     <string-array name="hours_array">

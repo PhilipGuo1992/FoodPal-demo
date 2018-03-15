@@ -32,7 +32,7 @@ public class MainHomeActivity extends AppCompatActivity
         navigation.setOnNavigationItemSelectedListener(this);
 
         Intent intent = getIntent();
-        Boolean load_mygroup = intent.getBooleanExtra(CreateGroupActivity.LOAD_MY_GROUP, false);
+        Boolean load_mygroup = intent.getBooleanExtra("loadMyGroup", false);
 
         if(load_mygroup){
             navigation.setSelectedItemId(R.id.navigation_my_groups);
