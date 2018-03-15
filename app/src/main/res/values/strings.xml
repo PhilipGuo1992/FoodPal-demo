@@ -48,6 +48,8 @@
     <string name="your_location_text">Your Location:</string>
     <string name="search_for_restaurant">Search for restaurants…</string>
     <string name="btn_discover_restaurant">Go</string>
+    <string name="Tap">Tap to choose</string>
+    <string name="EnterGroup">Enter something</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

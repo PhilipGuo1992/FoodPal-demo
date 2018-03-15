@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.phili.foodpaldemo.CreateGroupActivity;
 import com.example.phili.foodpaldemo.DisplayGroupInfoActivity;
@@ -117,9 +118,14 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
                 // add listview adapter
 
-                GroupListAdapter groupListAdapter = new GroupListAdapter(getActivity(), allGroups);
-                // set adapter to listview
-                groupList.setAdapter(groupListAdapter);
+                if (allGroups.size() != 0){
+                    GroupListAdapter groupListAdapter = new GroupListAdapter(getActivity(), allGroups);
+                    // set adapter to listview
+                    groupList.setAdapter(groupListAdapter);
+                } else {
+                    Toast.makeText(getActivity(),"No group yet! Try to create one", Toast.LENGTH_LONG).show();
+                }
+
 
             }
 
