@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -35,6 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 import java.util.Set;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by phili on 2018-02-21.
  */
@@ -45,6 +48,8 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
     // list to store the groups
     private List<UserGroup> userGroups;
     private CardView cardView;
+
+    private CircleImageView userImage;
 
     private DatabaseReference mDatabaseUser;
     private Set<User> currentUsers;
@@ -64,12 +69,14 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         LayoutInflater inflater = context.getLayoutInflater();
         // inflate the view
         View groupViewList = inflater.inflate(R.layout.groups_list_layout, null, true);
+
         // get widges from layout
         final ImageView resImage = groupViewList.findViewById(R.id.res_image);
         TextView groupName = groupViewList.findViewById(R.id.getGroupName);
-        TextView grouRest = groupViewList.findViewById(R.id.getResName);
-        TextView groupMealTime = groupViewList.findViewById(R.id.getMealTime);
+
+
         TextView groupTotalMember = groupViewList.findViewById(R.id.total_members);
+        userImage = groupViewList.findViewById(R.id.user_image);
         cardView = groupViewList.findViewById(R.id.card_view);
         final TextView createrName = groupViewList.findViewById(R.id.getCreaterName);
 
@@ -80,8 +87,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
         // update the UI
         groupName.setText(userGroup.getGroupName());
-        grouRest.setText("remove it");
-        groupMealTime.setText(userGroup.getMealTime());
+
 
         // only show the total group numbers, after user click the group: show currentMembers' name.
 
@@ -107,15 +113,24 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
             mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
             Log.i("test", " set test here");
 
+
+
             try {
-                mDatabaseUser.child(groupCreaterID).child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
+                mDatabaseUser.child(groupCreaterID).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Log.i("test", " second here");
+                        User currentUser = dataSnapshot.getValue(User.class);
 
                         // get user name, and set user name
-                        String username = dataSnapshot.getValue(String.class);
+                        String username = currentUser.getUserName();
                         createrName.setText(username);
+
+                        // get picture
+                        Glide.with(context)
+                                // .setDefaultRequestOptions(requestOptions)
+                                .load(currentUser.getPhotoUrl())
+                                .into(userImage);
+
                     }
 
                     @Override
@@ -129,6 +144,14 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
             }
 
         }
+        // load picture
+
+
+
+
+
+
+
 
         return groupViewList;
     }
@@ -167,12 +190,13 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
                         int oldWidth = bitmap.getWidth();
                         int oldHeight = bitmap.getHeight();
+                        double ratio = oldHeight*1.0/(oldWidth*1.0);
 
-
+                        int newWidth = resImage.getWidth();
+                        int newHeight = (int)(newWidth * ratio);
 
                         Bitmap resized = Bitmap.createScaledBitmap(bitmap,
-                                oldWidth*2, oldHeight*2, true );
-
+                                newWidth, newHeight, true );
 
                         resImage.setImageBitmap(resized);
 

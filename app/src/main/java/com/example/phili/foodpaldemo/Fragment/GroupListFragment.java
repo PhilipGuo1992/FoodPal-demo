@@ -88,10 +88,6 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
         return groupListView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 
     private void updateFragmentView(){
         //
