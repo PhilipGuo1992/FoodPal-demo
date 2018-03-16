@@ -27,9 +27,15 @@ public class MainHomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_home);
 
 
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
+
+        startWhichFragment(navigation);
+
+
+    }
+
+    private void startWhichFragment(BottomNavigationView navigation) {
 
         Intent intent = getIntent();
         Boolean load_mygroup = intent.getBooleanExtra("loadMyGroup", false);
@@ -41,7 +47,6 @@ public class MainHomeActivity extends AppCompatActivity
             // default load this fragment:
             loadFragment(new GroupListFragment(), R.id.fragment_container);
         }
-
     }
 
     @Override

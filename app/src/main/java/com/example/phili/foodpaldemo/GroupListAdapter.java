@@ -64,12 +64,14 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         LayoutInflater inflater = context.getLayoutInflater();
         // inflate the view
         View groupViewList = inflater.inflate(R.layout.groups_list_layout, null, true);
+
         // get widges from layout
         final ImageView resImage = groupViewList.findViewById(R.id.res_image);
         TextView groupName = groupViewList.findViewById(R.id.getGroupName);
-        TextView grouRest = groupViewList.findViewById(R.id.getResName);
-        TextView groupMealTime = groupViewList.findViewById(R.id.getMealTime);
+
+
         TextView groupTotalMember = groupViewList.findViewById(R.id.total_members);
+
         cardView = groupViewList.findViewById(R.id.card_view);
         final TextView createrName = groupViewList.findViewById(R.id.getCreaterName);
 
@@ -80,8 +82,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
         // update the UI
         groupName.setText(userGroup.getGroupName());
-        grouRest.setText("remove it");
-        groupMealTime.setText(userGroup.getMealTime());
+
 
         // only show the total group numbers, after user click the group: show currentMembers' name.
 
@@ -167,12 +168,13 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
                         int oldWidth = bitmap.getWidth();
                         int oldHeight = bitmap.getHeight();
+                        double ratio = oldHeight*1.0/(oldWidth*1.0);
 
-
+                        int newWidth = resImage.getWidth();
+                        int newHeight = (int)(newWidth * ratio);
 
                         Bitmap resized = Bitmap.createScaledBitmap(bitmap,
-                                oldWidth*2, oldHeight*2, true );
-
+                                newWidth, newHeight, true );
 
                         resImage.setImageBitmap(resized);
 
