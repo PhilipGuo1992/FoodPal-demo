@@ -1,16 +1,11 @@
 package com.example.phili.foodpaldemo;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,8 +18,6 @@ import com.google.android.gms.location.places.PlacePhotoMetadataBuffer;
 import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
 import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
-
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -33,127 +26,84 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-import java.util.Set;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by phili on 2018-02-21.
+ * Created by yunfei on 2018-03-16.
  */
 
-public class GroupListAdapter extends ArrayAdapter<UserGroup> {
+public class GroupHolder extends RecyclerView.ViewHolder {
 
-    private Activity context;
-    // list to store the groups
-    private List<UserGroup> userGroups;
-    private CardView cardView;
-
+    // define widgets
+    private TextView createrName;
     private CircleImageView userImage;
-
+    private TextView groupName;
+    private ImageView restauImage;;
+    private TextView totalMembers;
     private DatabaseReference mDatabaseUser;
-    private Set<User> currentUsers;
+    private Activity context;
 
-    public GroupListAdapter(Activity context, List<UserGroup> userGroups){
-        super(context, R.layout.groups_list_layout, userGroups);
 
+    public GroupHolder(View itemView, Activity context) {
+        super(itemView);
         this.context = context;
-        this.userGroups = userGroups;
+
+        createrName = itemView.findViewById(R.id.getCreaterName);
+        userImage = itemView.findViewById(R.id.user_image);
+        groupName = itemView.findViewById(R.id.getGroupName);
+        restauImage = itemView.findViewById(R.id.res_image);
+        totalMembers = itemView.findViewById(R.id.total_members);
 
     }
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        LayoutInflater inflater = context.getLayoutInflater();
-        // inflate the view
-        View groupViewList = inflater.inflate(R.layout.groups_list_layout, null, true);
-
-        // get widges from layout
-        final ImageView resImage = groupViewList.findViewById(R.id.res_image);
-        TextView groupName = groupViewList.findViewById(R.id.getGroupName);
-
-
-        TextView groupTotalMember = groupViewList.findViewById(R.id.total_members);
-        userImage = groupViewList.findViewById(R.id.user_image);
-        cardView = groupViewList.findViewById(R.id.card_view);
-        final TextView createrName = groupViewList.findViewById(R.id.getCreaterName);
-
-        // only show description when user click the group
-
-        // get current group
-        UserGroup userGroup = userGroups.get(position);
-
-        // update the UI
+    public void bind(UserGroup userGroup){
+        // group name
         groupName.setText(userGroup.getGroupName());
+        createrName.setText("whatakjk");
+        //
+        String groupCreaterID =  userGroup.getGroupCreatorID();
+        if(groupCreaterID != null){
+            setCreaterPhotoAndName(groupCreaterID);
 
-
-        // only show the total group numbers, after user click the group: show currentMembers' name.
-
-        // need to fix dabase first: some group has no members.
-
+        }
+        // total member
         int members = userGroup.getCurrentMembers().size();
-        Log.i("test", members+"");
-        // need to convert int to string first
-        groupTotalMember.setText(members + "");
+        totalMembers.setText(members + "");
 
         // get the picture
         String resID = userGroup.getRestaurantID();
-        setRestaurantPhoto(resID, resImage);
+        setRestaurantPhoto(resID, restauImage);
+
+    }
+
+    private void setCreaterPhotoAndName(String groupCreaterID) {
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
+
+            mDatabaseUser.child(groupCreaterID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    User currentUser = dataSnapshot.getValue(User.class);
+
+                    // get user name, and set user name
+                    String username = currentUser.getUserName();
+                    createrName.setText(username);
+
+                    // get picture
+                    Glide.with(context)
+                            // .setDefaultRequestOptions(requestOptions)
+                            .load(currentUser.getPhotoUrl())
+                            .into(userImage);
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
 
-//        // show the creater name
-
-        String groupCreaterID =  userGroup.getGroupCreatorID();
-        Log.i("test", userGroup.getGroupID()+" , the creater ID");
-            // it does not have creater yet.
-//        // read firebaase to get the creater's name
-        if (groupCreaterID != null) {
-            mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
-            Log.i("test", " set test here");
-
-
-
-            try {
-                mDatabaseUser.child(groupCreaterID).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User currentUser = dataSnapshot.getValue(User.class);
-
-                        // get user name, and set user name
-                        String username = currentUser.getUserName();
-                        createrName.setText(username);
-
-                        // get picture
-                        Glide.with(context)
-                                // .setDefaultRequestOptions(requestOptions)
-                                .load(currentUser.getPhotoUrl())
-                                .into(userImage);
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-            } catch (Exception e){
-                Log.i("test", e + "");
-
-            }
-
-        }
-        // load picture
-
-
-
-
-
-
-
-
-        return groupViewList;
     }
 
     private void setRestaurantPhoto(String resID, final ImageView resImage) {
@@ -184,7 +134,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
                         Bitmap bitmap = photo.getBitmap();
 
                         // set up map
-                       // resImage.getMaxWidth()
+                        // resImage.getMaxWidth()
 
                         int oldWidth = bitmap.getWidth();
                         int oldHeight = bitmap.getHeight();

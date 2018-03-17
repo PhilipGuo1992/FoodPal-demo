@@ -30,9 +30,16 @@ public class MainHomeActivity extends AppCompatActivity
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
+        // default load this fragment:
+        loadFragment(new GroupListFragment(), R.id.fragment_container);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         startWhichFragment(navigation);
-
-
     }
 
     private void startWhichFragment(BottomNavigationView navigation) {
@@ -92,7 +99,7 @@ public class MainHomeActivity extends AppCompatActivity
             getSupportFragmentManager()
                     .beginTransaction()
                     // load view to the container
-                    .replace(viewPosition, fragment)
+                    .add(viewPosition, fragment)
                     .commit();
 
             return true;
