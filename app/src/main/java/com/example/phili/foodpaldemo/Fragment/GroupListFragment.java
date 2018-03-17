@@ -108,6 +108,10 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
             protected void onBindViewHolder(@NonNull GroupHolder holder, int position, @NonNull UserGroup model) {
                 // bind data to widget
                 holder.bind(model);
+                String clickedKey =  recyclerAdapter.getRef(position).getKey();
+                holder.setGroupID(clickedKey);
+
+
             }
         };
 

@@ -1,6 +1,7 @@
 package com.example.phili.foodpaldemo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,8 @@ import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +37,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupHolder extends RecyclerView.ViewHolder {
 
+    public static final String GROUP_ID = "groupID";
+    public static final String GROUP_CONTAIN_USER= "IF_CONTAIN_USER";
+
     // define widgets
     private TextView createrName;
     private CircleImageView userImage;
@@ -42,7 +48,8 @@ public class GroupHolder extends RecyclerView.ViewHolder {
     private TextView totalMembers;
     private DatabaseReference mDatabaseUser;
     private Activity context;
-
+    private FirebaseAuth mAuth;
+    private String groupID;
 
     public GroupHolder(View itemView, Activity context) {
         super(itemView);
@@ -53,6 +60,61 @@ public class GroupHolder extends RecyclerView.ViewHolder {
         groupName = itemView.findViewById(R.id.getGroupName);
         restauImage = itemView.findViewById(R.id.res_image);
         totalMembers = itemView.findViewById(R.id.total_members);
+
+        // set click listener
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(groupID != null){
+                    checkIfGroupContainUser(groupID);
+                }
+            }
+        });
+
+    }
+
+    private void checkIfGroupContainUser(final String currentGroupID) {
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
+        final String userId = currentUser.getUid();
+
+        FirebaseDatabase.getInstance().getReference("groups")
+                .child(currentGroupID).child("currentMembers").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // if contains the value
+                Log.i("test", "second ");
+
+                if (dataSnapshot.child(userId).exists()) {
+                    // contain the user
+                    Log.i("test", "group contains the user");
+
+                    // start intent
+                    Intent intent = new Intent(context, DisplayGroupInfoActivity.class);
+                    // put id to intent
+                    intent.putExtra(GROUP_ID, currentGroupID);
+                    intent.putExtra(GROUP_CONTAIN_USER, true);
+                    context.startActivity(intent);
+
+                } else {
+                    // start intent
+                    Intent intent = new Intent(context, DisplayGroupInfoActivity.class);
+                    // put id to intent
+                    intent.putExtra(GROUP_ID, currentGroupID);
+                    intent.putExtra(GROUP_CONTAIN_USER, false);
+                    context.startActivity(intent);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
     }
 
@@ -155,5 +217,9 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
 
 
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
     }
 }

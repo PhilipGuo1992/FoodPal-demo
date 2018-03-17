@@ -78,8 +78,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
         // get group id from intent
         Intent intent = getIntent();
-        groupID = intent.getStringExtra(GroupListFragment.GROUP_ID);
-        if_contain_user = intent.getBooleanExtra(GroupListFragment.GROUP_CONTAIN_USER, false);
+        groupID = intent.getStringExtra(GroupHolder.GROUP_ID);
+        if_contain_user = intent.getBooleanExtra(GroupHolder.GROUP_CONTAIN_USER, false);
 
         // disable the related button
         if(if_contain_user){
