@@ -56,6 +56,8 @@ dependencies {
     compile 'com.contrarywind:Android-PickerView:3.2.7'
 
     compile 'com.google.firebase:firebase-messaging:11.8.0'
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:3.2.2'
 }
 
 //Apply Firebase
