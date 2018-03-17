@@ -20,12 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <service android:name=".FoodPalFMService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-
         </service>
 
         <meta-data
@@ -62,10 +60,10 @@
             android:name=".MainHomeActivity"
             android:label="@string/title_activity_main_home" />
         <activity android:name=".DiscoverRestaurantActivity" />
-        <activity android:name=".DisplayRestaurantsActivity"
+        <activity
+            android:name=".DisplayRestaurantsActivity"
             android:label="Go Back"
-            android:parentActivityName=".DiscoverRestaurantActivity">
-        </activity>
+            android:parentActivityName=".DiscoverRestaurantActivity"></activity>
     </application>
 
 </manifest>
