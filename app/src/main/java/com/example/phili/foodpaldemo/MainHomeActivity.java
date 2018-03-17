@@ -48,8 +48,8 @@ public class MainHomeActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        startWhichFragment(navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        startWhichFragment(navigation);
     }
 
     private void startWhichFragment(BottomNavigationView navigation) {
@@ -59,10 +59,11 @@ public class MainHomeActivity extends AppCompatActivity
 
         if(load_mygroup){
             navigation.setSelectedItemId(R.id.navigation_my_groups);
-            loadFragment(null, new MyGroupsFragment(),  R.id.fragment_container);
+            switchFragments("my", "group", "restr", "setting", 1);
+
         } else {
             // default load this fragment:
-            loadFragment(null, new GroupListFragment(), R.id.fragment_container);
+            switchFragments("group", "my", "restr", "setting", 0);
         }
     }
 
@@ -88,7 +89,7 @@ public class MainHomeActivity extends AppCompatActivity
                 i = 0;
 
                 if(previousFragment instanceof GroupListFragment){
-                    fragment = null;
+                    return false;
                 }
 
                 break;
@@ -101,7 +102,7 @@ public class MainHomeActivity extends AppCompatActivity
 
 
                 if(previousFragment instanceof MyGroupsFragment){
-                    fragment = null;
+                    return false;
                 }
                 break;
             case R.id.navigation_restaurants:
@@ -109,20 +110,21 @@ public class MainHomeActivity extends AppCompatActivity
 
                 str1="restr"; str2="group"; str3="my"; str4="setting";
                 i = 2;
-                fragment = fragmentsArray[2];
+
                 if(previousFragment instanceof RestaurantsFragment){
-                    fragment = null;
+                    return false;
                 }
                 break;
             case R.id.navigation_settings:
 
                 str1="setting"; str2="group"; str3="my"; str4="restr";
                 i = 3;
-                fragment = fragmentsArray[3];
+
                 if(previousFragment instanceof SettingsFragment){
-                    fragment = null;
+                    return false;
                 }
                 break;
+
         }
         // load the current selected fragment
         return  switchFragments(str1, str2, str3, str4, i);
@@ -131,6 +133,9 @@ public class MainHomeActivity extends AppCompatActivity
     }
 
     private boolean switchFragments(String str1, String str2, String str3, String str4, int i) {
+
+        // code from stackOverflow
+        //https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222
 
         if(fragmentManager.findFragmentByTag(str1) != null) {
             fragmentManager.beginTransaction()
@@ -159,46 +164,6 @@ public class MainHomeActivity extends AppCompatActivity
 
         return true;
     }
-
-    private boolean loadFragment(Fragment preFragment ,Fragment fragment, int viewPosition){
-
-
-        if (fragment != null && preFragment!=null) {
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .hide(preFragment)
-                    // load view to the container
-                    .show(fragment)
-                    .commit();
-
-            return true;
-        } else if(fragment!=null && preFragment==null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(viewPosition, fragment, "group")
-                    .commit();
-
-            return true;
-        }
-
-        else {
-            return false;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
