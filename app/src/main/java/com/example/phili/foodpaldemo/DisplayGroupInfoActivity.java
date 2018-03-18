@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
     // tag for dialog
     private static final String LEAVE_GROUP = "DialogLeave";
+
     // group id
     String groupID;
     private DatabaseReference mDatabaseGroup;
@@ -55,7 +57,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
         // widges
         groupName = findViewById(R.id.display_group_name);
         mealTime = findViewById(R.id.display_mealTime);
-        restaurantName = findViewById(R.id.display_rest_name);
+       // restaurantName = findViewById(R.id.display_rest_name);
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
 
@@ -76,13 +78,19 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
         // get group id from intent
         Intent intent = getIntent();
-        groupID = intent.getStringExtra(GroupListFragment.GROUP_ID);
-        if_contain_user = intent.getBooleanExtra(GroupListFragment.GROUP_CONTAIN_USER, false);
+        groupID = intent.getStringExtra(GroupHolder.GROUP_ID);
+        if_contain_user = intent.getBooleanExtra(GroupHolder.GROUP_CONTAIN_USER, false);
+
         // disable the related button
         if(if_contain_user){
             joinGroupBtn.setEnabled(false);
+            // hide this button
+            joinGroupBtn.setVisibility(View.GONE);
+
         } else {
             leaveGroupBtn.setEnabled(false);
+            leaveGroupBtn.setVisibility(View.GONE);
+
         }
 
         // query firebase using group id
@@ -97,22 +105,19 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // user want to join the group.
-                Log.i("test","click join group");
-
                 // first: update the group member info
-                try {
-                  //  mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
-
-                } catch (Exception e){
-                    Log.i("test","click join group, " + e);
-
-                }
+                mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
                 // second: update the user's group info
-              // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+                mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
-                // go to the group chat acvitity
+                // go to my group acvitity
+                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                // put id to intent
+                intent.putExtra("loadMyGroup", true);
+                startActivity(intent);
+
 
             }
         });
@@ -130,18 +135,22 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
                 // user want to leave the group.
                 // first: update the group member info
-               // mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+              // mDatabaseGroup.child("currentMembers").child(userID).removeValue();
                 // update UI or not?1
 
                 // second: update the user's group info
-                // mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+             //   mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
 
                 // disable join group button
                 Log.i("test","click leave group");
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "leave the group success", Toast.LENGTH_SHORT).show();
 
-
+                // go to my group acvitity
+                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                // put id to intent
+                intent.putExtra("loadMyGroup", true);
+                startActivity(intent);
             }
         });
 
@@ -175,7 +184,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 //        private TextView groupName, mealTime, restaurantName, description, currentMembers;
         groupName.setText(currentGroup.getGroupName());
         mealTime.setText(currentGroup.getMealTime());
-        restaurantName.setText(currentGroup.getRestaurantName());
+      //  restaurantName.setText(currentGroup.getRestaurantName());
         description.setText(currentGroup.getDescription());
         // currentMembers is a Map.
         currentMembers = currentGroup.getCurrentMembers();

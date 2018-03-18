@@ -1,4 +1,4 @@
-package com.example.phili.foodpaldemo;
+package com.example.phili.foodpaldemo.Fragment;
 
 
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.phili.foodpaldemo.CreateGroupActivity;
+import com.example.phili.foodpaldemo.DisplayGroupInfoActivity;
+import com.example.phili.foodpaldemo.GroupListAdapter;
+import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,19 +30,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GroupListFragment extends android.support.v4.app.Fragment implements ListView.OnItemClickListener {
+public class MyGroupsFragment extends android.support.v4.app.Fragment implements ListView.OnItemClickListener{
 
     public static final String GROUP_ID = "groupID";
-    public static final String GROUP_CONTAIN_USER= "IF_CONTAIN_USER";
+    private List<UserGroup> usergroups = new ArrayList<>();
 
-    private List<UserGroup> allGroups = new ArrayList<>();
-    // widegs
     private ListView groupList;
-    private FloatingActionButton createGroup;
-
 
     // firebase
     private FirebaseAuth mAuth;
@@ -46,9 +47,10 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     DatabaseReference myRef;
     FirebaseUser currentUser;
 
-    public GroupListFragment() {
+    public MyGroupsFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,60 +65,46 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View groupListView = inflater.inflate(R.layout.fragment_group_list, container, false);
-
-        // get view elements
+        View groupListView = inflater.inflate(R.layout.fragment_my_groups, container, false);
         groupList = groupListView.findViewById(R.id.group_list);
-        createGroup = groupListView.findViewById(R.id.create_group);
-        createGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CreateGroupActivity.class));
-            }
-        });
+
 
         updateFragmentView();
 
-        groupList.setOnItemClickListener(this);
+        groupList.setOnItemClickListener((AdapterView.OnItemClickListener) this);
 
 
         return groupListView;
     }
 
     @Override
-    public void onResume() {
+    public void onResume(){
         super.onResume();
     }
 
     private void updateFragmentView(){
-        //
-        // get firebase auth
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("groups");
+        currentUser = mAuth.getCurrentUser();
+        final String userID = currentUser.getUid();
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // read from firebase
-                allGroups.clear();
-
+                usergroups.clear();
                 for(DataSnapshot userGroupSnap : dataSnapshot.getChildren()){
 
                     UserGroup userGroup = userGroupSnap.getValue(UserGroup.class);
 
-                    // add to list
-                    allGroups.add(userGroup);
+                    // add to list with user id
+                    if (dataSnapshot.child(userID).exists())
+                    usergroups.add(userGroup);
                 }
+                Log.i("test", "get user's groups");
 
-                // check the group list if it is correct
-                Log.i("test", "get all groups");
-
-                // add listview adapter
-
-                GroupListAdapter groupListAdapter = new GroupListAdapter(getActivity(), allGroups);
+                GroupListAdapter groupListAdapter = new GroupListAdapter(getActivity(), usergroups);
                 // set adapter to listview
                 groupList.setAdapter(groupListAdapter);
-
             }
 
             @Override
@@ -124,52 +112,29 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
             }
         });
-
-
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // get current clicked group
-        UserGroup currentGroup = allGroups.get(i);
-        Log.i("test", "first ");
+        UserGroup currentGroup = usergroups.get(i);
+        Log.i("test", "first");
+        final String currentGroupID = currentGroup.getGroupID();
 
-        //  start a new activity and pass data: the group id .
-        // only pass groupID
-        final String  currentGroupID = currentGroup.getGroupID();
-
-        // before user click: to check if current user already in the group
-        // if not, show the button of join the group
-        // get current user
         mAuth = FirebaseAuth.getInstance();
-        final FirebaseUser currentUser = mAuth.getCurrentUser();
-        final String userId = currentUser.getUid();
-        myRef.child(currentGroupID).child("currentMembers").addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.child(currentGroupID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // if contains the value
                 Log.i("test", "second ");
 
-                if (dataSnapshot.child(userId).exists()) {
-                    // contain the user
-                    Log.i("test", "group contains the user");
 
-                    // start intent
-                    Intent intent = new Intent(getActivity(), DisplayGroupInfoActivity.class);
-                    // put id to intent
-                    intent.putExtra(GROUP_ID, currentGroupID);
-                    intent.putExtra(GROUP_CONTAIN_USER, true);
-                    startActivity(intent);
+                // start intent
+                Intent intent = new Intent(getActivity(), DisplayGroupInfoActivity.class);
+                // put id to intent
+                intent.putExtra(GROUP_ID, currentGroupID);
+                startActivity(intent);
 
-                } else {
-                    // start intent
-                    Intent intent = new Intent(getActivity(), DisplayGroupInfoActivity.class);
-                    // put id to intent
-                    intent.putExtra(GROUP_ID, currentGroupID);
-                    intent.putExtra(GROUP_CONTAIN_USER, false);
-                    startActivity(intent);
 
-                }
             }
 
             @Override
@@ -177,6 +142,5 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
             }
         });
-
     }
 }

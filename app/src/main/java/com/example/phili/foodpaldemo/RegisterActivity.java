@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
 import com.example.phili.foodpaldemo.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -91,12 +92,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             String uId = firebaseUser.getUid();
                             String uEmail = firebaseUser.getEmail();
                             databaseReference = firebaseDatabase.getReference("users").child(uId);
-                            User user = new User(uId,"",uEmail,"","","","");
+                            User user = new User(uId,"",uEmail,"","","","","");
                             databaseReference.setValue(user);
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            startActivity(new Intent(getApplicationContext(), SettingsFragment.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Could not register", Toast.LENGTH_SHORT).show();
 

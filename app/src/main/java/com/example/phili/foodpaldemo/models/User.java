@@ -41,7 +41,7 @@ public class User {
     }
 
     public User(String userID, String userName, String userEmailAddress, String userMajor,
-                String userGender, String userBirthday, String selfDescription) {
+                String userGender, String userBirthday, String selfDescription, String photoUrl) {
 
         this.userID = userID;
         this.userName = userName;
@@ -50,7 +50,13 @@ public class User {
         this.userGender = userGender;
         this.selfDescription = selfDescription;
         this.userBirthday = userBirthday;
+        this.photoUrl = photoUrl;
         //this.photoUrl = photoUrl;
+    }
+
+    //this constructor is used to save uri of profile image
+    public User(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public String getUserID() {
