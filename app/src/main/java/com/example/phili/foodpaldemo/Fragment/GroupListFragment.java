@@ -46,6 +46,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseUser currentUser;
+    private String userID;
 
     public GroupListFragment() {
         // Required empty public constructor
