@@ -145,6 +145,12 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
                         notificationData.put("from", currentUserID);
                         notificationData.put("type", "join");
 
+                // go to my group acvitity
+                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                // put id to intent
+                CreateGroupActivity.LOAD_MY_GROUP = true;
+                //intent.putExtra("loadMyGroup", true);
+                startActivity(intent);
 
                         for (String userID : membersID){
                             mDatabaseNotification.child(userID).push().setValue(notificationData);
@@ -190,10 +196,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     }
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        // if creater leave this group, the group should be deleted from firebase.
-
-
-        // user want to leave the group.
         // first: update the group member info
          mDatabaseGroup.child("currentMembers").child(currentUserID).removeValue();
         // update UI or not?1

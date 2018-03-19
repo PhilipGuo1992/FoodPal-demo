@@ -71,6 +71,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class SettingsFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
 
+    public static boolean SETTING = false;
     //declare all view components
     private ImageView imageViewedit, imageViewsubmit;
     private CircleImageView circleImageViewPhoto;
@@ -316,11 +317,13 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                             Map<String, Object> userMap = new HashMap<>();
                             userMap.put("photoUrl", downloadUrl);
                             userReference.updateChildren(userMap);
+                            SETTING = true;
+
                             imageStore.collection("users").document(uId).set(userMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
-                                    goToFragment();
+                                   // goToFragment();
                                 }
                             });
                         } else {
@@ -341,6 +344,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
     // use getActivity() method from fragment for Intents.
     public void goToFragment() {
+
         Intent intent = new Intent(getActivity(), SettingsFragment.class);
         startActivity(intent);
         getActivity().finishActivity(CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);

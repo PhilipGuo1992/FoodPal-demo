@@ -57,7 +57,7 @@ public class LeaveGroupConfirmFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // stay in the group
-                        mListener.onDialogPositiveClick(LeaveGroupConfirmFragment.this);
+                        mListener.onDialogNegativeClick(LeaveGroupConfirmFragment.this);
 
                     }
                 });
