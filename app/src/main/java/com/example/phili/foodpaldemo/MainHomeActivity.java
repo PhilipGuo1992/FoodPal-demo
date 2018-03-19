@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
@@ -16,12 +17,11 @@ import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
 import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
 
 public class MainHomeActivity extends AppCompatActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener{
-
+        implements BottomNavigationView.OnNavigationItemSelectedListener,
+                    BottomNavigationView.OnNavigationItemReselectedListener{
 
     private Fragment[] fragmentsArray;
     private FragmentManager fragmentManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class MainHomeActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
+        Log.i("test", "resume on activity");
         super.onResume();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         startWhichFragment(navigation);
@@ -59,7 +60,7 @@ public class MainHomeActivity extends AppCompatActivity
 
         if(load_mygroup){
             navigation.setSelectedItemId(R.id.navigation_my_groups);
-            switchFragments("my", "group", "restr", "setting", 1);
+           // switchFragments("my", "group", "restr", "setting", 1);
 
         } else {
             // default load this fragment:
@@ -69,8 +70,9 @@ public class MainHomeActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         // get previous fragment
-        Fragment previousFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+        //Fragment previousFragment = fragmentManager.findFragmentById(R.id.fragment_container);
 
        Fragment fragment = null;
 
@@ -88,9 +90,6 @@ public class MainHomeActivity extends AppCompatActivity
                 str1="group"; str2="my"; str3="restr"; str4="setting";
                 i = 0;
 
-                if(previousFragment instanceof GroupListFragment){
-                    return false;
-                }
 
                 break;
 
@@ -100,10 +99,6 @@ public class MainHomeActivity extends AppCompatActivity
                 str1="my"; str2="group"; str3="restr"; str4="setting";
                 i = 1;
 
-
-                if(previousFragment instanceof MyGroupsFragment){
-                    return false;
-                }
                 break;
             case R.id.navigation_restaurants:
 
@@ -111,23 +106,18 @@ public class MainHomeActivity extends AppCompatActivity
                 str1="restr"; str2="group"; str3="my"; str4="setting";
                 i = 2;
 
-                if(previousFragment instanceof RestaurantsFragment){
-                    return false;
-                }
                 break;
             case R.id.navigation_settings:
 
                 str1="setting"; str2="group"; str3="my"; str4="restr";
                 i = 3;
 
-                if(previousFragment instanceof SettingsFragment){
-                    return false;
-                }
                 break;
 
         }
-        // load the current selected fragment
+            // load the current selected fragment
         return  switchFragments(str1, str2, str3, str4, i);
+
 
 
     }
@@ -136,15 +126,16 @@ public class MainHomeActivity extends AppCompatActivity
 
         // code from stackOverflow
         //https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222
-
         if(fragmentManager.findFragmentByTag(str1) != null) {
             fragmentManager.beginTransaction()
                     .show(fragmentManager.findFragmentByTag(str1))
                     .commit();
+
         } else {
             fragmentManager.beginTransaction()
                     .add(R.id.fragment_container, fragmentsArray[i], str1)
                     .commit();
+
         }
         if(fragmentManager.findFragmentByTag(str2) != null){
             fragmentManager.beginTransaction()
@@ -166,4 +157,8 @@ public class MainHomeActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onNavigationItemReselected(@NonNull MenuItem item) {
+        return;
+    }
 }
