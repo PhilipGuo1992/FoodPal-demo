@@ -371,33 +371,8 @@ android:background="@color/graylight">
                 android:textSize="16sp" />
 
 
-
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:visibility="visible">
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_info_black_24dp" />
-            <TextView
-                android:id="@+id/signOut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="@font/nunito_semibold"
-                android:singleLine="true"
-                android:text="Logout"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-   
 
         <Button
             android:id="@+id/btn_signout"
