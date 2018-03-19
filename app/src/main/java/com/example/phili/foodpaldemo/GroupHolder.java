@@ -202,8 +202,13 @@ public class GroupHolder extends RecyclerView.ViewHolder {
                         int oldHeight = bitmap.getHeight();
                         double ratio = oldHeight*1.0/(oldWidth*1.0);
 
-                        int newWidth = resImage.getWidth();
+                        int newWidth = 800;
+//                                = resImage.getWidth();
+//                        if (newWidth <= 0) {
+//                            newWidth = 400;
+//                        }
                         int newHeight = (int)(newWidth * ratio);
+
 
                         Bitmap resized = Bitmap.createScaledBitmap(bitmap,
                                 newWidth, newHeight, true );
