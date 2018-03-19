@@ -27,20 +27,20 @@
 
                 <LinearLayout
 
-                android:id="@+id/cardview1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                    android:id="@+id/cardview1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/display1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="Display"
-                    android:textSize="22sp" />
+                    <TextView
+                        android:id="@+id/display1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Display"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/displaynum1"
@@ -53,35 +53,35 @@
                         android:textColor="@color/startblue"
                         android:textSize="22sp" />
 
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/cardview2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/display2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="Display2"
-                    android:textSize="22sp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/cardview2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/display2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:text="Display2"
+                        android:textSize="22sp" />
 
-                <TextView
-                    android:id="@+id/displaynum2"
+                    <TextView
+                        android:id="@+id/displaynum2"
 
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:paddingLeft="25dp"
-                    android:text="50"
-                    android:textColor="@color/startblue"
-                    android:textSize="22sp" />
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:paddingLeft="25dp"
+                        android:text="50"
+                        android:textColor="@color/startblue"
+                        android:textSize="22sp" />
 
-            </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -110,7 +110,7 @@
                         android:textSize="22sp" />
                 </LinearLayout>
 
-                
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -121,11 +121,11 @@
             android:orientation="vertical">
 
             <ImageView
-            android:id="@+id/editprofile"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="top|right"
-            android:src="@drawable/ic_edit_black_24dp" />
+                android:id="@+id/editprofile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="top|right"
+                android:src="@drawable/ic_edit_black_24dp" />
 
 
 
@@ -370,7 +370,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="10dp"
+            android:visibility="visible">
 
             <ImageView
                 android:layout_width="36dp"
@@ -379,6 +380,7 @@
                 android:src="@drawable/ic_info_black_24dp" />
 
             <TextView
+                android:id="@+id/signOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -387,10 +389,7 @@
                 android:fontFamily="@font/nunito_semibold"
                 android:singleLine="true"
                 android:text="Logout"
-                android:id="@+id/signOut"
                 android:textSize="16sp" />
-
-
 
 
         </LinearLayout>
@@ -406,8 +405,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="70dp">
-        
-        <LinearLayout 
+
+        <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="horizontal"
@@ -432,7 +431,7 @@
                     android:paddingLeft="25dp"
                     android:text="Join"
                     android:textSize="15sp" />
-                
+
             </LinearLayout>
 
             <LinearLayout
@@ -505,7 +504,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        
+
     </TableLayout>
 
 
