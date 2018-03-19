@@ -54,6 +54,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     //This is used to implement date picker
     compile 'com.contrarywind:Android-PickerView:3.2.7'
+    // for http get request
+    compile 'com.android.volley:volley:1.1.0'
 
     compile 'com.google.firebase:firebase-messaging:11.8.0'
     // FirebaseUI for Firebase Realtime Database
