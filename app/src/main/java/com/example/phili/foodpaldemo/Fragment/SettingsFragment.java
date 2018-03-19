@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.phili.foodpaldemo.LoginActivity;
 import com.example.phili.foodpaldemo.MainHomeActivity;
 import com.example.phili.foodpaldemo.Manifest;
 import com.example.phili.foodpaldemo.R;
@@ -75,6 +76,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     private CircleImageView circleImageViewPhoto;
     private EditText username, major, email,
             gender, birthday, about;
+    private Button buttonSignOut;
 
     private TimePickerView timePickerView;
    // private TextView signOut;
@@ -130,6 +132,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         birthday = settingView.findViewById(R.id.birthday);
         major = settingView.findViewById(R.id.major);
         about = settingView.findViewById(R.id.selfdes);
+        buttonSignOut = settingView.findViewById(R.id.btn_signout);
+
 
         //bind onClick event to those image views
         imageViewedit.setOnClickListener(this);
@@ -155,11 +159,23 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             }
         });
 
+        buttonSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                getActivity().finish();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                Toast.makeText(getContext(),"Signed out successfully!",Toast.LENGTH_LONG).show();
+            }
+        });
+
 
 
         userReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+
                 //get user class
                 User currentUser = dataSnapshot.getValue(User.class);
                 //read data from database
@@ -173,10 +189,13 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                 RequestOptions requestOptions = new RequestOptions();
                 requestOptions.placeholder(R.drawable.photo2);
 
+                //if (currentUser.getPhotoUrl())
                 Glide.with(container.getContext())
                         .setDefaultRequestOptions(requestOptions)
                         .load(currentUser.getPhotoUrl())
                         .into(circleImageViewPhoto);
+
+
             }
 
             @Override

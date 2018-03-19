@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.example.phili.foodpaldemo.models.MyLatLng;
 import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -112,9 +113,10 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         if (!TextUtils.isEmpty(groupName) && place != null) {
             // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
             // get the restaurant
+            MyLatLng myLatLng = new MyLatLng(place.getLatLng().latitude, place.getLatLng().longitude);
 
             Restaurant restaurant = new Restaurant(place.getId(), place.getName().toString(), place.getAddress().toString(),
-                        place.getPhoneNumber().toString(), place.getWebsiteUri().toString(), place.getLatLng());
+                        place.getPhoneNumber().toString(), place.getWebsiteUri().toString(),myLatLng);
 
             String gId = databaseReference.child("groups").push().getKey();
             //Construct a map to manage users and groups

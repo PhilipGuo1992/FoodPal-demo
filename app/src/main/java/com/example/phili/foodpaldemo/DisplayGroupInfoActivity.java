@@ -1,6 +1,7 @@
 package com.example.phili.foodpaldemo;
 
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
+import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,14 +28,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class DisplayGroupInfoActivity extends AppCompatActivity {
+public class DisplayGroupInfoActivity extends AppCompatActivity
+                        implements LeaveGroupConfirmFragment.LeaveDialogListener{
 
     // tag for dialog
     private static final String LEAVE_GROUP = "DialogLeave";
 
     // group id
     String groupID;
-    private DatabaseReference mDatabaseGroup;
+    private DatabaseReference mDatabaseGroup, mDatabaseRestr;
     private DatabaseReference mDatabaseUsers;
     //
     private TextView groupName, mealTime, restaurantName, description, memberNames;
@@ -46,8 +49,9 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
     private String userID;
     // group-currentMembers
     Map<String, Boolean> currentMembers;
-    // user-groups
-    Map<String, Boolean> userGroups;
+
+    //
+    private TextView restrName, restrPhone, restrWeb, restrAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,11 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
        // restaurantName = findViewById(R.id.display_rest_name);
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
+
+        restrName = findViewById(R.id.display_resName);
+        restrAddress = findViewById(R.id.display_resLocation);
+        restrPhone = findViewById(R.id.display_phone);
+        restrWeb = findViewById(R.id.display_web);
 
         // get buttons
         joinGroupBtn = findViewById(R.id.click_join_group);
@@ -95,7 +104,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
         // query firebase using group id
         mDatabaseGroup = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
-
+        mDatabaseRestr = FirebaseDatabase.getInstance().getReference("restaurants");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -106,9 +115,15 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // user want to join the group.
                 // first: update the group member info
-                mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                try {
+                    mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+
+                } catch (Exception e){
+                    Log.i("test","click join group, " + e);
+
+                }
                 // second: update the user's group info
-                mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+               mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
@@ -130,30 +145,38 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
                 LeaveGroupConfirmFragment dialog = new LeaveGroupConfirmFragment();
                 dialog.show(manager, LEAVE_GROUP);
 
-                // if creater leave this group, the group should be deleted from firebase.
-
-
-                // user want to leave the group.
-                // first: update the group member info
-              // mDatabaseGroup.child("currentMembers").child(userID).removeValue();
-                // update UI or not?1
-
-                // second: update the user's group info
-             //   mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
-
-                // disable join group button
-                Log.i("test","click leave group");
-
-                Toast.makeText(DisplayGroupInfoActivity.this, "leave the group success", Toast.LENGTH_SHORT).show();
-
-                // go to my group acvitity
-                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
-                // put id to intent
-                intent.putExtra("loadMyGroup", true);
-                startActivity(intent);
             }
         });
 
+    }
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        // if creater leave this group, the group should be deleted from firebase.
+
+
+        // user want to leave the group.
+        // first: update the group member info
+         mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+        // update UI or not?1
+
+        // second: update the user's group info
+        mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+
+        // disable join group button
+        Log.i("test","click leave group");
+
+        Toast.makeText(DisplayGroupInfoActivity.this, "leave the group success", Toast.LENGTH_SHORT).show();
+
+        // go to my group acvitity
+        Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+        // put id to intent
+        intent.putExtra("loadMyGroup", true);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        Toast.makeText(DisplayGroupInfoActivity.this, "Stay in the group", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -180,7 +203,26 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
     }
 
-    private void updateUI(UserGroup currentGroup){
+    private void updateUI(final UserGroup currentGroup){
+        // get restaurant
+        String restaurantID = currentGroup.getRestaurantID();
+        mDatabaseRestr.child(restaurantID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Restaurant currentRestr = dataSnapshot.getValue(Restaurant.class);
+                // set restanrant attribute
+                restrName.setText(currentRestr.getResName());
+                restrAddress.setText(currentRestr.getResAddress());
+                restrPhone.setText(currentRestr.getResPhoneNum());
+                restrWeb.setText(currentRestr.getResWebsite());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 //        private TextView groupName, mealTime, restaurantName, description, currentMembers;
         groupName.setText(currentGroup.getGroupName());
         mealTime.setText(currentGroup.getMealTime());
@@ -225,6 +267,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }
