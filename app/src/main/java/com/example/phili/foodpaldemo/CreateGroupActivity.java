@@ -145,7 +145,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "create group success", Toast.LENGTH_SHORT).show();
             // go to my groups
             Intent intent = new Intent(this, MainHomeActivity.class);
-            LOAD_MY_GROUP = true;
+            //LOAD_MY_GROUP = true;
             // put id to intent
            // intent.putExtra(LOAD_MY_GROUP, true);
             startActivity(intent);
