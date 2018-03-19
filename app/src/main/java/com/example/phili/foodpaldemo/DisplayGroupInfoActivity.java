@@ -115,9 +115,15 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
             public void onClick(View view) {
                 // user want to join the group.
                 // first: update the group member info
-                mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                try {
+                    mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+
+                } catch (Exception e){
+                    Log.i("test","click join group, " + e);
+
+                }
                 // second: update the user's group info
-                mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+               mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
 
                 Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
