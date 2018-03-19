@@ -12,11 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phili.foodpaldemo.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     //private EditText age;
     private EditText birthday;
     private EditText about;
+    private TextView signOut;
 
     // fields for the four sections
     private ImageView imageViewJoinGroup;
@@ -97,6 +101,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         birthday = findViewById(R.id.birthday);
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
+        signOut = findViewById(R.id.signOut);
 
         imageViewJoinGroup = findViewById(R.id.join_group);
         imageViewGroupList = findViewById(R.id.group_list);
@@ -111,6 +116,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imageViewGroupList.setOnClickListener(this);
         imageViewRestaurant.setOnClickListener(this);
         imageViewProfile.setOnClickListener(this);
+        signOut.setOnClickListener(this);
     }
 
     private void setEdit() {
@@ -133,6 +139,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         about.setFocusable(true);
         about.setFocusableInTouchMode(true);
+
+        // signout disapperaring
+
     }
 
     private void save() {
@@ -171,7 +180,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         User user = new User(uId, uName, uEmail, uMajor, uGender, uBirthday, uAbout,"");
         mDatabaseUsers.setValue(user);
-        Toast.makeText(this, "Changes submitted", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Changes saved", Toast.LENGTH_LONG).show();
     }
 
     //onClick event for image choosing and uploading
@@ -262,6 +271,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         if (view == imageViewProfile) {
             //return
+        }
+
+        if(view== signOut)
+        {
+            firebaseAuth.signOut();
+//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            // user is now signed out
+//                            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+//                            finish();
+//                        }
+//                    });
+            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
         }
     }
 
