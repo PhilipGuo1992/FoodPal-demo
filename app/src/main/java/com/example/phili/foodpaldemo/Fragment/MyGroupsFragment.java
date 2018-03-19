@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.phili.foodpaldemo.CreateGroupActivity;
 import com.example.phili.foodpaldemo.DisplayGroupInfoActivity;
 import com.example.phili.foodpaldemo.GroupListAdapter;
 import com.example.phili.foodpaldemo.R;

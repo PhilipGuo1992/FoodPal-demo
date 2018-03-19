@@ -1,9 +1,5 @@
 package com.example.phili.foodpaldemo.models;
 
-import android.net.Uri;
-
-import com.google.android.gms.maps.model.LatLng;
-
 /**
  * Created by yunfei on 2018-03-12.
  */
@@ -14,19 +10,20 @@ public class Restaurant {
     private String resAddress;
     private String resPhoneNum;
     private String resWebsite;
-    private LatLng resLatLng;
+   // private LatLng resLatLng;
+    private MyLatLng resLatLng;
 
     public Restaurant(){
 
     }
 
-    public Restaurant(String resID, String resName, String resAddress, String resPhoneNum, String resWebsite, LatLng resLatLng) {
+    public Restaurant(String resID, String resName, String resAddress, String resPhoneNum, String resWebsite,  MyLatLng myLatLng) {
         this.resID = resID;
         this.resName = resName;
         this.resAddress = resAddress;
         this.resPhoneNum = resPhoneNum;
         this.resWebsite = resWebsite;
-        this.resLatLng = resLatLng;
+        this.resLatLng = myLatLng;
     }
 
     public String getResID() {
@@ -69,11 +66,12 @@ public class Restaurant {
         this.resWebsite = resWebsite;
     }
 
-    public LatLng getResLatLng() {
+
+    public MyLatLng getResLatLng() {
         return resLatLng;
     }
 
-    public void setResLatLng(LatLng resLatLng) {
+    public void setResLatLng(MyLatLng resLatLng) {
         this.resLatLng = resLatLng;
     }
 }
