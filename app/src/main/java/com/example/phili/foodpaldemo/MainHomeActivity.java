@@ -55,12 +55,18 @@ public class MainHomeActivity extends AppCompatActivity
 
     private void startWhichFragment(BottomNavigationView navigation) {
 
-        Intent intent = getIntent();
-        Boolean load_mygroup = intent.getBooleanExtra("loadMyGroup", false);
+       // Intent intent = getIntent();
+        Boolean load_mygroup = CreateGroupActivity.LOAD_MY_GROUP;
+        Boolean settings = SettingsFragment.SETTING;
 
         if(load_mygroup){
             navigation.setSelectedItemId(R.id.navigation_my_groups);
+            CreateGroupActivity.LOAD_MY_GROUP = false;
            // switchFragments("my", "group", "restr", "setting", 1);
+
+        } else if (settings){
+            navigation.setSelectedItemId(R.id.navigation_settings);
+            SettingsFragment.SETTING = false;
 
         } else {
             // default load this fragment:

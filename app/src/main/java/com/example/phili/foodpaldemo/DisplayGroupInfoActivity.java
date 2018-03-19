@@ -124,7 +124,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
                 // go to my group acvitity
                 Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
                 // put id to intent
-                intent.putExtra("loadMyGroup", true);
+                CreateGroupActivity.LOAD_MY_GROUP = true;
+                //intent.putExtra("loadMyGroup", true);
                 startActivity(intent);
 
 

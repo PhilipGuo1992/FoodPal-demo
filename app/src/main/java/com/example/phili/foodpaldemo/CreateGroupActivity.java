@@ -54,7 +54,7 @@ import java.util.Map;
 
 public class CreateGroupActivity extends AppCompatActivity implements View.OnClickListener{
 
-    public static final String LOAD_MY_GROUP = "loadMyGroup";
+    public static  boolean LOAD_MY_GROUP = false;
 
     //EditText on this page
     private EditText editTextGroupName;
@@ -145,9 +145,11 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "create group success", Toast.LENGTH_SHORT).show();
             // go to my groups
             Intent intent = new Intent(this, MainHomeActivity.class);
+            LOAD_MY_GROUP = true;
             // put id to intent
-            intent.putExtra(LOAD_MY_GROUP, true);
+           // intent.putExtra(LOAD_MY_GROUP, true);
             startActivity(intent);
+            finish();
 
         } else {
             Toast.makeText(this, "Please enter a name or choose a place", Toast.LENGTH_LONG).show();
