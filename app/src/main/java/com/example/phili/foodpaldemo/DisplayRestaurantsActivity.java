@@ -91,8 +91,6 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
                             }
 
                             if (!cuisine_id.equals("")) {
-                                Toast.makeText(getApplicationContext(), cuisine_id,
-                                        Toast.LENGTH_SHORT).show();
                                 getRestaurants(entity_id, cuisine_id);
                             } else {
                                 Toast.makeText(getApplicationContext(),
