@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     //private EditText age;
     private EditText birthday;
     private EditText about;
-    private TextView signOut;
+   // private TextView signOut;
 
     // fields for the four sections
     private ImageView imageViewJoinGroup;
@@ -101,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         birthday = findViewById(R.id.birthday);
         major = findViewById(R.id.major);
         about = findViewById(R.id.selfdes);
-        signOut = findViewById(R.id.signOut);
+
 
         imageViewJoinGroup = findViewById(R.id.join_group);
         imageViewGroupList = findViewById(R.id.group_list);
@@ -116,7 +116,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imageViewGroupList.setOnClickListener(this);
         imageViewRestaurant.setOnClickListener(this);
         imageViewProfile.setOnClickListener(this);
-        signOut.setOnClickListener(this);
+
     }
 
     private void setEdit() {
@@ -273,18 +273,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             //return
         }
 
-        if(view== signOut)
-        {
-            firebaseAuth.signOut();
-//                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            // user is now signed out
-//                            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-//                            finish();
-//                        }
-//                    });
-            startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
-        }
+
     }
 
     @Override

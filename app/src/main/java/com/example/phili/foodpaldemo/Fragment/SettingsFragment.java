@@ -77,6 +77,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             gender, birthday, about;
 
     private TimePickerView timePickerView;
+   // private TextView signOut;
 
     //store the current user ID
     private String uId;
@@ -149,7 +150,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             public void onClick(View view) {
                 timePickerView.setDate(Calendar.getInstance());
                 timePickerView.show(view);
-               // timePickerView.setDate();
+                // timePickerView.setDate();
                 setVisibility();
             }
         });
