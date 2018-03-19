@@ -203,13 +203,12 @@ android:background="@color/graylight">
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:inputType="textNoSuggestions"
                 android:enabled="true"
                 android:focusable="false"
                 android:fontFamily="@font/nunito_semibold"
+                android:inputType="textNoSuggestions"
                 android:paddingLeft="20dp"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
 
         </LinearLayout>
@@ -375,7 +374,27 @@ android:background="@color/graylight">
         </LinearLayout>
 
 
+        <Button
+            android:id="@+id/btn_signout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="15dp"
+            android:text="@string/signout"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
+
+
     </LinearLayout>
+
+
 
 
 </FrameLayout>

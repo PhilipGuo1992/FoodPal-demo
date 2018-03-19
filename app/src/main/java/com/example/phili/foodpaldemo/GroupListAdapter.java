@@ -2,6 +2,7 @@ package com.example.phili.foodpaldemo;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -48,6 +50,7 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
     // list to store the groups
     private List<UserGroup> userGroups;
     private CardView cardView;
+    public static final String USER_ID = "userID";
 
     private CircleImageView userImage;
 
@@ -80,10 +83,13 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
         cardView = groupViewList.findViewById(R.id.card_view);
         final TextView createrName = groupViewList.findViewById(R.id.getCreaterName);
 
+
+
         // only show description when user click the group
 
         // get current group
         UserGroup userGroup = userGroups.get(position);
+
 
         // update the UI
         groupName.setText(userGroup.getGroupName());
@@ -105,9 +111,21 @@ public class GroupListAdapter extends ArrayAdapter<UserGroup> {
 
 //        // show the creater name
 
-        String groupCreaterID =  userGroup.getGroupCreatorID();
+        final String groupCreaterID =  userGroup.getGroupCreatorID();
         Log.i("test", userGroup.getGroupID()+" , the creater ID");
             // it does not have creater yet.
+
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SettingsFragment.class);
+                getContext().startActivity(intent);
+
+                intent.putExtra(USER_ID, groupCreaterID);
+
+            }
+        });
+
 //        // read firebaase to get the creater's name
         if (groupCreaterID != null) {
             mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
