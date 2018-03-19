@@ -17,7 +17,7 @@ public class UserGroup {
     private String groupID;
     private String groupName;
     private String mealTime;
-    private String restaurantName;
+
     private String description;
     private String restaurantID;
 
@@ -81,14 +81,6 @@ public class UserGroup {
 
     public void setMealTime(String mealTime) {
         this.mealTime = mealTime;
-    }
-
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
     }
 
     public String getDescription() {
