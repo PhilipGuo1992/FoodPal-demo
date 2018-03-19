@@ -152,10 +152,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     }
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        // if creater leave this group, the group should be deleted from firebase.
-
-
-        // user want to leave the group.
         // first: update the group member info
          mDatabaseGroup.child("currentMembers").child(userID).removeValue();
         // update UI or not?1
