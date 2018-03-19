@@ -49,8 +49,8 @@ public class MainHomeActivity extends AppCompatActivity
     protected void onResume() {
         Log.i("test", "resume on activity");
         super.onResume();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        startWhichFragment(navigation);
+//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+//        startWhichFragment(navigation);
     }
 
     private void startWhichFragment(BottomNavigationView navigation) {
