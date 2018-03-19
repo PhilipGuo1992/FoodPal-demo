@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
@@ -18,20 +19,29 @@ public class MainHomeActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener{
 
 
-
+    private Fragment[] fragmentsArray;
+    private FragmentManager fragmentManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
+        fragmentManager = getSupportFragmentManager();
+
+        Fragment fragmentAllGroup = new GroupListFragment();
+        Fragment fragmentMyGroup = new MyGroupsFragment();
+        Fragment fragmentRes = new RestaurantsFragment();
+        Fragment fragmentSett = new SettingsFragment();
+        fragmentsArray = new Fragment[] {fragmentAllGroup, fragmentMyGroup, fragmentRes, fragmentSett};
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
         // default load this fragment:
-        loadFragment(new GroupListFragment(), R.id.fragment_container);
+        //loadFragment(null, new GroupListFragment(), R.id.fragment_container);
+        switchFragments("group", "my", "restr", "setting", 0);
 
     }
 
@@ -49,10 +59,11 @@ public class MainHomeActivity extends AppCompatActivity
 
         if(load_mygroup){
             navigation.setSelectedItemId(R.id.navigation_my_groups);
-            loadFragment(new MyGroupsFragment(),  R.id.fragment_container);
+            switchFragments("my", "group", "restr", "setting", 1);
+
         } else {
             // default load this fragment:
-            loadFragment(new GroupListFragment(), R.id.fragment_container);
+            switchFragments("group", "my", "restr", "setting", 0);
         }
     }
 
@@ -62,64 +73,97 @@ public class MainHomeActivity extends AppCompatActivity
         Fragment previousFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
        Fragment fragment = null;
+
+       String str1, str2, str3, str4;
+       int i;
+
+       str1="group"; str2="my"; str3="restr"; str4="setting";
+        i = 0;
+
         // switch between fragments
         switch (item.getItemId()) {
             case R.id.navigation_group_list:
-                fragment = new GroupListFragment();
+                //https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222
+
+                str1="group"; str2="my"; str3="restr"; str4="setting";
+                i = 0;
+
                 if(previousFragment instanceof GroupListFragment){
-                    fragment = null;
+                    return false;
                 }
+
                 break;
+
             case R.id.navigation_my_groups:
-                fragment = new MyGroupsFragment();
+
+
+                str1="my"; str2="group"; str3="restr"; str4="setting";
+                i = 1;
+
+
                 if(previousFragment instanceof MyGroupsFragment){
-                    fragment = null;
+                    return false;
                 }
                 break;
             case R.id.navigation_restaurants:
-                fragment = new RestaurantsFragment();
+
+
+                str1="restr"; str2="group"; str3="my"; str4="setting";
+                i = 2;
+
                 if(previousFragment instanceof RestaurantsFragment){
-                    fragment = null;
+                    return false;
                 }
                 break;
             case R.id.navigation_settings:
-                fragment = new SettingsFragment();
+
+                str1="setting"; str2="group"; str3="my"; str4="restr";
+                i = 3;
+
                 if(previousFragment instanceof SettingsFragment){
-                    fragment = null;
+                    return false;
                 }
                 break;
+
         }
         // load the current selected fragment
-        return loadFragment(fragment, R.id.fragment_container);
+        return  switchFragments(str1, str2, str3, str4, i);
+
 
     }
 
-    private boolean loadFragment(Fragment fragment, int viewPosition){
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    // load view to the container
-                    .add(viewPosition, fragment)
+    private boolean switchFragments(String str1, String str2, String str3, String str4, int i) {
+
+        // code from stackOverflow
+        //https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222
+
+        if(fragmentManager.findFragmentByTag(str1) != null) {
+            fragmentManager.beginTransaction()
+                    .show(fragmentManager.findFragmentByTag(str1))
                     .commit();
-
-            return true;
         } else {
-            return false;
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, fragmentsArray[i], str1)
+                    .commit();
         }
+        if(fragmentManager.findFragmentByTag(str2) != null){
+            fragmentManager.beginTransaction()
+                    .hide(fragmentManager.findFragmentByTag(str2))
+                    .commit();
+        }
+        if(fragmentManager.findFragmentByTag(str3) != null){
+            fragmentManager.beginTransaction()
+                    .hide(fragmentManager.findFragmentByTag(str3))
+                    .commit();
+        }
+        if(fragmentManager.findFragmentByTag(str4) != null){
+            fragmentManager.beginTransaction()
+                    .hide(fragmentManager.findFragmentByTag(str4))
+                    .commit();
+        }
+
+        return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
