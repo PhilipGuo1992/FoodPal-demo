@@ -166,7 +166,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
                         Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
                         // go to my group activity
-                        Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                        intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
                         // put id to intent
                         intent.putExtra("loadMyGroup", true);
                         startActivity(intent);

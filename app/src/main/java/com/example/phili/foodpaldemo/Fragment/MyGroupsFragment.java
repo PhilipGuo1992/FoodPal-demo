@@ -24,6 +24,7 @@ import com.example.phili.foodpaldemo.DisplayGroupInfoActivity;
 import com.example.phili.foodpaldemo.GroupHolder;
 import com.example.phili.foodpaldemo.GroupListAdapter;
 import com.example.phili.foodpaldemo.R;
+import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -36,8 +37,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.Key;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -51,7 +57,6 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
     private List<UserGroup> allGroups = new ArrayList<>();
     // widegs
     private ListView groupList;
-    private FloatingActionButton createGroup;
     FirebaseRecyclerAdapter<UserGroup, GroupHolder> recyclerAdapter;
     private RecyclerView recyclerView;
     // firebase
@@ -59,12 +64,13 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseUser currentUser;
-    private String userID;
+    private String currentUserID;
+    private DatabaseReference mDatabaseUsers;
+    Map<String, Boolean> usergroup;
 
     public MyGroupsFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +78,6 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         // get current user
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = mAuth.getCurrentUser();
-        userID = currentUser.getUid();
     }
 
     @Override
@@ -84,12 +89,15 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         // get view elements
         recyclerView = groupListView.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUserID = currentUser.getUid();
 
 
         // https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md
         Query query = FirebaseDatabase.getInstance()
                 .getReference()
-                .child("groups").child(userID);
+                .child("groups").orderByChild("currentMembers/"+currentUserID).equalTo(true);
 
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
@@ -119,33 +127,13 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
             }
         };
 
-
-
         // attach the adapter to recyclerView
         recyclerView.setAdapter(recyclerAdapter);
         // groupList = groupListView.findViewById(R.id.group_list);
         recyclerView.setOnClickListener(this);
 
-        createGroup = groupListView.findViewById(R.id.create_group);
-        createGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CreateGroupActivity.class));
-            }
-        });
-
-        // updateFragmentView(recyclerView);
-
-//        groupList.setOnItemClickListener(this);
-
-
         return groupListView;
     }
-
-
-
-
-
 
 
     @Override
@@ -162,47 +150,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
 
 
 
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // get current clicked group
-        UserGroup currentGroup = allGroups.get(i);
-        Log.i("test", "first ");
 
-        //  start a new activity and pass data: the group id .
-        // only pass groupID
-        final String  currentGroupID = currentGroup.getGroupID();
-
-        // before user click: to check if current user already in the group
-        // if not, show the button of join the group
-        // get current user
-        mAuth = FirebaseAuth.getInstance();
-        final FirebaseUser currentUser = mAuth.getCurrentUser();
-        final String userId = currentUser.getUid();
-        myRef.child(currentGroupID).child("currentMembers").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // if contains the value
-                Log.i("test", "second ");
-
-
-                    Log.i("test", "group contains the user");
-
-                    // start intent
-                    Intent intent = new Intent(getActivity(), DisplayGroupInfoActivity.class);
-                    // put id to intent
-                    intent.putExtra(GROUP_ID, currentGroupID);
-                    intent.putExtra(GROUP_CONTAIN_USER, true);
-                    startActivity(intent);
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
     @Override
     public void onClick(View v) {

@@ -2,6 +2,7 @@ package com.example.phili.foodpaldemo.models;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by phili on 2018-02-21.
@@ -123,4 +124,5 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
+    public Set<String> keySet() { return joinedGroups.keySet(); }
 }
