@@ -11,22 +11,11 @@
         android:layout_height="match_parent"
         android:text="My groups" />
 
-    <ListView
-        android:id="@+id/group_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:alwaysDrawnWithCache="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
-        android:descendantFocusability="afterDescendants"
-        android:divider="@color/colorDividItem"
-        android:dividerHeight="10dp"
-        android:fastScrollEnabled="false"
-        android:scrollbarAlwaysDrawHorizontalTrack="true"
-        android:scrollbarFadeDuration="10"
-        android:scrollbarStyle="outsideInset"
-        android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"
-        android:scrollbarTrackVertical="@drawable/scrollbar_vertical_track"
-        android:scrollbars="none">
-
-    </ListView>
+        android:layout_marginTop="50dp"/>
 
 </FrameLayout>

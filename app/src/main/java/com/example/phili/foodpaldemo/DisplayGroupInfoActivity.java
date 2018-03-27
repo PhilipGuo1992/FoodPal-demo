@@ -24,9 +24,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.lang.String;
+import java.lang.Boolean;
 
 public class DisplayGroupInfoActivity extends AppCompatActivity
                         implements LeaveGroupConfirmFragment.LeaveDialogListener{
@@ -38,6 +41,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     String groupID;
     private DatabaseReference mDatabaseGroup, mDatabaseRestr;
     private DatabaseReference mDatabaseUsers;
+    private DatabaseReference mDatabaseNotification;
     //
     private TextView groupName, mealTime, restaurantName, description, memberNames;
     private Button joinGroupBtn, leaveGroupBtn;
@@ -46,12 +50,13 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     private FirebaseUser firebaseUser;
     private Boolean if_contain_user;
 
-    private String userID;
+    private String currentUserID;
     // group-currentMembers
     Map<String, Boolean> currentMembers;
 
     //
     private TextView restrName, restrPhone, restrWeb, restrAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,34 +109,74 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
 
         // query firebase using group id
         mDatabaseGroup = FirebaseDatabase.getInstance().getReference("groups").child(groupID);
+
         mDatabaseRestr = FirebaseDatabase.getInstance().getReference("restaurants");
+
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
+        mDatabaseNotification = FirebaseDatabase.getInstance().getReference().child("notifications");
 
         firebaseUser = firebaseAuth.getCurrentUser();
-        userID = firebaseUser.getUid();
+        currentUserID = firebaseUser.getUid();
 
         joinGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // user want to join the group.
                 // first: update the group member info
                 try {
-                    mDatabaseGroup.child("currentMembers").child(userID).setValue(true);
+                    mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
 
                 } catch (Exception e){
                     Log.i("test","click join group, " + e);
 
                 }
                 // second: update the user's group info
-               mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).setValue(true);
+               mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
 
-                Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
+                mDatabaseGroup.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // convert to java object
+                        UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
+                        currentMembers = currentGroup.getCurrentMembers();
+                        Set<String> membersID = currentMembers.keySet();
+                        HashMap<String,String> notificationData = new HashMap<>();
+                        notificationData.put("from", currentUserID);
+                        notificationData.put("type", "join");
 
                 // go to my group acvitity
                 Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
                 // put id to intent
-                intent.putExtra("loadMyGroup", true);
+                CreateGroupActivity.LOAD_MY_GROUP = true;
+                //intent.putExtra("loadMyGroup", true);
                 startActivity(intent);
+
+                        for (String userID : membersID){
+                            mDatabaseNotification.child(userID).push().setValue(notificationData);
+
+                        }
+
+                            // user want to join the group.
+                        // first: update the group member info
+                        mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
+                        // second: update the user's group info
+                        mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
+
+                        Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
+
+                        // go to my group activity
+                        intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                        // put id to intent
+                        intent.putExtra("loadMyGroup", true);
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
             }
@@ -151,16 +196,12 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     }
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
-        // if creater leave this group, the group should be deleted from firebase.
-
-
-        // user want to leave the group.
         // first: update the group member info
-         mDatabaseGroup.child("currentMembers").child(userID).removeValue();
+         mDatabaseGroup.child("currentMembers").child(currentUserID).removeValue();
         // update UI or not?1
 
         // second: update the user's group info
-        mDatabaseUsers.child(userID).child("joinedGroups").child(groupID).removeValue();
+        mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).removeValue();
 
         // disable join group button
         Log.i("test","click leave group");
