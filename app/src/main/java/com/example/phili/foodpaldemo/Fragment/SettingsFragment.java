@@ -14,8 +14,7 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +28,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.phili.foodpaldemo.LoginActivity;
-import com.example.phili.foodpaldemo.MainHomeActivity;
-import com.example.phili.foodpaldemo.Manifest;
+
 import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.RegisterActivity;
 import com.example.phili.foodpaldemo.models.User;
