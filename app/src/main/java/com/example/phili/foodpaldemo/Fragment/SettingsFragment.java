@@ -14,8 +14,7 @@ import android.app.Fragment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
+
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,14 +28,9 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.phili.foodpaldemo.LoginActivity;
-import com.example.phili.foodpaldemo.MainHomeActivity;
-import com.example.phili.foodpaldemo.Manifest;
 import com.example.phili.foodpaldemo.R;
-import com.example.phili.foodpaldemo.RegisterActivity;
 import com.example.phili.foodpaldemo.models.User;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,15 +40,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -80,7 +71,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     private Button buttonSignOut;
 
     private TimePickerView timePickerView;
-   // private TextView signOut;
 
     //store the current user ID
     private String uId;
@@ -155,7 +145,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             public void onClick(View view) {
                 timePickerView.setDate(Calendar.getInstance());
                 timePickerView.show(view);
-                // timePickerView.setDate();
+               // timePickerView.setDate();
                 setVisibility();
             }
         });
