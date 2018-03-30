@@ -92,13 +92,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                             String uId = firebaseUser.getUid();
                             String uEmail = firebaseUser.getEmail();
-                            databaseReference = firebaseDatabase.getReference("users").child(uId);
-                            User user = new User(uId,"",uEmail,"","","","","");
-                            databaseReference.setValue(user);
-                            databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
                             String deviceToken = FirebaseInstanceId.getInstance().getToken();
-                            String current_user_id = firebaseAuth.getCurrentUser().getUid();
-                            databaseReference.child(current_user_id).child("device_token").setValue(deviceToken);
+                            databaseReference = firebaseDatabase.getReference("users").child(uId);
+                            User user = new User(uId,deviceToken,"",uEmail,"","","","","");
+                            databaseReference.setValue(user);
+
 
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
