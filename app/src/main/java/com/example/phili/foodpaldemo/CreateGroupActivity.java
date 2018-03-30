@@ -95,7 +95,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         editTextTime = findViewById(R.id.et_mealtime);
         choosePlace = findViewById(R.id.create_res);
         placeName = findViewById(R.id.place_name);
-        //textViewEmail = r54ffindViewById(R.id.textViewEmail);
+        //textViewEmail = findViewById(R.id.textViewEmail);
         btnCreate = findViewById(R.id.btn_create);
 
         //textViewEmail.setText("Welcome" + firebaseUser.getEmail());
