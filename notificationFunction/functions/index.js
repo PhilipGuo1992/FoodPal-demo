@@ -2,7 +2,7 @@
 
 const functions = require('firebase-functions');
 const admin  = require('firebase-admin');
-admin.initializeAPP(functions.config().firebase);
+admin.initializeApp(functions.config().firebase);
 
 
 exports.sendNotification = functions.database.ref('/notifications/{user_id}/{notification_id}').onWrite(event =>{
@@ -32,11 +32,7 @@ exports.sendNotification = functions.database.ref('/notifications/{user_id}/{not
       }
 
   };
-  return admin.messaging().sendToDevice(token_id, payload).then(response => {
-
-    console.log('This was the notification Feature');
-
-    });
+  return admin.messaging().sendToDevice(token_id, payload);
 
   });
 
