@@ -72,6 +72,7 @@
             android:label="Go Back"
             android:parentActivityName=".DiscoverRestaurantActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".Chat_functionality"></activity>
     </application>
 
 </manifest>

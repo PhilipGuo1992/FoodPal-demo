@@ -365,5 +365,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     }
 
 
+    public void chatbutton(View view) {
 
+    }
 }
