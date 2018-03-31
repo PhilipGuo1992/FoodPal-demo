@@ -253,15 +253,32 @@
                 android:id="@+id/display_group_descrip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/chatButton"
-                android:layout_width="71dp"
-                android:layout_height="58dp"
-                android:background="@drawable/ic_chat_black_24dp"
-                android:layout_marginLeft="89dp"
-                android:onClick="chatbutton"
-                />
 
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="88dp"
+                >
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/chatButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:color/transparent"
+                    android:backgroundTint="@color/startblue"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="chat!"
+                    android:elevation="16dp"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </FrameLayout>
 
         </LinearLayout>
 
