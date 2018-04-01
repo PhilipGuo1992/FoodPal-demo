@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".FoodPalFMService">
+
+        <service android:name=".Function.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -52,13 +53,19 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".MainHomeActivity"
-            android:label="@string/title_activity_main_home" />
+            android:label="@string/title_activity_main_home" >
+            <intent-filter>
+                <action android:name="android.intent.action.notification"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
         <activity android:name=".DiscoverRestaurantActivity" />
         <activity
             android:name=".DisplayRestaurantsActivity"

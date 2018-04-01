@@ -58,6 +58,10 @@ public class MainHomeActivity extends AppCompatActivity
        // Intent intent = getIntent();
         Boolean load_mygroup = CreateGroupActivity.LOAD_MY_GROUP;
         Boolean settings = SettingsFragment.SETTING;
+        Intent intent = getIntent();
+        final String judge_notification = intent.getStringExtra("judge_notification");
+        if(judge_notification == "yes")
+            load_mygroup = true;
 
         if(load_mygroup){
             navigation.setSelectedItemId(R.id.navigation_my_groups);
