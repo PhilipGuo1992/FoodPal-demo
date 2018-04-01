@@ -48,6 +48,8 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     FirebaseUser currentUser;
     private String userID;
 
+    private Query query;
+
     public GroupListFragment() {
         // Required empty public constructor
     }
@@ -59,6 +61,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
         // get current user
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = mAuth.getCurrentUser();
+        myRef = FirebaseDatabase.getInstance().getReference().child("groups");
     }
 
     @Override
@@ -73,9 +76,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
 
         // https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md
-        Query query = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("groups");
+        query = myRef;
 
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
@@ -135,12 +136,11 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     }
 
 
-
+    public void initRe
 
 
     @Override
     public void onClick(View v) {
-
 
 
     }

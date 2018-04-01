@@ -8,15 +8,6 @@
     tools:context="com.example.phili.foodpaldemo.MainHomeActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <SearchView
-        android:id="@+id/text_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:hint="@string/search"
-        android:textSize="15sp"
-        android:fontFamily="@font/nunito_semibold"/>
-
     <FrameLayout
 
         android:id="@+id/fragment_container"
