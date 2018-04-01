@@ -1,6 +1,8 @@
 package com.example.phili.foodpaldemo;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,14 @@ import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
 import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.PlacePhotoMetadata;
+import com.google.android.gms.location.places.PlacePhotoMetadataBuffer;
+import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
+import com.google.android.gms.location.places.PlacePhotoResponse;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -56,6 +67,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
 
     //
     private TextView restrName, restrPhone, restrWeb, restrAddress;
+    private ImageView groupImage;
 
 
     @Override
@@ -74,6 +86,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
         restrAddress = findViewById(R.id.display_resLocation);
         restrPhone = findViewById(R.id.display_phone);
         restrWeb = findViewById(R.id.display_web);
+        groupImage = findViewById(R.id.show_group_image);
 
         // get buttons
         joinGroupBtn = findViewById(R.id.click_join_group);
@@ -256,6 +269,48 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
                 restrAddress.setText(currentRestr.getResAddress());
                 restrPhone.setText(currentRestr.getResPhoneNum());
                 restrWeb.setText(currentRestr.getResWebsite());
+
+                // load image
+                final GeoDataClient mGeoDataClient ;
+                mGeoDataClient = Places.getGeoDataClient(getApplicationContext(), null);
+
+                String placeId = currentRestr.getResID();
+
+                final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
+                photoMetadataResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoMetadataResponse>() {
+                    @Override
+                    public void onComplete(@NonNull Task<PlacePhotoMetadataResponse> task) {
+                        // Get the list of photos.
+                        PlacePhotoMetadataResponse photos = task.getResult();
+                        PlacePhotoMetadataBuffer photoMetadataBuffer = photos.getPhotoMetadata();
+                        PlacePhotoMetadata photoMetadata = photoMetadataBuffer.get(0);
+                        CharSequence attribution = photoMetadata.getAttributions();
+                        Task<PlacePhotoResponse> photoResponse = mGeoDataClient.getPhoto(photoMetadata);
+                        photoResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoResponse>() {
+                            @Override
+                            public void onComplete(@NonNull Task<PlacePhotoResponse> task) {
+                                PlacePhotoResponse photo = task.getResult();
+                                Bitmap bitmap = photo.getBitmap();
+
+                                // set up map
+                                int oldWidth = bitmap.getWidth();
+                                int oldHeight = bitmap.getHeight();
+                                double ratio = oldHeight*1.0/(oldWidth*1.0);
+
+                                int newWidth = 1400;
+                                int newHeight = (int)(newWidth * ratio);
+
+                                Bitmap resized = Bitmap.createScaledBitmap(bitmap,
+                                        newWidth, newHeight, true );
+
+                                groupImage.setImageBitmap(resized);
+
+                            }
+                        });
+                    }
+                });
+
+
             }
 
             @Override
