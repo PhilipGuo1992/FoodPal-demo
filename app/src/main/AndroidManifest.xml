@@ -72,7 +72,8 @@
             android:label="Go Back"
             android:parentActivityName=".DiscoverRestaurantActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Chat_functionality"></activity>
+        <activity android:name=".Chat_functionality" />
+        <activity android:name=".models.ChatScreenActivity"></activity>
     </application>
 
 </manifest>
