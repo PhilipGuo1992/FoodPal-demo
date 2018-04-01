@@ -254,31 +254,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="88dp"
-                >
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/chatButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:color/transparent"
-                    android:backgroundTint="@color/startblue"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="chat!"
-                    android:elevation="16dp"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            </FrameLayout>
 
         </LinearLayout>
 
@@ -292,6 +267,15 @@
             android:background="@color/joinBtn"
             android:text="Join group"
             />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/chatbutton"
+        android:background="@drawable/ic_chat_black_24dp"
+        android:text="Chat"
+        android:layout_marginLeft="80dp"
+
+        />
 
         <Button
             android:id="@+id/click_leave_group"

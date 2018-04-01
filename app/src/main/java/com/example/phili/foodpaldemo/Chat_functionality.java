@@ -15,7 +15,7 @@ public class Chat_functionality extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_functionality);
 
-        chatButton= findViewById(R.id.chatButton);
+       // chatButton= findViewById(R.id.chatButton);
 
     }
 
