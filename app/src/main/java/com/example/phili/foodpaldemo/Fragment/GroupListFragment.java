@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
     private FloatingActionButton createGroup;
     FirebaseRecyclerAdapter<UserGroup, GroupHolder> recyclerAdapter;
     private RecyclerView recyclerView;
+    private SearchView searchViewAllGroup;
     // firebase
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -72,12 +74,63 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
         // get view elements
         recyclerView = groupListView.findViewById(R.id.recycler_view);
+        searchViewAllGroup = groupListView.findViewById(R.id.sv_allgroup);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         // https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md
         query = myRef;
+        initRecyclerView(query);
 
+        searchViewAllGroup.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ////stop current recycler listening
+                onStop();
+                query = myRef.orderByChild("groupName")
+                        .startAt(newText)
+                        .endAt(newText + "\uf8ff");
+                //update recyclerView
+                initRecyclerView(query);
+                onStart();
+                return false;
+            }
+        });
+       // groupList = groupListView.findViewById(R.id.group_list);
+        recyclerView.setOnClickListener(this);
+
+        createGroup = groupListView.findViewById(R.id.create_group);
+        createGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CreateGroupActivity.class));
+            }
+        });
+
+        return groupListView;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        recyclerAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        recyclerAdapter.stopListening();
+    }
+
+
+    public void initRecyclerView(Query query) {
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
                         .setQuery(query, UserGroup.class)
@@ -108,35 +161,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
 
         // attach the adapter to recyclerView
         recyclerView.setAdapter(recyclerAdapter);
-       // groupList = groupListView.findViewById(R.id.group_list);
-        recyclerView.setOnClickListener(this);
-
-        createGroup = groupListView.findViewById(R.id.create_group);
-        createGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CreateGroupActivity.class));
-            }
-        });
-
-        return groupListView;
     }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        recyclerAdapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        recyclerAdapter.stopListening();
-    }
-
-
-    public void initRe
 
 
     @Override

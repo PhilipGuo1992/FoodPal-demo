@@ -12,10 +12,10 @@
 
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
+        android:layout_height="604dp"
         android:layout_above="@+id/navigation"
-        android:layout_below="@+id/text_search"
 
-        android:layout_height="460dp">
+        android:layout_below="@+id/text_search">
 
 
     </FrameLayout>
@@ -24,8 +24,9 @@
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
 
 </RelativeLayout>

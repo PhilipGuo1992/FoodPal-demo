@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
     private ListView groupList;
     FirebaseRecyclerAdapter<UserGroup, GroupHolder> recyclerAdapter;
     private RecyclerView recyclerView;
+    private SearchView searchViewMyGroup;
     // firebase
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -51,6 +53,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
     private String currentUserID;
     private DatabaseReference mDatabaseUsers;
     Map<String, Boolean> usergroup;
+    private Query query;
 
     public MyGroupsFragment() {
         // Required empty public constructor
@@ -62,6 +65,9 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         // get current user
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = mAuth.getCurrentUser();
+        myRef = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("groups");
     }
 
     @Override
@@ -72,17 +78,57 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
 
         // get view elements
         recyclerView = groupListView.findViewById(R.id.recycler_view);
+        searchViewMyGroup = groupListView.findViewById(R.id.sv_mygroup);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = mAuth.getCurrentUser();
         currentUserID = currentUser.getUid();
 
+        query = myRef.orderByChild("currentMembers/"+currentUserID).equalTo(true);
 
-        // https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md
-        Query query = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("groups").orderByChild("currentMembers/"+currentUserID).equalTo(true);
+        initRecyclerView(query);
 
+//        searchViewMyGroup.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//
+//                onStop();
+//                query = myRef.orderByChild("currentMembers/"+currentUserID)
+//                        .equalTo(true)
+//                        .orderByChild("groupName")
+//                        .startAt(newText)
+//                        .endAt(newText + "\uf8ff");
+//                initRecyclerView(query);
+//                onStart();
+//                return false;
+//            }
+//        });
+        // groupList = groupListView.findViewById(R.id.group_list);
+        recyclerView.setOnClickListener(this);
+
+        return groupListView;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        recyclerAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        recyclerAdapter.stopListening();
+    }
+
+
+    public void initRecyclerView(Query query) {
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
                         .setQuery(query, UserGroup.class)
@@ -113,27 +159,8 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
 
         // attach the adapter to recyclerView
         recyclerView.setAdapter(recyclerAdapter);
-        // groupList = groupListView.findViewById(R.id.group_list);
-        recyclerView.setOnClickListener(this);
 
-        return groupListView;
     }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        recyclerAdapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        recyclerAdapter.stopListening();
-    }
-
-
-
 
 
     @Override
