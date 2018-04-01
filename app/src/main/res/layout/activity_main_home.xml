@@ -8,7 +8,7 @@
     tools:context="com.example.phili.foodpaldemo.MainHomeActivity"
     tools:layout_editor_absoluteY="25dp">
 
-    <EditText
+    <SearchView
         android:id="@+id/text_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
