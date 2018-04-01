@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 //import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 progressDialog.dismiss();
                 if (task.isSuccessful()) {
 
+                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+                    String current_user = firebaseAuth.getCurrentUser().getUid();
+                    databaseReference.child(current_user).child("device_token").setValue(deviceToken);
 
                     //startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
                     //Keep this line
