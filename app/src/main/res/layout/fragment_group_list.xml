@@ -9,17 +9,25 @@
         android:id="@+id/create_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_marginStart="300dp"
         android:layout_marginTop="450dp"
         android:background="@drawable/ic_add_white_24dp"
         android:src="@drawable/ic_add_white_24dp"
         app:backgroundTint="@color/startblue" />
 
+    <android.support.v7.widget.SearchView
+        android:id="@+id/sv_allgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:queryHint="@android:string/search_go"></android.support.v7.widget.SearchView>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:alwaysDrawnWithCache="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="45dp"
+        android:alwaysDrawnWithCache="true" />
 
     <!--<ListView-->
         <!--android:id="@+id/group_list"-->
