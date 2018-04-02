@@ -4,6 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
     tools:context="com.example.phili.foodpaldemo.LoginActivity">
 
 
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/app_login"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="80dp">
 
         <EditText
             android:id="@+id/et_username"
@@ -164,6 +165,7 @@
             android:layout_toRightOf="@id/view_forget"
             android:fontFamily="@font/nunito_semibold"
             android:paddingLeft="10dp"
+
             android:text="@string/app_create"
             android:textSize="15sp" />
     </RelativeLayout>

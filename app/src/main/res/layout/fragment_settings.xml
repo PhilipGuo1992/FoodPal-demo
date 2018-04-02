@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@color/graylight"
         android:orientation="vertical"
-        android:paddingBottom="10dp"
+        android:paddingBottom="20dp"
         tools:context="com.example.phili.foodpaldemo.Fragment.SettingsFragment">
 
         <Button
@@ -28,8 +28,8 @@
             android:fontFamily="@font/nunito_bold"
             android:gravity="center"
             android:paddingBottom="15dp"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
+            android:paddingEnd="30dp"
+            android:paddingStart="30dp"
             android:paddingTop="15dp"
             android:text="@string/signout"
             android:textColor="@color/colorWhite"
@@ -125,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="15dp"
+                    android:layout_marginStart="3dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:singleLine="true"
                     android:text="@string/user_email"
@@ -135,12 +136,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
                     android:background="@null"
                     android:enabled="true"
                     android:focusable="false"
                     android:fontFamily="@font/nunito_semibold"
                     android:inputType="textNoSuggestions"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="10dp"
                     android:textSize="16sp" />
 
 
@@ -150,16 +152,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginRight="15dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -173,9 +175,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="8dp"
+                    android:layout_marginStart="3dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:singleLine="true"
 
+                    android:singleLine="true"
                     android:text="@string/user_gender"
                     android:textSize="16sp" />
 
@@ -184,12 +187,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="9dp"
                     android:background="@null"
                     android:enabled="true"
                     android:focusable="false"
                     android:fontFamily="@font/nunito_semibold"
                     android:inputType="textNoSuggestions"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="10dp"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="16sp" />
 
 
@@ -199,16 +204,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -222,6 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 
+                    android:layout_marginStart="3dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:singleLine="true"
                     android:text="@string/user_bod"
@@ -238,7 +244,7 @@
                     android:fontFamily="@font/nunito_semibold"
                     android:hint="@string/Tap"
                     android:inputType="textNoSuggestions"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="10dp"
                     android:textSize="16sp" />
 
 
@@ -247,17 +253,17 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="12dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -271,9 +277,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="20dp"
+                    android:layout_marginStart="3dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:singleLine="true"
 
+                    android:singleLine="true"
                     android:text="@string/user_major"
                     android:textSize="16sp" />
 
@@ -283,12 +290,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="21dp"
                     android:background="@null"
                     android:enabled="true"
                     android:focusable="false"
                     android:fontFamily="@font/nunito_semibold"
                     android:inputType="textNoSuggestions"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="10dp"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="16sp" />
 
 
@@ -297,17 +306,17 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -321,9 +330,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
+                    android:layout_marginStart="3dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:singleLine="true"
 
+                    android:singleLine="true"
                     android:text="About:"
                     android:textSize="16sp" />
 
@@ -332,23 +342,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="17dp"
                     android:background="@null"
                     android:enabled="true"
                     android:focusable="false"
                     android:fontFamily="@font/nunito_semibold"
                     android:inputType="textMultiLine|textNoSuggestions"
-                    android:paddingLeft="20dp"
+                    android:paddingLeft="10dp"
+                    android:textCursorDrawable="@drawable/color_cursor"
                     android:textSize="16sp" />
 
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGainsboro" />
 
 
