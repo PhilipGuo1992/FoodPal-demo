@@ -67,6 +67,8 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
         city = intent.getStringExtra(RestaurantsFragment.MESSAGE_CITY);
         cuisine = intent.getStringExtra(RestaurantsFragment.MESSAGE_CUISINE);
 
+        cuisine = cuisine.substring(0, 1).toUpperCase().concat(cuisine.substring(1));
+
         txt_display_restaurant_heading.setText(cuisine.concat(" cuisines in ".concat(city)));
 
 
