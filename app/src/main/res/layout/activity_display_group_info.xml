@@ -284,13 +284,16 @@
             android:textColor="@color/colorWhite" />
 
         <Button
-            android:id="@+id/chatbutton"
-            android:layout_width="wrap_content"
+
             android:layout_height="match_parent"
-            android:layout_marginLeft="80dp"
-            android:background="@drawable/ic_chat_black_24dp"
-            android:text="Chat"
-            android:visibility="invisible"
+            android:id="@+id/chatbutton"
+            android:background="@color/startblue"
+            android:textColor="@color/colorWhite"
+            android:text="Chat with Us!"
+            android:layout_width="300dp"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
 
             />
 
