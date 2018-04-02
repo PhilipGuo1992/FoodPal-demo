@@ -273,6 +273,7 @@
         android:id="@+id/chatbutton"
         android:background="@drawable/ic_chat_black_24dp"
         android:text="Chat"
+        android:visibility="invisible"
         android:layout_marginLeft="80dp"
 
         />

@@ -50,8 +50,8 @@ public class ChatScreenActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(),"Here",Toast.LENGTH_SHORT).show();
-        //requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+
+
         setContentView(R.layout.activity_chat_screen);
 
         Intent i = getIntent();
@@ -59,14 +59,11 @@ public class ChatScreenActivity extends ListActivity {
         groupId = i.getStringExtra("GROUPID");
         userEmail = i.getStringExtra("EMAIL");
 
-       // this.setTitle(groupName);
 
-        //getActionBar().setDisplayShowHomeEnabled(true);
-        setTitle("hIII");
 
         chatbox = (EditText)findViewById(R.id.chatbox);
         send_messsage = (Button)findViewById(R.id.send_messsage);
-       //ser = (TextView) findViewById(R.id.userName);
+
 
         //https://stackoverflow.com/questions/4540754/dynamically-add-elements-to-a-listview-android
        adapter=new ArrayAdapter<String>(this,
@@ -76,7 +73,7 @@ public class ChatScreenActivity extends ListActivity {
 
       //retrieve older messages
         chatDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference gRef = chatDatabaseReference.child("Groups").child(groupId).child("Chat");
+        DatabaseReference gRef = chatDatabaseReference.child("groups").child(groupId).child("Chat");
         gRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -119,7 +116,7 @@ public class ChatScreenActivity extends ListActivity {
                 message = chatbox.getText().toString();
                 chatbox.setText("");
 
-                chatDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Groups").child(groupId).child("Chat").push();
+                chatDatabaseReference = FirebaseDatabase.getInstance().getReference().child("groups").child(groupId).child("Chat").push();
                 final FirebaseUser mUser = firebaseAuth.getCurrentUser();
                 chatDatabaseReference.child("Message").setValue(userEmail + " :\n" + message);
                 chatDatabaseReference.child("uid").setValue(userEmail);

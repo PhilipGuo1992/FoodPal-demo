@@ -64,6 +64,7 @@ private Button chatButton;
     String group_Name;
     String user_Name;
     String userEmail;
+  public  Boolean flag =false;
 
     private String currentUserID;
     // group-currentMembers
@@ -118,6 +119,7 @@ private Button chatButton;
         // disable the related button
         if(if_contain_user){
             joinGroupBtn.setEnabled(false);
+            chatButton.setVisibility(View.VISIBLE);
             // hide this button
             joinGroupBtn.setVisibility(View.GONE);
 
@@ -233,12 +235,12 @@ private Button chatButton;
                     }
                 });
 */
+             userEmail = firebaseAuth.getCurrentUser().getEmail();
                 Intent chatScreen_intent = new Intent(DisplayGroupInfoActivity.this,ChatScreenActivity.class);
                 chatScreen_intent.putExtra("GROUPNAME",group_Name);
                 chatScreen_intent.putExtra("GROUPID",groupID);
                 chatScreen_intent.putExtra("EMAIL",userEmail);
               startActivity(chatScreen_intent);
-                //chatButton.setText(group_Name);
             }
         });
 
@@ -385,8 +387,7 @@ private Button chatButton;
                         // add username to list
                         userNamesList.add(currentUserName);
                         user_Name = currentUserName;
-                         userEmail = currentUser.getUserEmailAddress();
-                        chatButton.setText(userEmail);
+                        // userEmail = currentUser.getUserEmailAddress();
 
                         // update ui
                         int listLength = userNamesList.toString().length();
