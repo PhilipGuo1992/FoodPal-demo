@@ -23,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:dividerHeight="1dp"
+        android:divider="@color/startblue"
         android:layout_marginTop="34dp"
         android:drawSelectorOnTop="false" />
 
@@ -53,9 +55,8 @@
 
         <Button
             android:id="@+id/send_messsage"
-            android:text="SEND"
             android:textSize="14dp"
-            android:background="?attr/selectableItemBackground"
+            android:background="@drawable/ic_send_black_24dp"
             android:clickable="true"
             android:layout_width="64dp"
             android:layout_height="48dp"
