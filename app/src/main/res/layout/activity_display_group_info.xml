@@ -236,21 +236,24 @@
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_marginLeft="15dp"
-            android:gravity="center"
-
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content">
 
+
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="71dp"
+                android:layout_height="match_parent"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="Group Description: " />
+                android:text="Group Description: "
+                android:layout_marginLeft="19dp"
+                />
             <TextView
                 android:id="@+id/display_group_descrip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
 
         </LinearLayout>
 
@@ -264,6 +267,16 @@
             android:background="@color/joinBtn"
             android:text="Join group"
             />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/chatbutton"
+        android:background="@drawable/ic_chat_black_24dp"
+        android:text="Chat"
+        android:visibility="invisible"
+        android:layout_marginLeft="80dp"
+
+        />
 
         <Button
             android:id="@+id/click_leave_group"
