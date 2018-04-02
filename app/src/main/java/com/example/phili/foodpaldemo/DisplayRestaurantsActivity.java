@@ -6,6 +6,7 @@ import com.example.phili.foodpaldemo.models.RestaurantItem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
@@ -53,6 +54,10 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
         restaurantList = new ArrayList<>();
 
         mAdapter = new RestaurantAdapter(restaurantList);
+
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                LinearLayoutManager.VERTICAL);
+        mRecyclerView.addItemDecoration(mDividerItemDecoration);
 
         mRecyclerView.setAdapter(mAdapter);
 
