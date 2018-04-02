@@ -12,10 +12,13 @@
             android:id="@+id/restaurant_heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="80dp"
             android:text="@string/discover_restaurants_heading"
             android:textAlignment="center"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:typeface="monospace"/>
 
         <TextView
             android:id="@+id/zomato_api"
@@ -24,8 +27,11 @@
             android:layout_below="@id/restaurant_heading"
             android:layout_marginTop="10dp"
             android:text="@string/zomato_api_credit"
+            android:textColor="@color/information_title_color"
             android:textAlignment="center"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:typeface="monospace"
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:id="@+id/linear_layout"
@@ -39,7 +45,9 @@
                 android:id="@+id/txt_user_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="80dp"
+                android:typeface="monospace"
+                android:textColor="@color/colorBlack"
                 android:text="@string/your_location_text"
                 android:textSize="20sp" />
 
@@ -47,7 +55,7 @@
                 android:id="@+id/spinner_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp" />
+                android:layout_marginStart="7dp" />
         </LinearLayout>
 
         <EditText
@@ -56,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
+            android:typeface="monospace"
             android:hint="@string/search_for_restaurant" />
 
         <Button
@@ -64,7 +73,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_search_for_restaurants"
+            android:background="@drawable/button_background"
+            android:layout_margin="30dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
+            android:textColor="@color/colorWhite"
             android:layout_centerInParent="true"
+            android:typeface="monospace"
             android:text="@string/btn_discover_restaurant" />
 
     </RelativeLayout>
