@@ -88,13 +88,13 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                             restaurant_info_name.setText(name);
 
                             //ref: https://stackoverflow.com/questions/6094315/single-textview-with-multiple-colored-text/14936995
-                            String address_pre = "<font color=#999999>".concat(restaurant_info_address.getText().toString().concat("</font>"));
-                            String cuisines_pre = "<font color=#999999>".concat(restaurant_info_cuisines.getText().toString().concat("</font>"));
-                            String avg_cost_pre = "<font color=#999999>".concat(restaurant_info_avg_cost.getText().toString().concat("</font>"));
-                            String rating_pre = "<font color=#999999>".concat(restaurant_info_rating.getText().toString().concat("</font>"));
-                            String url_pre = "<font color=#999999>".concat(restaurant_info_url.getText().toString().concat("</font>"));
-                            String agg_pre = "<font color=#999999>".concat(restaurant_info_aggregate_rating.getText().toString().concat("</font>"));
-                            String votes_pre = "<font color=#999999>".concat(restaurant_info_votes.getText().toString().concat("</font>"));
+                            String address_pre = "<font color=#666666>".concat(restaurant_info_address.getText().toString().concat("</font>"));
+                            String cuisines_pre = "<font color=#666666>".concat(restaurant_info_cuisines.getText().toString().concat("</font>"));
+                            String avg_cost_pre = "<font color=#666666>".concat(restaurant_info_avg_cost.getText().toString().concat("</font>"));
+                            String rating_pre = "<font color=#666666>".concat(restaurant_info_rating.getText().toString().concat("</font>"));
+                            String url_pre = "<font color=#666666>".concat(restaurant_info_url.getText().toString().concat("</font>"));
+                            String agg_pre = "<font color=#666666>".concat(restaurant_info_aggregate_rating.getText().toString().concat("</font>"));
+                            String votes_pre = "<font color=#666666>".concat(restaurant_info_votes.getText().toString().concat("</font>"));
 
                             restaurant_info_address.setText(Html.fromHtml(address_pre.concat(address)));
                             restaurant_info_cuisines.setText(Html.fromHtml(cuisines_pre.concat(cuisines)));
