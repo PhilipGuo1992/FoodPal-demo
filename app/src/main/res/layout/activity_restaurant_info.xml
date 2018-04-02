@@ -41,6 +41,13 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_address"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/restaurant_info_address"
@@ -67,6 +74,13 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_cuisines"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
 
                     <TextView
@@ -91,6 +105,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_address"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/restaurant_info_avg_cost"
@@ -112,6 +133,14 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_address"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/restaurant_info_url"
@@ -135,6 +164,14 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_address"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
 
                     <TextView
                         android:id="@+id/restaurant_info_rating"
@@ -157,6 +194,14 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_address"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
 
                     <TextView
                         android:id="@+id/restaurant_info_aggregate_rating"
@@ -178,6 +223,13 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_address"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
 
                     <TextView
