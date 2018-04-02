@@ -1,10 +1,13 @@
 package com.example.phili.foodpaldemo;
 
 import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
+import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.RestaurantItem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,22 +28,36 @@ import java.util.Map;
 
 public class DisplayRestaurantsActivity extends AppCompatActivity {
 
+    // RecyclerView
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     private TextView txt_display_restaurant_heading;
     private String city, cuisine;
-    private ListView lv_restaurants;
     private ArrayList<RestaurantItem> restaurantList;
-    private RestaurantAdapter adapter;
     private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_restaurants);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rest_recycler_view);
 
-        lv_restaurants = findViewById(R.id.lv_restaurants);
-        txt_display_restaurant_heading = findViewById(R.id.txt_display_restaurant_heading);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         restaurantList = new ArrayList<>();
+
+        mAdapter = new RestaurantAdapter(restaurantList);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+        txt_display_restaurant_heading = findViewById(R.id.txt_display_restaurant_heading);
+
 
         Intent intent = getIntent();
         city = intent.getStringExtra(RestaurantsFragment.MESSAGE_CITY);
@@ -48,8 +65,9 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
 
         txt_display_restaurant_heading.setText(cuisine.concat(" cuisines in ".concat(city)));
 
-        adapter = new RestaurantAdapter(this, R.layout.restaurant_list_item, restaurantList);
-        lv_restaurants.setAdapter(adapter);
+//        lv_restaurants = findViewById(R.id.lv_restaurants);
+//        adapter = new RestaurantAdapter(this, R.layout.restaurant_list_item, restaurantList);
+//        lv_restaurants.setAdapter(adapter);
 
 
         runnable = new Runnable() {
@@ -61,6 +79,15 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
 
         Thread thread = new Thread(null, runnable, "background");
         thread.start();
+
+//        processData();
+    }
+
+    public void processData() {
+        RestaurantItem one = new RestaurantItem("a", "b", "c");
+        restaurantList.add(one);
+
+        mAdapter.notifyDataSetChanged();
     }
 
     public void getRestaurantId() {
@@ -150,10 +177,12 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
                                 String name = jsonObject.getString("name");
                                 String rating = jsonObject.getJSONObject("user_rating")
                                         .getString("aggregate_rating");
-                                restaurantList.add(new RestaurantItem(name, rating));
+                                String address = jsonObject.getJSONObject("location")
+                                        .getString("address");
+                                restaurantList.add(new RestaurantItem(name, rating, address));
                             }
 
-                            adapter.notifyDataSetChanged();
+                            mAdapter.notifyDataSetChanged();
 
                         } catch (JSONException error) {
                             error.printStackTrace();
