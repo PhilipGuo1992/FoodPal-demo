@@ -47,10 +47,6 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         restaurant_info_aggregate_rating = findViewById(R.id.restaurant_info_aggregate_rating);
         restaurant_info_votes = findViewById(R.id.restaurant_info_votes);
 
-        // ref: https://stackoverflow.com/questions/2734270/how-do-i-make-links-in-a-textview-clickable
-        restaurant_info_url.setMovementMethod(LinkMovementMethod.getInstance());
-
-
         Intent intent = getIntent();
         id = intent.getStringExtra(RestaurantAdapter.RESTAURANT_ID);
 
