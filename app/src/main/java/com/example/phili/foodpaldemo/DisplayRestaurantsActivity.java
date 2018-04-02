@@ -1,7 +1,6 @@
 package com.example.phili.foodpaldemo;
 
 import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
-import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.RestaurantItem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,10 +68,6 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
 
         txt_display_restaurant_heading.setText(cuisine.concat(" cuisines in ".concat(city)));
 
-//        lv_restaurants = findViewById(R.id.lv_restaurants);
-//        adapter = new RestaurantAdapter(this, R.layout.restaurant_list_item, restaurantList);
-//        lv_restaurants.setAdapter(adapter);
-
 
         runnable = new Runnable() {
             @Override
@@ -85,15 +79,8 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
         Thread thread = new Thread(null, runnable, "background");
         thread.start();
 
-//        processData();
     }
 
-    public void processData() {
-        RestaurantItem one = new RestaurantItem("a", "b", "c");
-        restaurantList.add(one);
-
-        mAdapter.notifyDataSetChanged();
-    }
 
     public void getRestaurantId() {
         final String urlCuisines = "https://developers.zomato.com/api/v2.1/cuisines?city_id=";
@@ -179,12 +166,13 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i)
                                         .getJSONObject("restaurant");
+                                String id = jsonObject.getJSONObject("R").getString("res_id");
                                 String name = jsonObject.getString("name");
                                 String rating = jsonObject.getJSONObject("user_rating")
                                         .getString("aggregate_rating");
                                 String address = jsonObject.getJSONObject("location")
                                         .getString("address");
-                                restaurantList.add(new RestaurantItem(name, rating, address));
+                                restaurantList.add(new RestaurantItem(name, rating, address, id));
                             }
 
                             mAdapter.notifyDataSetChanged();
