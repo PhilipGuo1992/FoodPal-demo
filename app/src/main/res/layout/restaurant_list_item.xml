@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:weightSum="2">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/restaurant_name"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/colorBlack"
         android:textSize="17sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_weight="1.5" />
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/restaurant_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/restaurant_name"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="#666666" />
 
     <TextView
         android:id="@+id/restaurant_rating"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:textSize="17sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_weight="0.5" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/colorAccent" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/restaurant_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/restaurant_rating"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>
