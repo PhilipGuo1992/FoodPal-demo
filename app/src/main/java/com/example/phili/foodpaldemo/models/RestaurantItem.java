@@ -7,10 +7,12 @@ package com.example.phili.foodpaldemo.models;
 public class RestaurantItem {
     private String name;
     private String rating;
+    private String address;
 
-    public RestaurantItem(String name, String rating) {
+    public RestaurantItem(String name, String rating, String address) {
         this.name = name;
         this.rating = rating;
+        this.address = address;
     }
 
 
@@ -21,4 +23,6 @@ public class RestaurantItem {
     public String getRating() {
         return this.rating;
     }
+
+    public String getAddress() {return this.address;}
 }
