@@ -164,9 +164,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignTop="@+id/textView"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/place_name"
+        android:layout_alignStart="@+id/place_name"
+        android:layout_below="@+id/place_name"
         android:background="@null"
         android:fontFamily="@font/nunito_semibold"
         android:hint="Descrip your group"
@@ -185,5 +184,29 @@
         android:text="Create A Group"
         android:textSize="30sp" />
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        android:background="@color/colorGainsboro" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="146dp"
+        android:background="@color/colorGainsboro" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="254dp"
+        android:background="@color/colorGainsboro" />
 
 </RelativeLayout>
