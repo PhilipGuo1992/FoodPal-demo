@@ -39,7 +39,7 @@ public class DiscoverRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),
-                        DiscoverRestaurantActivity.class);
+                        DisplayRestaurantsActivity.class);
                 intent.putExtra(MESSAGE_CITY, spinner_city.getSelectedItem().toString());
                 intent.putExtra(MESSAGE_CUISINE, txt_search_for_restaurants.getText().toString());
                 startActivity(intent);
