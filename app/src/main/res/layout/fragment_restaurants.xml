@@ -68,7 +68,8 @@
         android:layout_marginTop="50dp"
         android:hint="@string/search_for_restaurant"
         android:singleLine="true"
-        android:typeface="monospace" />
+        android:typeface="monospace"
+        android:textCursorDrawable="@drawable/color_cursor"/>
 
     <Button
         android:id="@+id/btn_discover_restaurant"
