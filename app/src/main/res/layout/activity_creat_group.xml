@@ -18,22 +18,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/restaurant"
-            android:layout_alignStart="@+id/restaurant"
-            android:layout_marginBottom="20dp"
+            android:layout_alignEnd="@+id/restaurant"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/time"
-            android:textSize="20dp" />
+            android:text="@string/time" />
 
         <TextView
             android:id="@+id/group_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/meal_time"
+            android:layout_above="@+id/et_mealtime"
             android:layout_alignStart="@+id/meal_time"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="34dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/group_name"
-            android:textSize="20dp" />
+            android:text="@string/group_name" />
 
         <ImageButton
             android:id="@+id/create_res"
@@ -51,12 +48,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/create_res"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="6dp"
+            android:layout_below="@+id/imageView"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="9dp"
             android:fontFamily="@font/nunito_bold"
-            android:text="@string/restaurant"
-            android:textSize="20dp" />
+            android:text="@string/restaurant" />
 
         <EditText
             android:id="@+id/et_groupname"
@@ -86,27 +82,95 @@
             android:inputType="textNoSuggestions"
             android:textSize="15sp" />
 
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/meal_time"
+            android:layout_alignTop="@+id/imageView4"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Description:" />
+
+
+        <EditText
+            android:id="@+id/gp_descrip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignStart="@+id/et_mealtime"
+            android:background="@null"
+            android:fontFamily="@font/nunito_semibold"
+            android:hint="Descrip your group"
+            android:inputType="textNoSuggestions"
+            android:textSize="15sp" />
+
+
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_alignStart="@+id/imageView2"
-            android:layout_alignTop="@+id/meal_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/create_res"
+            android:layout_alignStart="@+id/imageView4"
             app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/meal_time"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorGainsboro" />
+
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@+id/group_name"
-            android:layout_marginEnd="6dp"
+            android:layout_marginEnd="9dp"
             android:layout_toStartOf="@+id/group_name"
             app:srcCompat="@drawable/ic_group_blue_24dp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignStart="@+id/view"
+            android:layout_below="@+id/imageView2"
+            android:background="@color/colorGainsboro" />
+
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_above="@+id/et_mealtime"
+            android:layout_alignStart="@+id/imageView2"
+            app:srcCompat="@drawable/ic_description_black_24dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignStart="@+id/view2"
+            android:layout_below="@+id/et_mealtime"
+            android:background="@color/colorGainsboro" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorGainsboro" />
+
+
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/restaurant"
             android:layout_alignStart="@+id/imageView"
             app:srcCompat="@drawable/ic_restaurant_blue_24dp" />
@@ -139,38 +203,6 @@
         android:fontFamily="@font/nunito_semibold"
         android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/place_name"
-        android:layout_marginStart="15dp"
-        app:srcCompat="@drawable/ic_description_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_toEndOf="@+id/imageView4"
-        android:fontFamily="@font/nunito_bold"
-        android:text="Description:"
-        android:textSize="20dp" />
-
-
-    <EditText
-        android:id="@+id/gp_descrip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignStart="@+id/place_name"
-        android:layout_below="@+id/place_name"
-        android:background="@null"
-        android:fontFamily="@font/nunito_semibold"
-        android:hint="Descrip your group"
-        android:inputType="textNoSuggestions"
-        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView3"

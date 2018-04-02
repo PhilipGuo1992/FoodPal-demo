@@ -18,7 +18,7 @@ exports.sendNotification = functions.database.ref('/notifications/{userId}/{noti
 
   }
 
-  const fromUser = admin.database.ref(`/notifications/${user_id}/${notification_id}`).once(`value`);
+  const fromUser = admin.database().ref(`/notifications/${user_id}/${notification_id}`).once(`value`);
   return fromUser.then(fromUserResult =>{
 
     const from_user_id = fromUserResult.val().from;
