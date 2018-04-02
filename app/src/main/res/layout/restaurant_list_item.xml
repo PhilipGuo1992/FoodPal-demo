@@ -8,26 +8,35 @@
         android:id="@+id/restaurant_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17sp"
         android:layout_alignParentTop="true"
-        android:textColor="@color/colorBlack"
         android:padding="@dimen/activity_horizontal_margin"
-        android:textStyle="bold"/>
+        android:textColor="@color/colorBlack"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/restaurant_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGray"
+        android:layout_below="@id/restaurant_name"
         android:padding="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/restaurant_name" />
-    
+        android:textColor="@color/colorGray" />
+
     <TextView
         android:id="@+id/restaurant_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGray"
+        android:layout_alignParentEnd="true"
         android:padding="@dimen/activity_horizontal_margin"
-        android:layout_alignParentEnd="true"/>
+        android:textColor="@color/colorGray" />
+
+    <TextView
+        android:id="@+id/restaurant_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/restaurant_rating"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/colorGray" />
 
 </RelativeLayout>
