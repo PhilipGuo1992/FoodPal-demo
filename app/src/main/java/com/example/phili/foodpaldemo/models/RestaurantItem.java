@@ -8,11 +8,13 @@ public class RestaurantItem {
     private String name;
     private String rating;
     private String address;
+    private String id;
 
-    public RestaurantItem(String name, String rating, String address) {
+    public RestaurantItem(String name, String rating, String address, String id) {
         this.name = name;
         this.rating = rating;
         this.address = address;
+        this.id = id;
     }
 
 
@@ -25,4 +27,6 @@ public class RestaurantItem {
     }
 
     public String getAddress() {return this.address;}
+
+    public String getId() {return this.id;}
 }
