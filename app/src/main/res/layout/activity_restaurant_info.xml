@@ -31,14 +31,15 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGray" />
+                android:layout_height="1dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp">
 
                 <ImageView
@@ -60,8 +61,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGray" />
+                android:layout_height="1dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,8 +75,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -95,14 +98,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray" />
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
@@ -124,14 +128,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray" />
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
@@ -154,14 +159,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray" />
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
@@ -184,14 +190,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray" />
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
@@ -214,15 +221,17 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray" />
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -247,8 +256,10 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGray" />
+                android:layout_height="1dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:background="@color/colorGainsboro" />
 
 
         </LinearLayout>
