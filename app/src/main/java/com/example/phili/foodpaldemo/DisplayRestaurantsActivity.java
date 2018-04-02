@@ -2,6 +2,7 @@ package com.example.phili.foodpaldemo;
 
 import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
 import com.example.phili.foodpaldemo.models.RestaurantItem;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -130,8 +131,7 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
                         "First request: Error retrieving data",
                         Toast.LENGTH_SHORT).show();
             }
-        })
-        {
+        }) {
 
             /**
              * Override the getHeaders method to pass the API key for GET method for Zamato
@@ -190,8 +190,7 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
                         "Second request: Error retrieving data",
                         Toast.LENGTH_SHORT).show();
             }
-        })
-        {
+        }) {
 
             /**
              * Override the getHeaders method to pass the API key for GET method for Zamato
