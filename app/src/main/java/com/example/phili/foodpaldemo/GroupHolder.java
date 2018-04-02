@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -20,6 +21,7 @@ import com.google.android.gms.location.places.PlacePhotoMetadataResponse;
 import com.google.android.gms.location.places.PlacePhotoResponse;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -139,6 +141,9 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
     }
 
+
+
+
     private void setCreaterPhotoAndName(String groupCreaterID) {
         mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
 
@@ -151,9 +156,12 @@ public class GroupHolder extends RecyclerView.ViewHolder {
                     String username = currentUser.getUserName();
                     createrName.setText(username);
 
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.placeholder(R.drawable.photo2);
+
                     // get picture
                     Glide.with(context)
-                            // .setDefaultRequestOptions(requestOptions)
+                            .setDefaultRequestOptions(requestOptions)
                             .load(currentUser.getPhotoUrl())
                             .into(userImage);
 
@@ -175,8 +183,12 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
         String placeId = resID;
 
+
+
         final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
+
         photoMetadataResponse.addOnCompleteListener(new OnCompleteListener<PlacePhotoMetadataResponse>() {
+
             @Override
             public void onComplete(@NonNull Task<PlacePhotoMetadataResponse> task) {
                 // Get the list of photos.
@@ -217,6 +229,13 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
                     }
                 });
+            }
+        });
+
+        photoMetadataResponse.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                resImage.setImageResource(R.drawable.photo2);
             }
         });
 
