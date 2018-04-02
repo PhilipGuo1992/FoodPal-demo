@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
+import com.example.phili.foodpaldemo.models.ChatScreenActivity;
 import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -56,10 +57,14 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     //
     private TextView groupName, mealTime, restaurantName, description, memberNames;
     private Button joinGroupBtn, leaveGroupBtn;
-
+private Button chatButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private Boolean if_contain_user;
+    String group_Name;
+    String user_Name;
+    String userEmail;
+  public  Boolean flag =false;
 
     private String currentUserID;
     // group-currentMembers
@@ -91,6 +96,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
         // get buttons
         joinGroupBtn = findViewById(R.id.click_join_group);
         leaveGroupBtn = findViewById(R.id.click_leave_group);
+        chatButton = findViewById(R.id.chatbutton);
 
 
         // assign the firebaseAuth first, before using it
@@ -106,11 +112,14 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
         // get group id from intent
         Intent intent = getIntent();
         groupID = intent.getStringExtra(GroupHolder.GROUP_ID);
+        group_Name = intent.getStringExtra("GROUPNAME");
+
         if_contain_user = intent.getBooleanExtra(GroupHolder.GROUP_CONTAIN_USER, false);
 
         // disable the related button
         if(if_contain_user){
             joinGroupBtn.setEnabled(false);
+            chatButton.setVisibility(View.VISIBLE);
             // hide this button
             joinGroupBtn.setVisibility(View.GONE);
 
@@ -206,6 +215,35 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
             }
         });
 
+        chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+              //
+                //  String userName = FirebaseDatabase.getInstance().getReference().child()
+               // group_Name =
+              /*  mDatabaseGroup.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // convert to java object
+                        UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
+                        group_Name= currentGroup.getGroupName();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+*/
+             userEmail = firebaseAuth.getCurrentUser().getEmail();
+                Intent chatScreen_intent = new Intent(DisplayGroupInfoActivity.this,ChatScreenActivity.class);
+                chatScreen_intent.putExtra("GROUPNAME",group_Name);
+                chatScreen_intent.putExtra("GROUPID",groupID);
+                chatScreen_intent.putExtra("EMAIL",userEmail);
+              startActivity(chatScreen_intent);
+            }
+        });
+
     }
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
@@ -247,6 +285,9 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
                 UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
                 // updateUI
                 updateUI(currentGroup);
+
+                group_Name =currentGroup.getGroupName();
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -345,6 +386,8 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
 
                         // add username to list
                         userNamesList.add(currentUserName);
+                        user_Name = currentUserName;
+                        // userEmail = currentUser.getUserEmailAddress();
 
                         // update ui
                         int listLength = userNamesList.toString().length();
@@ -363,7 +406,5 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
 
 
     }
-
-
 
 }
