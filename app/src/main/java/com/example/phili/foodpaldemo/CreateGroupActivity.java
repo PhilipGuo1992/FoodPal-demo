@@ -62,7 +62,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private EditText editTextTime;
     private EditText editTextRestaurant;
     private TextView textViewEmail;
-
+    private EditText editTextDescription;
     private Button btnCreate;
 
     private TimePickerView timePickerView;
@@ -96,6 +96,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         editTextTime = findViewById(R.id.et_mealtime);
         choosePlace = findViewById(R.id.create_res);
         placeName = findViewById(R.id.place_name);
+        editTextDescription = findViewById(R.id.gp_descrip);
         //textViewEmail = findViewById(R.id.textViewEmail);
         btnCreate = findViewById(R.id.btn_create);
 
@@ -107,11 +108,12 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
     private void createGroup(){
         String groupName = editTextGroupName.getText().toString().trim();
         String mealTime = editTextTime.getText().toString().trim();
+
        // String restaurantName = editTextRestaurant.getText().toString().trim();
 
-        //String description =
+        String description = editTextDescription.getText().toString().trim();
 
-        if (!TextUtils.isEmpty(groupName) && place != null) {
+        if (!TextUtils.isEmpty(groupName) && place != null && mealTime!=null && description!=null) {
             // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
             // get the restaurant
             MyLatLng myLatLng = new MyLatLng(place.getLatLng().latitude, place.getLatLng().longitude);
@@ -132,7 +134,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             //Put user to the current group
             members.put(uId,true);
 
-            UserGroup userGroup = new UserGroup(gId, uId, groupName, mealTime, place.getId(), members);
+            UserGroup userGroup = new UserGroup(gId, uId, groupName, mealTime, place.getId(), members, description);
             try {
                 // only store restaurant id in group.
                 databaseReference.child("groups").child(gId).setValue(userGroup);
@@ -156,7 +158,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             finish();
 
         } else {
-            Toast.makeText(this, "Please enter a name or choose a place", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter required information", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -30,14 +30,14 @@ public class UserGroup {
     private Map<String, Boolean> currentMembers;
 
     public UserGroup(String groupID, String groupCreatorID, String groupName,
-                     String mealTime, String restaurantID, Map<String, Boolean> currentMembers) {
+                     String mealTime, String restaurantID, Map<String, Boolean> currentMembers, String description) {
         this.groupID = groupID;
         this.groupCreatorID = groupCreatorID;
         this.groupName = groupName;
         this.mealTime = mealTime;
         this.restaurantID = restaurantID;
         //this.restaurantName = restaurantName;
-        //this.description = description;
+        this.description = description;
 
         this.currentMembers = currentMembers;
 
