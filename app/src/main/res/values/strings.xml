@@ -115,5 +115,6 @@
         <item>Dartmouth</item>
     </string-array>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="hi">Hi, set up your name here</string>
 
 </resources>
