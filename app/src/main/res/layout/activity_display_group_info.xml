@@ -268,13 +268,15 @@
             android:text="Join group"
             />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
+        android:layout_marginTop="2dp"
         android:layout_height="match_parent"
         android:id="@+id/chatbutton"
-        android:background="@drawable/ic_chat_black_24dp"
+        android:background="@color/startblue"
+        android:textColor="@color/colorWhite"
         android:text="Chat"
-        android:visibility="invisible"
-        android:layout_marginLeft="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
 
         />
 
