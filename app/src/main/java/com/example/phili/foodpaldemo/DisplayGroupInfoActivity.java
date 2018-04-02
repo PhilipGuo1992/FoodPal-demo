@@ -338,7 +338,7 @@ private Button chatButton;
                                 int oldHeight = bitmap.getHeight();
                                 double ratio = oldHeight*1.0/(oldWidth*1.0);
 
-                                int newWidth = 1400;
+                                int newWidth = 800;
                                 int newHeight = (int)(newWidth * ratio);
 
                                 Bitmap resized = Bitmap.createScaledBitmap(bitmap,
