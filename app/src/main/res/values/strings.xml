@@ -50,6 +50,7 @@
     <string name="btn_discover_restaurant">Go</string>
     <string name="Tap">Tap to choose</string>
     <string name="EnterGroup">Enter something</string>
+    <string name="btn_get_user_city">Click To Get Location</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -113,5 +114,6 @@
         <item>Halifax</item>
         <item>Dartmouth</item>
     </string-array>
+    <string name="title_activity_chat">ChatActivity</string>
 
 </resources>

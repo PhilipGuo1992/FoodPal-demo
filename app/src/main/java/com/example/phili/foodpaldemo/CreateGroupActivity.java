@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.example.phili.foodpaldemo.models.ChatScreenActivity;
 import com.example.phili.foodpaldemo.models.MyLatLng;
 import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -147,6 +148,9 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "create group success", Toast.LENGTH_SHORT).show();
             // go to my groups
             Intent intent = new Intent(this, MainHomeActivity.class);
+
+            Intent chat_intent = new Intent(this, DisplayGroupInfoActivity.class);
+            chat_intent.putExtra("GROUPNAME",groupName);
             //LOAD_MY_GROUP = true;
             // put id to intent
            // intent.putExtra(LOAD_MY_GROUP, true);

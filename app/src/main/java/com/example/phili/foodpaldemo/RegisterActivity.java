@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Created by yiren on 2018-02-10.
@@ -91,8 +92,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                             String uId = firebaseUser.getUid();
                             String uEmail = firebaseUser.getEmail();
+                            String deviceToken = FirebaseInstanceId.getInstance().getToken();
                             databaseReference = firebaseDatabase.getReference("users").child(uId);
-                            User user = new User(uId,"",uEmail,"","","","","");
+                            User user = new User(uId,deviceToken,"",uEmail,"","","","","");
                             databaseReference.setValue(user);
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();

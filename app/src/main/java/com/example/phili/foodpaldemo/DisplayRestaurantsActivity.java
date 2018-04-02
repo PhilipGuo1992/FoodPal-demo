@@ -1,5 +1,6 @@
 package com.example.phili.foodpaldemo;
 
+import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
 import com.example.phili.foodpaldemo.models.RestaurantItem;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -42,8 +43,8 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
         restaurantList = new ArrayList<>();
 
         Intent intent = getIntent();
-        city = intent.getStringExtra(DiscoverRestaurantActivity.MESSAGE_CITY);
-        cuisine = intent.getStringExtra(DiscoverRestaurantActivity.MESSAGE_CUISINE);
+        city = intent.getStringExtra(RestaurantsFragment.MESSAGE_CITY);
+        cuisine = intent.getStringExtra(RestaurantsFragment.MESSAGE_CUISINE);
 
         txt_display_restaurant_heading.setText(cuisine.concat(" cuisines in ".concat(city)));
 

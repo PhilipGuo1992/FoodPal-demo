@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -49,6 +48,7 @@
         <activity android:name=".ForgetPswActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".DisplayGroupInfoActivity" />
+        <activity android:name=".DisplayRestaurantsActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
@@ -60,12 +60,8 @@
         <activity
             android:name=".MainHomeActivity"
             android:label="@string/title_activity_main_home" />
-        <activity android:name=".DiscoverRestaurantActivity" />
-        <activity
-            android:name=".DisplayRestaurantsActivity"
-            android:label="Go Back"
-            android:parentActivityName=".DiscoverRestaurantActivity"
-            android:theme="@style/AppTheme" />
+
+        <activity android:name=".models.ChatScreenActivity"></activity>
     </application>
 
 </manifest>
