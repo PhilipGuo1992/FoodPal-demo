@@ -5,9 +5,9 @@ const admin  = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 
-exports.sendNotification = functions.database.ref('/notifications/{user_id}/{notification_id}').onWrite(event =>{
+exports.sendNotification = functions.database.ref('/notifications/{userId}/{notificationId}').onWrite(event =>{
 
-  const user_id = event.params.user_id;
+  const user_id = event.params.userId;
   const notification = event.params.notification;
 
   console.log('we have a notification to send to: ', user_id);
