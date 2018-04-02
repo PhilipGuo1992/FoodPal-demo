@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.phili.foodpaldemo.DisplayRestaurantsActivity">
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/txt_display_restaurant_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/txt_display_restaurant_heading"
+        android:id="@+id/rest_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:scrollbars="vertical" />
+
+    <!--<ListView-->
+    <!--android:id="@+id/lv_restaurants"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/txt_display_restaurant_heading"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:divider="#000000"-->
+    <!--android:dividerHeight="1px">-->
+
+    <!--</ListView>-->
+
+
+</RelativeLayout>

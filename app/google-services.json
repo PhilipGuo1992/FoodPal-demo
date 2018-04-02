@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "711476943458",
+    "firebase_url": "https://assignment4-99c23.firebaseio.com",
+    "project_id": "assignment4-99c23",
+    "storage_bucket": "assignment4-99c23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711476943458:android:4a3f8d4a4a5494a0",
+        "android_client_info": {
+          "package_name": "com.example.phili.foodpaldemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711476943458-3qopc78rsog9uudecla98tjkhda5vrbl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phili.foodpaldemo",
+            "certificate_hash": "0d2bb9dbfef5edbb6a7238c8e965776e881e1eb1"
+          }
+        },
+        {
+          "client_id": "711476943458-um4kpg2jivqvm8d26huooop72133ng0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phili.foodpaldemo",
+            "certificate_hash": "b55dd06cb9324d27cd1ee5ea6f02d6c62d4636ea"
+          }
+        },
+        {
+          "client_id": "711476943458-328q56h7vqpq60fvi4mc2rh1o286ffbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDkNq0E3Zx3iFYjismzFfbnrHiIhQtDS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711476943458-328q56h7vqpq60fvi4mc2rh1o286ffbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
