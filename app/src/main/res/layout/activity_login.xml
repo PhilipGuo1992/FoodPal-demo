@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.phili.foodpaldemo.LoginActivity">
 
 
@@ -57,8 +57,7 @@
             android:paddingRight="20dp"
             android:paddingTop="15dp"
             android:textColorHint="@color/colorCursor"
-            android:textCursorDrawable="@drawable/color_cursor"
-            />
+            android:textCursorDrawable="@drawable/color_cursor" />
 
         <ImageView
             android:id="@+id/icon_username_clear"
@@ -68,8 +67,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@mipmap/icon_clear"
-            android:visibility="invisible"
-            android:textCursorDrawable="@drawable/color_cursor"/>
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -78,8 +77,7 @@
         android:layout_height="wrap_content"
 
         android:layout_below="@id/app_username"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginTop="10dp">
 
         <EditText
             android:id="@+id/et_password"
@@ -144,9 +142,9 @@
             android:id="@+id/app_forget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semibold"
             android:text="@string/app_forget"
-            android:textSize="15sp"
-            android:fontFamily="@font/nunito_semibold"/>
+            android:textSize="15sp" />
 
         <View
             android:id="@+id/view_forget"
@@ -162,10 +160,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/view_forget"
+            android:fontFamily="@font/nunito_semibold"
             android:paddingLeft="10dp"
             android:text="@string/app_create"
-            android:textSize="15sp"
-            android:fontFamily="@font/nunito_semibold"/>
+            android:textSize="15sp" />
     </RelativeLayout>
 
 
