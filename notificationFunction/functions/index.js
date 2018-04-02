@@ -2,7 +2,10 @@
 
 const functions = require('firebase-functions');
 const admin  = require('firebase-admin');
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp({
+  databaseURL:'https://assignment4-99c23.firebaseio.com',
+  serviceAccount:'Assignment4-2334df668b16.json',
+});
 
 
 exports.sendNotification = functions.database.ref('/notifications/{userId}/{notificationId}').onWrite(event =>{
