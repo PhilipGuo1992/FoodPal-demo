@@ -320,12 +320,14 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/chat_button_background"
             android:text="Chat with Us!"
-            android:textColor="@color/colorWhite"
 
-            />
+            android:textColor="@color/colorWhite"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/click_leave_group"

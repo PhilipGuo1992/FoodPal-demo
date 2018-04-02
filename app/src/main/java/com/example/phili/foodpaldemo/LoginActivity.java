@@ -125,8 +125,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //@
                     // test create group
 
-
-
                 } else {
                     Toast.makeText(LoginActivity.this, "Your username or password is incorrect!", Toast.LENGTH_SHORT).show();
                 }

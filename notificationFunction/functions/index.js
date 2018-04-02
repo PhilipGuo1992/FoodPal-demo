@@ -8,7 +8,7 @@ admin.initializeApp(functions.config().firebase);
 exports.sendNotification = functions.database.ref('/notifications/{userId}/{notificationId}').onWrite(event =>{
 
   const user_id = event.params.userId;
-  const notification = event.params.notification;
+  const notification_id = event.params.notificationId;
 
   console.log('we have a notification to send to: ', user_id);
 

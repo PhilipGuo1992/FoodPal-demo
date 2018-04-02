@@ -277,8 +277,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         gender.setFocusable(true);
         gender.setFocusableInTouchMode(true);
 
-        birthday.setFocusable(true);
-        birthday.setFocusableInTouchMode(true);
+//        birthday.setFocusable(true);
+//        birthday.setFocusableInTouchMode(true);
 
         major.setFocusable(true);
         major.setFocusableInTouchMode(true);
