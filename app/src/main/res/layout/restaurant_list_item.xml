@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/restaurant_name"
         android:padding="@dimen/activity_horizontal_margin"
-        android:textColor="@color/colorGray" />
+        android:textColor="#666666" />
 
     <TextView
         android:id="@+id/restaurant_rating"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:padding="@dimen/activity_horizontal_margin"
-        android:textColor="@color/colorGray" />
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/restaurant_id"
@@ -37,6 +37,6 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/restaurant_rating"
         android:padding="@dimen/activity_horizontal_margin"
-        android:textColor="@color/colorGray" />
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
