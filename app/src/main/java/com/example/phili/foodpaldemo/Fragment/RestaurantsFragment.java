@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.phili.foodpaldemo.DiscoverRestaurantActivity;
+
 import com.example.phili.foodpaldemo.DisplayRestaurantsActivity;
 import com.example.phili.foodpaldemo.R;
 
@@ -23,8 +23,8 @@ import com.example.phili.foodpaldemo.R;
  */
 public class RestaurantsFragment extends android.support.v4.app.Fragment {
 
-    final static String MESSAGE_CITY = "CITY";
-    final static String MESSAGE_CUISINE = "CUISINE";
+    public final static String MESSAGE_CITY = "CITY";
+    public final static String MESSAGE_CUISINE = "CUISINE";
 
     private Button btn_discover_restaurant;
     private Spinner spinner_city;
@@ -51,9 +51,7 @@ public class RestaurantsFragment extends android.support.v4.app.Fragment {
 
         ArrayAdapter<CharSequence> cityArrays = ArrayAdapter.createFromResource(getContext(),
                 R.array.cities_array, R.layout.spinner_item);
-
         cityArrays.setDropDownViewResource(R.layout.spinner_dropdown_item);
-
         spinner_city.setAdapter(cityArrays);
 
         btn_discover_restaurant.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +70,12 @@ public class RestaurantsFragment extends android.support.v4.app.Fragment {
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
     @Override
