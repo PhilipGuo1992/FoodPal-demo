@@ -299,6 +299,10 @@ private Button chatButton;
     }
 
     private void updateUI(final UserGroup currentGroup){
+        // SET descrip
+        if(currentGroup.getDescription() != null){
+            description.setText(currentGroup.getDescription());
+        }
         // get restaurant
         String restaurantID = currentGroup.getRestaurantID();
         mDatabaseRestr.child(restaurantID).addListenerForSingleValueEvent(new ValueEventListener() {
