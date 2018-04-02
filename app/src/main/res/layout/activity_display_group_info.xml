@@ -90,11 +90,6 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     />
-                <TextView
-                    android:layout_gravity="center"
-                    android:text="Meal time:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/display_mealTime"
@@ -134,11 +129,6 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         />
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="Restaurant name:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/display_resName"
@@ -175,11 +165,6 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         />
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="Address:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/display_resLocation"
@@ -214,11 +199,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         />
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="Phone number:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+
 
                     <TextView
                         android:id="@+id/display_phone"
@@ -254,11 +235,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold"
                         />
-                    <TextView
-                        android:layout_gravity="center"
-                        android:text="Website:"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+
 
                     <TextView
                         android:id="@+id/display_web"
@@ -269,6 +246,44 @@
                         android:paddingBottom="2dp"
                         android:paddingTop="2dp"
                         android:text="Website" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_description_black_24dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/display_group_descrip"
+
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="describe your group" />
 
                 </LinearLayout>
 
@@ -286,33 +301,11 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="19dp"
-                android:text="Group Description: "
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/display_group_descrip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/click_join_group"
             android:layout_width="300dp"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
@@ -323,16 +316,18 @@
         <Button
 
             android:id="@+id/chatbutton"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/chat_button_background"
             android:text="Chat with Us!"
-            android:textColor="@color/colorWhite"
 
-            />
+            android:textColor="@color/colorWhite"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/click_leave_group"

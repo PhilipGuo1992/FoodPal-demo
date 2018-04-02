@@ -69,7 +69,7 @@
             android:fontFamily="@font/nunito_semibold"
             android:hint="@string/EnterGroup"
             android:inputType="textNoSuggestions"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/et_mealtime"
@@ -84,7 +84,7 @@
             android:fontFamily="@font/nunito_semibold"
             android:hint="@string/Tap"
             android:inputType="textNoSuggestions"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -164,13 +164,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_alignEnd="@+id/btn_create"
-        android:layout_below="@+id/place_name"
+        android:layout_alignTop="@+id/textView"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/place_name"
         android:background="@null"
         android:fontFamily="@font/nunito_semibold"
         android:hint="Descrip your group"
         android:inputType="textNoSuggestions"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/textView3"
