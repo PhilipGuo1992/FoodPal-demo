@@ -232,7 +232,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/btn_create"
         android:layout_below="@+id/ll_groupinfo"
-        android:layout_marginStart="164dp"
+        android:layout_marginStart="28dp"
         android:fontFamily="@font/nunito_semibold"
         android:textSize="18sp" />
 
