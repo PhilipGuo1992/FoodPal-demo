@@ -49,6 +49,7 @@
         <activity android:name=".ForgetPswActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".DisplayGroupInfoActivity" />
+        <activity android:name=".DisplayRestaurantsActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
