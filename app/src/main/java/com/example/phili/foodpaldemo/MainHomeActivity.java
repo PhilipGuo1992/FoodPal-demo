@@ -15,6 +15,7 @@ import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
 import com.example.phili.foodpaldemo.Fragment.MyGroupsFragment;
 import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
 import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
+import com.onesignal.OneSignal;
 
 public class MainHomeActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener,
@@ -27,7 +28,14 @@ public class MainHomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
+
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
+
         fragmentManager = getSupportFragmentManager();
+
 
         Fragment fragmentAllGroup = new GroupListFragment();
         Fragment fragmentMyGroup = new MyGroupsFragment();
