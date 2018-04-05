@@ -35,10 +35,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.lang.String;
 import java.lang.Boolean;
@@ -175,7 +179,57 @@ private Button chatButton;
                 startActivity(intent);
 
                         for (String userID : membersID){
-                            mDatabaseNotification.child(userID).push().setValue(notificationData);
+                            //mDatabaseNotification.child(userID).push().setValue(notificationData);
+
+                            //https://documentation.onesignal.com/reference#create-notification
+                            try {
+                                String jsonResponse;
+
+                                URL url = new URL("https://onesignal.com/api/v1/notifications");
+                                HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                                con.setUseCaches(false);
+                                con.setDoOutput(true);
+                                con.setDoInput(true);
+
+                                con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                                con.setRequestProperty("Authorization", "Basic Yzc2OTZjYTUtMjlmNC00MjQ4LWIyMzAtMjIxNGI0M2ZiMjFk");
+                                con.setRequestMethod("POST");
+
+                                String strJsonBody = "{"
+                                        +   "\"app_id\": \"9afeae9e-6904-4589-bc89-47f314578487\","
+                                        +   "\"filters\": [{\"field\": \"tag\", \"key\": \"level\", \"relation\": \">\", \"value\": \"10\"},{\"operator\": \"OR\"},{\"field\": \"amount_spent\", \"relation\": \">\",\"value\": \""+userID+"\"}],"
+                                        +   "\"data\": {\"foo\": \"bar\"},"
+                                        +   "\"contents\": {\"en\": \"English Message\"}"
+                                        + "}";
+
+
+                                System.out.println("strJsonBody:\n" + strJsonBody);
+
+                                byte[] sendBytes = strJsonBody.getBytes("UTF-8");
+                                con.setFixedLengthStreamingMode(sendBytes.length);
+
+                                OutputStream outputStream = con.getOutputStream();
+                                outputStream.write(sendBytes);
+
+                                int httpResponse = con.getResponseCode();
+                                System.out.println("httpResponse: " + httpResponse);
+
+                                if (  httpResponse >= HttpURLConnection.HTTP_OK
+                                        && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
+                                    Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
+                                    jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+                                    scanner.close();
+                                }
+                                else {
+                                    Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
+                                    jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+                                    scanner.close();
+                                }
+                                System.out.println("jsonResponse:\n" + jsonResponse);
+
+                            } catch(Throwable t) {
+                                t.printStackTrace();
+                            }
 
                         }
 
