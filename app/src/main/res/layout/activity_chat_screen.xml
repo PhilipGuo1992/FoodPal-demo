@@ -81,8 +81,7 @@
             android:layout_height="48dp"
             android:layout_gravity="bottom"
             android:clickable="true"
-            android:gravity="center"
-            android:textSize="14dp" />
+            android:gravity="center" />
 
     </LinearLayout>
 
