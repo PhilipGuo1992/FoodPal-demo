@@ -1,5 +1,17 @@
 apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:0.8.1'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
+repositories {
+    maven { url 'https://maven.google.com' }
+}
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -11,6 +23,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
+        manifestPlaceholders = [
+                onesignal_app_id: '9afeae9e-6904-4589-bc89-47f314578487',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
     }
     buildTypes {
         release {
@@ -58,8 +75,11 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.0'
 
     compile 'com.google.firebase:firebase-messaging:11.8.0'
+
     // FirebaseUI for Firebase Realtime Database
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
+    compile 'com.onesignal:OneSignal:[3.8.3, 3.99.99]'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 }
 
 //Apply Firebase
