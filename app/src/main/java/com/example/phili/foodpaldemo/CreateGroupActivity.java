@@ -113,52 +113,72 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
         String description = editTextDescription.getText().toString().trim();
 
-        if (!TextUtils.isEmpty(groupName) && place != null && mealTime!=null && description!=null) {
-            // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
-            // get the restaurant
-            MyLatLng myLatLng = new MyLatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+        if (!TextUtils.isEmpty(groupName)) {
+            if(place != null){
 
-            Restaurant restaurant = new Restaurant(place.getId(), place.getName().toString(), place.getAddress().toString(),
-                        place.getPhoneNumber().toString(), place.getWebsiteUri().toString(),myLatLng);
+                if(mealTime!=null){
 
-            String gId = databaseReference.child("groups").push().getKey();
-            //Construct a map to manage users and groups
-            Map<String, Boolean> members = new HashMap<>();
+                    if(description!=null){
+                        // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
+                        // get the restaurant
+                        MyLatLng myLatLng = new MyLatLng(place.getLatLng().latitude, place.getLatLng().longitude);
 
-            String uId = firebaseUser.getUid();
+                        Restaurant restaurant = new Restaurant(place.getId(), place.getName().toString(), place.getAddress().toString(),
+                                place.getPhoneNumber().toString(), place.getWebsiteUri().toString(),myLatLng);
 
-            // add the group id to the user
-            //  update the user's group info
-            userDataReference.child(uId).child("joinedGroups").child(gId).setValue(true);
+                        String gId = databaseReference.child("groups").push().getKey();
+                        //Construct a map to manage users and groups
+                        Map<String, Boolean> members = new HashMap<>();
 
-            //Put user to the current group
-            members.put(uId,true);
+                        String uId = firebaseUser.getUid();
 
-            UserGroup userGroup = new UserGroup(gId, uId, groupName, mealTime, place.getId(), members, description);
-            try {
-                // only store restaurant id in group.
-                databaseReference.child("groups").child(gId).setValue(userGroup);
+                        // add the group id to the user
+                        //  update the user's group info
+                        userDataReference.child(uId).child("joinedGroups").child(gId).setValue(true);
 
-                databaseReference.child("restaurants").child(place.getId()).setValue(restaurant);
+                        //Put user to the current group
+                        members.put(uId,true);
 
-            } catch (Exception e){
-                e.printStackTrace();
+                        UserGroup userGroup = new UserGroup(gId, uId, groupName, mealTime, place.getId(), members, description);
+                        try {
+                            // only store restaurant id in group.
+                            databaseReference.child("groups").child(gId).setValue(userGroup);
+
+                            databaseReference.child("restaurants").child(place.getId()).setValue(restaurant);
+
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(this, "create group success", Toast.LENGTH_SHORT).show();
+                        // go to my groups
+                        Intent intent = new Intent(this, MainHomeActivity.class);
+
+                        Intent chat_intent = new Intent(this, DisplayGroupInfoActivity.class);
+                        chat_intent.putExtra("GROUPNAME",groupName);
+                        //LOAD_MY_GROUP = true;
+                        // put id to intent
+                        // intent.putExtra(LOAD_MY_GROUP, true);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+                        Toast.makeText(this, "Please enter description information", Toast.LENGTH_LONG).show();
+
+                    }
+                } else {
+                    Toast.makeText(this, "Please enter meal time information", Toast.LENGTH_LONG).show();
+
+                }
+            } else {
+                Toast.makeText(this, "Please choose a restaurant", Toast.LENGTH_LONG).show();
+
             }
 
-            Toast.makeText(this, "create group success", Toast.LENGTH_SHORT).show();
-            // go to my groups
-            Intent intent = new Intent(this, MainHomeActivity.class);
 
-            Intent chat_intent = new Intent(this, DisplayGroupInfoActivity.class);
-            chat_intent.putExtra("GROUPNAME",groupName);
-            //LOAD_MY_GROUP = true;
-            // put id to intent
-           // intent.putExtra(LOAD_MY_GROUP, true);
-            startActivity(intent);
-            finish();
 
         } else {
-            Toast.makeText(this, "Please enter required information", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter group name information", Toast.LENGTH_LONG).show();
         }
     }
 
