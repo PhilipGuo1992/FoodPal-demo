@@ -126,8 +126,15 @@ if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE ) {
 ```
 
 ## Feature Section
-The login and registration page is the first page that users see when they open the application. After they registered, they are on the page of Profile, where they can edit their personal information.
-On the list of groups page, user can view all the existing groups created by other users. The user can click each group, which will show the detail of the group.
+The login and registration page is the first page that users see when they open the application. After they registered, they are on the page of Profile, where they can edit their personal information.  
+
+On the list of groups page, users can view all the existing groups created by other users. The user can click each group, then it will show the detail of the group, and gives the option to join or leave the group. Also, on the list of the group page, there is a button on the right bottom corner to create a new group. When a user clicks this button, it requires the user to enter the group name, group description, choose a meal time and choose a restaurant, which uses the Google PlacePicker API.  
+
+Users can also view all the groups he/she has joined by viewing my group page. Also, users can see the restaurants’ information on the restaurant page. Including location, type, price, and comments.  
+
+On the setting page, users can see their profile and change them if they like. On the top of group list page and my group page, there is a search bar. If there is a huge amount of group on these two pages and the user can not find what they want to in an efficient way. They can use this searching function to help them. Also in these two pages, the card of every single group shows the basic information of the group, including the number of people in this group, the name of who created this group, the basic information of the restaurant. 
+ 
+When users are in a group, there is a button on the group information page called to chat. By this, users can have a chat with the members of this group. 
 
 
 ## Final Project Status
