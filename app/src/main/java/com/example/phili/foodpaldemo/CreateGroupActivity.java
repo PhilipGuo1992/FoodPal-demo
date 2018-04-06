@@ -60,9 +60,9 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     //EditText on this page
     private EditText editTextGroupName;
-    //private EditText editTextTime;
+    private EditText editTextTime;
     private EditText editTextRestaurant;
-    private TextView editTextTime;
+    //private TextView editTextTime;
     private EditText editTextDescription;
     private Button btnCreate;
 
@@ -100,6 +100,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         editTextDescription = findViewById(R.id.gp_descrip);
         //textViewEmail = findViewById(R.id.textViewEmail);
         btnCreate = findViewById(R.id.btn_create);
+        
 
         //textViewEmail.setText("Welcome" + firebaseUser.getEmail());
         btnCreate.setOnClickListener(this);

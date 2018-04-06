@@ -171,3 +171,5 @@ We did achieve our goals, even through we have one expected functionality is par
 [11] E. Desjardins, CSCI 5708, Lab 6 Notes, Topic: “Currency Application”, Faculty of Computer Science, Dalhousie University, Halifax, Nova Scotia, Mar. 9, 2018.  
 [12] georgiecasey, How to set custom header in Volley Request, Stack Overflow. Accessed on Mar. 18, 2018. [Online]. Available: https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request  
 [13] “Modern Profile UI Design in Android Studio,” YouTube, 05-Oct-2017. [Online]. Available: https://www.youtube.com/watch?v=2pirZvqXza0&t=1153s.  
+[14]"Android Chat Tutorial: Building a Messaging UI", Blog.sendbird.com, 2018. [Online]. Available: https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui. [Accessed: 06- Apr- 2018].
+[15]
