@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FoodPal-demo.iml" filepath="$PROJECT_DIR$/FoodPal-demo.iml" />
-      <module fileurl="file://C:\Users\tanis\AndroidStudioProjects\Project_Foodpal\New folder3\FoodPal-demo\FoodPal-demo.iml" filepath="C:\Users\tanis\AndroidStudioProjects\Project_Foodpal\New folder3\FoodPal-demo\FoodPal-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\tanis\AndroidStudioProjects\Project_Foodpal\New folder3\FoodPal-demo\app\app.iml" filepath="C:\Users\tanis\AndroidStudioProjects\Project_Foodpal\New folder3\FoodPal-demo\app\app.iml" />
     </modules>
   </component>
 </project>
