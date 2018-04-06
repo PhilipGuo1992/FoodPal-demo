@@ -28,6 +28,7 @@ import java.util.Map;
 
 /**
  * Ref: Lab6 notes, Mobile Computing, Winter 2018, Dalhousie University
+ * Ref: https://developer.android.com/guide/topics/ui/layout/recyclerview.html
  */
 
 public class DisplayRestaurantsActivity extends AppCompatActivity {
