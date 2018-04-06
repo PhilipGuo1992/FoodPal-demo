@@ -60,9 +60,9 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
 
     //EditText on this page
     private EditText editTextGroupName;
-    private EditText editTextTime;
+    //private EditText editTextTime;
     private EditText editTextRestaurant;
-    private TextView textViewEmail;
+    private TextView editTextTime;
     private EditText editTextDescription;
     private Button btnCreate;
 
