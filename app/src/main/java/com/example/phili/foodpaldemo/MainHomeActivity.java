@@ -48,7 +48,6 @@ public class MainHomeActivity extends AppCompatActivity
         navigation.setOnNavigationItemSelectedListener(this);
 
         // default load this fragment:
-        //loadFragment(null, new GroupListFragment(), R.id.fragment_container);
         switchFragments("group", "my", "restr", "setting", 0);
 
     }
@@ -57,8 +56,6 @@ public class MainHomeActivity extends AppCompatActivity
     protected void onResume() {
         Log.i("test", "resume on activity");
         super.onResume();
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        startWhichFragment(navigation);
     }
 
     private void startWhichFragment(BottomNavigationView navigation) {
@@ -90,7 +87,6 @@ public class MainHomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         // get previous fragment
-        //Fragment previousFragment = fragmentManager.findFragmentById(R.id.fragment_container);
 
        Fragment fragment = null;
 
@@ -103,8 +99,7 @@ public class MainHomeActivity extends AppCompatActivity
         // switch between fragments
         switch (item.getItemId()) {
             case R.id.navigation_group_list:
-                //https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222
-
+                // [8]
                 str1="group"; str2="my"; str3="restr"; str4="setting";
                 i = 0;
 
@@ -143,7 +138,7 @@ public class MainHomeActivity extends AppCompatActivity
     private boolean switchFragments(String str1, String str2, String str3, String str4, int i) {
 
         // code from stackOverflow
-        //https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222
+        // [8]
         if(fragmentManager.findFragmentByTag(str1) != null) {
             fragmentManager.beginTransaction()
                     .show(fragmentManager.findFragmentByTag(str1))
