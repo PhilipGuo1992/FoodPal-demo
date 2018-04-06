@@ -1,5 +1,6 @@
 package com.example.phili.foodpaldemo;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -195,6 +196,7 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
             e.printStackTrace();
         }
     }
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
