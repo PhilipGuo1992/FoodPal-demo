@@ -197,7 +197,7 @@ private Button chatButton;
 
                                 String strJsonBody = "{"
                                         +   "\"app_id\": \"9afeae9e-6904-4589-bc89-47f314578487\","
-                                        +   "\"filters\": [{\"field\": \"tag\", \"key\": \"level\", \"relation\": \">\", \"value\": \""+userID+"\"},{\"operator\": \"OR\"},{\"field\": \"amount_spent\", \"relation\": \">\",\"value\": \"0\"}],"
+                                        +   "\"filters\": [{\"field\": \"tag\", \"key\": \"level\", \"relation\": \">\", \"value\": \""+userID+"\"}],"
                                         +   "\"data\": {\"foo\": \"bar\"},"
                                         +   "\"contents\": {\"en\": \"English Message\"}"
                                         + "}";

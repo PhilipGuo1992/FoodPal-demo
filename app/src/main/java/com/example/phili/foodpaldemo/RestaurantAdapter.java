@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Created by zongming on 2018-03-19.
+ * Ref: https://developer.android.com/guide/topics/ui/layout/recyclerview.html
  */
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {
@@ -52,22 +53,17 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.restaurant_list_item, parent, false);
         v.setOnClickListener(new MyOnClickListener());
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         holder.restaurant_name.setText(restaurantList.get(position).getName());
         holder.restaurant_rating.setText(restaurantList.get(position).getRating());
         holder.restaurant_address.setText(restaurantList.get(position).getAddress());
         holder.restaurant_id.setText(restaurantList.get(position).getId());
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return restaurantList.size();
