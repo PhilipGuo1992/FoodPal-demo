@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button btnRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextUsername;
     private TextView textViewLogin;
     private ProgressDialog progressDialog;
     //private String TAG="feature";
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextEmail = (EditText) findViewById(R.id.input_email);
         editTextPassword = (EditText) findViewById(R.id.input_password);
         textViewLogin = (TextView) findViewById(R.id.textViewLogin);
+        editTextUsername = findViewById(R.id.input_username);
         progressDialog = new ProgressDialog(this);
 
         btnRegister.setOnClickListener(this);
@@ -63,8 +65,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void UserRegister() {
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        final String username = editTextUsername.getText().toString().trim();
 
         //Log.i(TAG, "UserRegister: here ");
         if (TextUtils.isEmpty(email)) {
@@ -77,6 +80,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (TextUtils.isEmpty(username)) {
+            //If password is empty
+            Toast.makeText(this, "Please enter your username", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         progressDialog.setMessage("Redirecting...");
         progressDialog.show();
@@ -87,6 +95,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
+
+
                         if (task.isSuccessful()) {
 
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -94,19 +104,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             String uEmail = firebaseUser.getEmail();
                             String deviceToken = FirebaseInstanceId.getInstance().getToken();
                             databaseReference = firebaseDatabase.getReference("users").child(uId);
-                            User user = new User(uId,deviceToken,"",uEmail,"","","","","");
+                            User user = new User(uId,deviceToken, username,uEmail,"","","","","");
                             databaseReference.setValue(user);
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(getApplicationContext(), SettingsFragment.class));
+                            startActivity(new Intent(getApplicationContext(), MainHomeActivity.class));
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Could not register", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "The email address is already in use by another account.", Toast.LENGTH_SHORT).show();
 
                         }
                     }
                 });
-
 
     }
 

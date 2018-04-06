@@ -18,9 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.onesignal.OneSignal;
 
 //import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,12 +45,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    FirebaseUser user;
+    static String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.activity_login);
+
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -119,13 +128,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //Keep this line
                     //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     //Test for creating a group
+                    userid = current_user;
+                    OneSignal.sendTag("user_id", userid);
+
+
                   startActivity(new Intent(getApplicationContext(), MainHomeActivity.class));
                     finish();
                     // go to home page
                     //@
                     // test create group
-
-
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Your username or password is incorrect!", Toast.LENGTH_SHORT).show();

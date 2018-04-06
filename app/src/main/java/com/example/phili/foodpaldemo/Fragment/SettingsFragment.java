@@ -180,6 +180,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                 RequestOptions requestOptions = new RequestOptions();
                 requestOptions.placeholder(R.drawable.photo2);
 
+                //[4] “bumptech/glide,” GitHub. [Online]. Available: https://github.com/bumptech/glide.
                 //if (currentUser.getPhotoUrl())
                 Glide.with(container.getContext())
                         .setDefaultRequestOptions(requestOptions)
@@ -277,8 +278,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         gender.setFocusable(true);
         gender.setFocusableInTouchMode(true);
 
-        birthday.setFocusable(true);
-        birthday.setFocusableInTouchMode(true);
+//        birthday.setFocusable(true);
+//        birthday.setFocusableInTouchMode(true);
 
         major.setFocusable(true);
         major.setFocusableInTouchMode(true);
@@ -292,7 +293,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //retrieved from https://github.com/ArthurHub/Android-Image-Cropper
-        //Image-Cropper
+        //Image-Cropper [3]“ArthurHub/Android-Image-Cropper,” GitHub. [Online].
+        // Available: https://github.com/ArthurHub/Android-Image-Cropper.
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE ) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
@@ -371,6 +373,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         Calendar endDate = Calendar.getInstance();
         Calendar currentDate = Calendar.getInstance();
 
+        //[7] Bigkoo, “Bigkoo/Android-PickerView,” GitHub. [Online].Available: https://github.com/Bigkoo/Android-PickerView.
         timePickerView = new TimePickerView.Builder(getActivity(), new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {

@@ -78,7 +78,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
 
         // get view elements
         recyclerView = groupListView.findViewById(R.id.recycler_view);
-        searchViewMyGroup = groupListView.findViewById(R.id.sv_mygroup);
+        //searchViewMyGroup = groupListView.findViewById(R.id.sv_mygroup);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = mAuth.getCurrentUser();

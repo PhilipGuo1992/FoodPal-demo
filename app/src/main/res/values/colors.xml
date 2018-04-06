@@ -34,5 +34,6 @@
     <color name="colorDividItem">#88d1d4d4</color>
     <color name="joinBtn">#14e233</color>
     <color name="leaveBtn">#ec0d0d</color>
+    <color name="colorGainsboro">#dcdcdc</color>
 
 </resources>

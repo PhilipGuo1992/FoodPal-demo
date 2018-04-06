@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,68 +11,68 @@
     android:orientation="vertical"
     tools:context="com.example.phili.foodpaldemo.DisplayGroupInfoActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-
-
-    <TextView
-        android:id="@+id/display_group_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:text="groupName"
-        android:textSize="30sp" />
-
-    <ImageView
-        android:id="@+id/show_group_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="15dp"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
         <TextView
+            android:id="@+id/display_group_name"
             android:layout_width="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="groupName"
+            android:textSize="30sp" />
 
-            android:text="group members: "
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/display_group_members"
+        <ImageView
+            android:id="@+id/show_group_image"
             android:layout_width="wrap_content"
-            android:text="..."
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="group members: "
+
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/display_group_members"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="..." />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGray"/>
+                android:layout_height="1dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,62 +83,36 @@
 
 
                 <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:src="@drawable/ic_access_time_black_24dp"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:id="@+id/display_mealTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="time" />
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:text="Time" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGray"/>
+                android:layout_height="1dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:background="@color/colorGainsboro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    >
-
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/ic_display_res_24dp"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:id="@+id/display_resName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="name" />
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -144,80 +122,170 @@
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_display_res_24dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/display_resName"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="Name" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:src="@drawable/ic_location_on_black_24dp"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
                     <TextView
                         android:id="@+id/display_resLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="location" />
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="Location" />
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray"/>
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
-                    >
+                    android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginLeft="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:src="@drawable/ic_call_black_24dp"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
+
 
                     <TextView
-                        android:layout_marginLeft="20dp"
                         android:id="@+id/display_phone"
                         android:layout_width="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="phone number" />
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="Phone Number" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorGray"/>
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
-                    >
+                    android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/ic_internet_line_"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:id="@+id/display_web"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="website" />
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_internet_line_"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/display_web"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="Website" />
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@color/colorGainsboro" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_description_black_24dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/display_group_descrip"
+
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="describe your group" />
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -225,77 +293,57 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorGray"/>
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_height="wrap_content">
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="Group Description: "
-                android:layout_marginLeft="19dp"
-                />
-            <TextView
-                android:id="@+id/display_group_descrip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="1dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="22dp"
+                android:background="@color/colorGainsboro" />
 
 
         </LinearLayout>
+
 
         <Button
             android:id="@+id/click_join_group"
             android:layout_width="300dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/colorWhite"
-            android:background="@color/joinBtn"
+            android:background="@drawable/joingroup_button_background"
             android:text="Join group"
-            />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/chatbutton"
-        android:background="@drawable/ic_chat_black_24dp"
-        android:text="Chat"
-        android:visibility="invisible"
-        android:layout_marginLeft="80dp"
+            android:textColor="@color/colorWhite" />
 
-        />
+        <Button
+
+            android:id="@+id/chatbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/chat_button_background"
+            android:text="Chat with Us!"
+
+            android:textColor="@color/colorWhite"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/click_leave_group"
-            android:layout_marginTop="10dp"
-            android:layout_width="300dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/leaveBtn"
-            android:textColor="@color/colorWhite"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/leavegroup_button_background"
             android:text="Leave group"
-            />
+            android:textColor="@color/colorWhite" />
 
 
-
-
-
-
+    </LinearLayout>
 </LinearLayout>
-
 </ScrollView>
