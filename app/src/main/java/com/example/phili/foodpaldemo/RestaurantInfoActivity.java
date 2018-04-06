@@ -19,6 +19,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Ref: Lab 6 notes, Mobile Computing, Winter 2018, Dalhousie University.
+ */
 
 public class RestaurantInfoActivity extends AppCompatActivity {
     private TextView restaurant_info_name;
@@ -71,6 +74,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                         try {
                             String name = response.getString("name");
 
+                            // https://stackoverflow.com/questions/6094315/single-textview-with-multiple-colored-text/14936995
                             String currency = response.getString("currency");
                             String url = "<font color=#000000>".concat(response.getString("url").concat("</font>"));
                             String address = "<font color=#000000>".concat(response.getJSONObject("location").getString("address").concat("</font>"));
@@ -82,7 +86,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                             String votes = "<font color=#".concat(rating_color.concat(">")).concat(response.getJSONObject("user_rating").getString("votes").concat("</font>"));
                             restaurant_info_name.setText(name);
 
-                            //ref: https://stackoverflow.com/questions/6094315/single-textview-with-multiple-colored-text/14936995
+                            // https://stackoverflow.com/questions/6094315/single-textview-with-multiple-colored-text/14936995
                             String address_pre = "<font color=#666666>".concat(restaurant_info_address.getText().toString().concat("</font>"));
                             String cuisines_pre = "<font color=#666666>".concat(restaurant_info_cuisines.getText().toString().concat("</font>"));
                             String avg_cost_pre = "<font color=#666666>".concat(restaurant_info_avg_cost.getText().toString().concat("</font>"));
@@ -91,6 +95,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
                             String agg_pre = "<font color=#666666>".concat(restaurant_info_aggregate_rating.getText().toString().concat("</font>"));
                             String votes_pre = "<font color=#666666>".concat(restaurant_info_votes.getText().toString().concat("</font>"));
 
+                            // https://stackoverflow.com/questions/6094315/single-textview-with-multiple-colored-text/14936995
                             restaurant_info_address.setText(Html.fromHtml(address_pre.concat(address)));
                             restaurant_info_cuisines.setText(Html.fromHtml(cuisines_pre.concat(cuisines)));
                             restaurant_info_avg_cost.setText(Html.fromHtml(avg_cost_pre.concat(avg_cost)));
@@ -116,6 +121,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
 
             /**
              * Override the getHeaders method to pass the API key for GET method for Zamato
+             * https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request
              */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
