@@ -26,6 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Ref: Lab6 notes, Mobile Computing, Winter 2018, Dalhousie University
+ * Ref: https://developer.android.com/guide/topics/ui/layout/recyclerview.html
+ */
+
 public class DisplayRestaurantsActivity extends AppCompatActivity {
 
     // RecyclerView
@@ -137,6 +142,7 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
 
             /**
              * Override the getHeaders method to pass the API key for GET method for Zamato
+             * https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request
              */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -196,6 +202,7 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
 
             /**
              * Override the getHeaders method to pass the API key for GET method for Zamato
+             * https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request
              */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
