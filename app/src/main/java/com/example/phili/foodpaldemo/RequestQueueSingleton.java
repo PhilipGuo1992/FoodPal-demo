@@ -8,6 +8,7 @@ import com.android.volley.toolbox.Volley;
 
 /**
  * Created by zongming on 2018-03-19.
+ * Ref: Lab 6 notes, Mobile Computing, Winter 2018, Dalhousie University
  */
 
 
