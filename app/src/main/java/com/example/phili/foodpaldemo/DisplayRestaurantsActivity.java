@@ -141,6 +141,7 @@ public class DisplayRestaurantsActivity extends AppCompatActivity {
 
             /**
              * Override the getHeaders method to pass the API key for GET method for Zamato
+             * https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request
              */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
