@@ -3,6 +3,8 @@ package com.example.phili.foodpaldemo;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -186,18 +188,23 @@ private Button chatButton;
                             AsyncTask.execute(new Runnable() {
                                 @Override
                                 public void run() {
-                                    try {
-                                        String jsonResponse;
+                                    int SDK_INT = Build.VERSION.SDK_INT;
+                                    if (SDK_INT > 5) {
+                                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                                                .permitAll().build();
+                                        StrictMode.setThreadPolicy(policy);
+                                        try {
+                                            String jsonResponse;
 
-                                        URL url = new URL("https://onesignal.com/api/v1/notifications");
-                                        HttpURLConnection con = (HttpURLConnection)url.openConnection();
-                                        con.setUseCaches(false);
-                                        con.setDoOutput(true);
-                                        con.setDoInput(true);
+                                            URL url = new URL("https://onesignal.com/api/v1/notifications");
+                                            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                                            con.setUseCaches(false);
+                                            con.setDoOutput(true);
+                                            con.setDoInput(true);
 
-                                        con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                                        con.setRequestProperty("Authorization", "Basic Yzc2OTZjYTUtMjlmNC00MjQ4LWIyMzAtMjIxNGI0M2ZiMjFk");
-                                        con.setRequestMethod("POST");
+                                            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                                            con.setRequestProperty("Authorization", "Basic Yzc2OTZjYTUtMjlmNC00MjQ4LWIyMzAtMjIxNGI0M2ZiMjFk");
+                                            con.setRequestMethod("POST");
 
                                 String strJsonBody = "{"
                                         +   "\"app_id\": \"9afeae9e-6904-4589-bc89-47f314578487\","
@@ -207,32 +214,32 @@ private Button chatButton;
                                         + "}";
 
 
-                                        System.out.println("strJsonBody:\n" + strJsonBody);
+                                            System.out.println("strJsonBody:\n" + strJsonBody);
 
-                                        byte[] sendBytes = strJsonBody.getBytes("UTF-8");
-                                        con.setFixedLengthStreamingMode(sendBytes.length);
+                                            byte[] sendBytes = strJsonBody.getBytes("UTF-8");
+                                            con.setFixedLengthStreamingMode(sendBytes.length);
 
-                                        OutputStream outputStream = con.getOutputStream();
-                                        outputStream.write(sendBytes);
+                                            OutputStream outputStream = con.getOutputStream();
+                                            outputStream.write(sendBytes);
 
-                                        int httpResponse = con.getResponseCode();
-                                        System.out.println("httpResponse: " + httpResponse);
+                                            int httpResponse = con.getResponseCode();
+                                            System.out.println("httpResponse: " + httpResponse);
 
-                                        if (  httpResponse >= HttpURLConnection.HTTP_OK
-                                                && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
-                                            Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
-                                            jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
-                                            scanner.close();
+                                            if (httpResponse >= HttpURLConnection.HTTP_OK
+                                                    && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
+                                                Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
+                                                jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+                                                scanner.close();
+                                            } else {
+                                                Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
+                                                jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
+                                                scanner.close();
+                                            }
+                                            System.out.println("jsonResponse:\n" + jsonResponse);
+
+                                        } catch (Throwable t) {
+                                            t.printStackTrace();
                                         }
-                                        else {
-                                            Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
-                                            jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
-                                            scanner.close();
-                                        }
-                                        System.out.println("jsonResponse:\n" + jsonResponse);
-
-                                    } catch(Throwable t) {
-                                        t.printStackTrace();
                                     }
                                 }
                             });
