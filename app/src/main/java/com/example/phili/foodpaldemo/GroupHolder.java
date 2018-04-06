@@ -124,7 +124,7 @@ public class GroupHolder extends RecyclerView.ViewHolder {
     public void bind(UserGroup userGroup){
         // group name
         groupName.setText(userGroup.getGroupName());
-        createrName.setText("whatakjk");
+        createrName.setText("jk");
         //
         String groupCreaterID =  userGroup.getGroupCreatorID();
         if(groupCreaterID != null){
