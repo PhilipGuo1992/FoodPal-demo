@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Ref: Lab6 notes, Mobile Computing, Winter 2018, Dalhousie University
+ */
+
 public class DisplayRestaurantsActivity extends AppCompatActivity {
 
     // RecyclerView
