@@ -137,15 +137,17 @@
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/time" />
 
-            <TextView
+            <EditText
                 android:id="@+id/et_mealtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:fontFamily="@font/nunito_semibold"
                 android:hint="@string/Tap"
+                android:inputType="textNoSuggestions"
                 android:textSize="15sp" />
 
 
