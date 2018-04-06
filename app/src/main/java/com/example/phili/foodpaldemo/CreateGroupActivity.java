@@ -117,9 +117,9 @@ public class CreateGroupActivity extends AppCompatActivity implements View.OnCli
         if (!TextUtils.isEmpty(groupName)) {
             if(place != null){
 
-                if(mealTime!=null){
+                if(!TextUtils.isEmpty(mealTime)){
 
-                    if(description!=null){
+                    if(!TextUtils.isEmpty(description)){
                         // android.os.TransactionTooLargeException: data parcel size 1163212 bytes
                         // get the restaurant
                         MyLatLng myLatLng = new MyLatLng(place.getLatLng().latitude, place.getLatLng().longitude);
