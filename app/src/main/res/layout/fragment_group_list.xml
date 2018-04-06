@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.phili.foodpaldemo.Fragment.GroupListFragment">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/create_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/ic_add_white_24dp"
+        android:src="@drawable/ic_add_white_24dp"
+        app:backgroundTint="@color/startblue" />
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/sv_allgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:queryHint="@android:string/search_go"></android.support.v7.widget.SearchView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="45dp"
+        android:alwaysDrawnWithCache="true" />
+
+    <!--<ListView-->
+        <!--android:id="@+id/group_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:descendantFocusability="afterDescendants"-->
+        <!--android:divider="@color/colorDividItem"-->
+        <!--android:dividerHeight="10dp"-->
+        <!--android:fastScrollEnabled="false"-->
+        <!--android:scrollbarAlwaysDrawHorizontalTrack="true"-->
+        <!--android:scrollbarFadeDuration="10"-->
+        <!--android:scrollbarStyle="outsideInset"-->
+        <!--android:scrollbarThumbVertical="@drawable/scrollbar_vertical_thumb"-->
+        <!--android:scrollbarTrackVertical="@drawable/scrollbar_vertical_track"-->
+        <!--android:scrollbars="none">-->
+
+
+    <!--</ListView>-->
+
+
+</FrameLayout>
+
