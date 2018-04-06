@@ -3,7 +3,6 @@ package com.example.phili.foodpaldemo.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,9 @@ import com.example.phili.foodpaldemo.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Ref: Lab6 notes, Mobile Computing, Winter 2018, Dalhousie University.
  */
+
 public class RestaurantsFragment extends android.support.v4.app.Fragment {
 
     public final static String MESSAGE_CITY = "CITY";

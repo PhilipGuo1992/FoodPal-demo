@@ -122,6 +122,7 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
 
     public void bind(UserGroup userGroup){
+        int members;
         // group name
         groupName.setText(userGroup.getGroupName());
         createrName.setText("jk");
@@ -132,17 +133,17 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
         }
         // total member
-        int members = userGroup.getCurrentMembers().size();
+
+        if(userGroup.getCurrentMembers() == null)
+            members = 0;
+        else
+            members = userGroup.getCurrentMembers().size();
         totalMembers.setText(members + "");
 
         // get the picture
         String resID = userGroup.getRestaurantID();
         setRestaurantPhoto(resID, restauImage);
-
     }
-
-
-
 
     private void setCreaterPhotoAndName(String groupCreaterID) {
         mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
