@@ -172,4 +172,6 @@ We did achieve our goals, even through we have one expected functionality is par
 [12] georgiecasey, How to set custom header in Volley Request, Stack Overflow. Accessed on Mar. 18, 2018. [Online]. Available: https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request  
 [13] “Modern Profile UI Design in Android Studio,” YouTube, 05-Oct-2017. [Online]. Available: https://www.youtube.com/watch?v=2pirZvqXza0&t=1153s.  
 [14]"Android Chat Tutorial: Building a Messaging UI", Blog.sendbird.com, 2018. [Online]. Available: https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui. [Accessed: 06- Apr- 2018].
-[15]
+[15]"firebase/FirebaseUI-Android", GitHub, 2018. [Online]. Available: https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md. [Accessed: 07- Apr- 2018].
+[16]"Почему не конвертируются Fragment?", «Тостер» — вопросы и ответы, 2018. [Online]. Available: https://toster.ru/q/185673. [Accessed: 07- Apr- 2018].
+[17]
