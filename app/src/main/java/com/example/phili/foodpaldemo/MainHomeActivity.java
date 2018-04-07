@@ -87,7 +87,7 @@ public class MainHomeActivity extends AppCompatActivity
                             getApplicationContext(), "0")
                             .setSmallIcon(R.drawable.cast_ic_notification_small_icon)
                             .setContentTitle("Some one joined the group")
-                            .setContentText("There is a motherfucker joined the group")
+                            .setContentText("There is someone joined the group")
                             .setStyle(new NotificationCompat.BigTextStyle()
                                     .bigText("Much longer text that cannot fit one line..."))
                             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -95,7 +95,7 @@ public class MainHomeActivity extends AppCompatActivity
                             .setDefaults(NotificationCompat.DEFAULT_ALL)
                             .setAutoCancel(true);
 
-                    //Toast.makeText(getApplicationContext(), "Fuck you", Toast.LENGTH_LONG).show();
+                    
 
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
 
