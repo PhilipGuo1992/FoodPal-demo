@@ -79,6 +79,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
     compile 'com.onesignal:OneSignal:[3.8.3, 3.99.99]'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation "com.android.support:support-compat:27.1.1"
 }
 
 //Apply Firebase

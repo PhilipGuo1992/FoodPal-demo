@@ -51,7 +51,7 @@ import java.lang.String;
 import java.lang.Boolean;
 
 public class DisplayGroupInfoActivity extends AppCompatActivity
-                        implements LeaveGroupConfirmFragment.LeaveDialogListener{
+        implements LeaveGroupConfirmFragment.LeaveDialogListener {
 
     // tag for dialog
     private static final String LEAVE_GROUP = "DialogLeave";
@@ -64,14 +64,14 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     //
     private TextView groupName, mealTime, restaurantName, description, memberNames;
     private Button joinGroupBtn, leaveGroupBtn;
-private Button chatButton;
+    private Button chatButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private Boolean if_contain_user;
     String group_Name;
     String user_Name;
     String userEmail;
-  public  Boolean flag =false;
+    public Boolean flag = false;
 
     private String currentUserID;
     // group-currentMembers
@@ -90,7 +90,7 @@ private Button chatButton;
         // widges
         groupName = findViewById(R.id.display_group_name);
         mealTime = findViewById(R.id.display_mealTime);
-       // restaurantName = findViewById(R.id.display_rest_name);
+        // restaurantName = findViewById(R.id.display_rest_name);
         description = findViewById(R.id.display_group_descrip);
         memberNames = findViewById(R.id.display_group_members);
 
@@ -124,7 +124,7 @@ private Button chatButton;
         if_contain_user = intent.getBooleanExtra(GroupHolder.GROUP_CONTAIN_USER, false);
 
         // disable the related button
-        if(if_contain_user){
+        if (if_contain_user) {
             joinGroupBtn.setEnabled(false);
             chatButton.setVisibility(View.VISIBLE);
             // hide this button
@@ -155,127 +155,73 @@ private Button chatButton;
                 // first: update the group member info
                 try {
                     mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
+                    mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
+                    Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
-                } catch (Exception e){
-                    Log.i("test","click join group, " + e);
+                    // go to my group activity
+                    Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+                    // put id to intent
+                    intent.putExtra("loadMyGroup", true);
+                    startActivity(intent);
+
+                } catch (Exception e) {
+                    Log.i("test", "click join group, " + e);
 
                 }
                 // second: update the user's group info
-               mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
-
-                mDatabaseGroup.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // convert to java object
-                        UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
-                        currentMembers = currentGroup.getCurrentMembers();
-                        Set<String> membersID = currentMembers.keySet();
-                        HashMap<String,String> notificationData = new HashMap<>();
-                        notificationData.put("from", currentUserID);
-                        notificationData.put("type", "join");
-
-                // go to my group acvitity
-                Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
-                // put id to intent
-                CreateGroupActivity.LOAD_MY_GROUP = true;
-                //intent.putExtra("loadMyGroup", true);
-                startActivity(intent);
-
-                        for (final String userID : membersID){
-                            //mDatabaseNotification.child(userID).push().setValue(notificationData);
-
-                            //https://documentation.onesignal.com/reference#create-notification
-                            AsyncTask.execute(new Runnable() {
-                                @Override
-                                public void run() {
-                                    int SDK_INT = Build.VERSION.SDK_INT;
-                                    if (SDK_INT > 5) {
-                                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                                                .permitAll().build();
-                                        StrictMode.setThreadPolicy(policy);
-                                        try {
-                                            String jsonResponse;
-
-                                            URL url = new URL("https://onesignal.com/api/v1/notifications");
-                                            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                                            con.setUseCaches(false);
-                                            con.setDoOutput(true);
-                                            con.setDoInput(true);
-
-                                            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                                            con.setRequestProperty("Authorization", "Basic Yzc2OTZjYTUtMjlmNC00MjQ4LWIyMzAtMjIxNGI0M2ZiMjFk");
-                                            con.setRequestMethod("POST");
-
-                                String strJsonBody = "{"
-                                        +   "\"app_id\": \"9afeae9e-6904-4589-bc89-47f314578487\","
-                                        +   "\"filters\": [{\"field\": \"tag\", \"key\": \"level\", \"relation\": \">\", \"value\": \""+userID+"\"}],"
-                                        +   "\"data\": {\"foo\": \"bar\"},"
-                                        +   "\"contents\": {\"en\": \"English Message\"}"
-                                        + "}";
 
 
-                                            System.out.println("strJsonBody:\n" + strJsonBody);
-
-                                            byte[] sendBytes = strJsonBody.getBytes("UTF-8");
-                                            con.setFixedLengthStreamingMode(sendBytes.length);
-
-                                            OutputStream outputStream = con.getOutputStream();
-                                            outputStream.write(sendBytes);
-
-                                            int httpResponse = con.getResponseCode();
-                                            System.out.println("httpResponse: " + httpResponse);
-
-                                            if (httpResponse >= HttpURLConnection.HTTP_OK
-                                                    && httpResponse < HttpURLConnection.HTTP_BAD_REQUEST) {
-                                                Scanner scanner = new Scanner(con.getInputStream(), "UTF-8");
-                                                jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
-                                                scanner.close();
-                                            } else {
-                                                Scanner scanner = new Scanner(con.getErrorStream(), "UTF-8");
-                                                jsonResponse = scanner.useDelimiter("\\A").hasNext() ? scanner.next() : "";
-                                                scanner.close();
-                                            }
-                                            System.out.println("jsonResponse:\n" + jsonResponse);
-
-                                        } catch (Throwable t) {
-                                            t.printStackTrace();
-                                        }
-                                    }
-                                }
-                            });
-
-
-                        }
-
-                            // user want to join the group.
-                        // first: update the group member info
-                        mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
-                        // second: update the user's group info
-                        mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
-
-                        Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
-
-                        // go to my group activity
-                        intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
-                        // put id to intent
-                        intent.putExtra("loadMyGroup", true);
-                        startActivity(intent);
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
+//                mDatabaseGroup.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        // convert to java object
+//                        UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
+//                        currentMembers = currentGroup.getCurrentMembers();
+//                        Set<String> membersID = currentMembers.keySet();
+//                        HashMap<String, String> notificationData = new HashMap<>();
+//                        notificationData.put("from", currentUserID);
+//                        notificationData.put("type", "join");
+//
+//                        // go to my group acvitity
+//                        Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+//                        // put id to intent
+//                        CreateGroupActivity.LOAD_MY_GROUP = true;
+//                        //intent.putExtra("loadMyGroup", true);
+//                        startActivity(intent);
+//
+//                        // user want to join the group.
+//                        // first: update the group member info
+//                        mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
+//                        // second: update the user's group info
+//                        mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
+//
+//                        Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
+//
+//                        // go to my group activity
+//                        intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
+//                        // put id to intent
+//                        intent.putExtra("loadMyGroup", true);
+//                        startActivity(intent);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
 
 
             }
-        });
+        }
+
+        );
+
+
         leaveGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // start a dialog first
-               // android.app.FragmentManager manager = getFragmentManager();
+                // android.app.FragmentManager manager = getFragmentManager();
                 FragmentManager manager = getSupportFragmentManager();
                 LeaveGroupConfirmFragment dialog = new LeaveGroupConfirmFragment();
                 dialog.show(manager, LEAVE_GROUP);
@@ -287,9 +233,9 @@ private Button chatButton;
             @Override
             public void onClick(View view) {
 
-              //
+                //
                 //  String userName = FirebaseDatabase.getInstance().getReference().child()
-               // group_Name =
+                // group_Name =
               /*  mDatabaseGroup.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -303,27 +249,28 @@ private Button chatButton;
                     }
                 });
 */
-             userEmail = firebaseAuth.getCurrentUser().getEmail();
-                Intent chatScreen_intent = new Intent(DisplayGroupInfoActivity.this,ChatScreenActivity.class);
-                chatScreen_intent.putExtra("GROUPNAME",group_Name);
-                chatScreen_intent.putExtra("GROUPID",groupID);
-                chatScreen_intent.putExtra("EMAIL",userEmail);
-              startActivity(chatScreen_intent);
+                userEmail = firebaseAuth.getCurrentUser().getEmail();
+                Intent chatScreen_intent = new Intent(DisplayGroupInfoActivity.this, ChatScreenActivity.class);
+                chatScreen_intent.putExtra("GROUPNAME", group_Name);
+                chatScreen_intent.putExtra("GROUPID", groupID);
+                chatScreen_intent.putExtra("EMAIL", userEmail);
+                startActivity(chatScreen_intent);
             }
         });
 
     }
+
     @Override
     public void onDialogPositiveClick(DialogFragment dialog) {
         // first: update the group member info
-         mDatabaseGroup.child("currentMembers").child(currentUserID).removeValue();
+        mDatabaseGroup.child("currentMembers").child(currentUserID).removeValue();
         // update UI or not?1
 
         // second: update the user's group info
         mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).removeValue();
 
         // disable join group button
-        Log.i("test","click leave group");
+        Log.i("test", "click leave group");
 
         Toast.makeText(DisplayGroupInfoActivity.this, "leave the group success", Toast.LENGTH_SHORT).show();
 
@@ -354,9 +301,10 @@ private Button chatButton;
                 // updateUI
                 updateUI(currentGroup);
 
-                group_Name =currentGroup.getGroupName();
+                group_Name = currentGroup.getGroupName();
 
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -366,9 +314,9 @@ private Button chatButton;
 
     }
 
-    private void updateUI(final UserGroup currentGroup){
+    private void updateUI(final UserGroup currentGroup) {
         // SET descrip
-        if(currentGroup.getDescription() != null){
+        if (currentGroup.getDescription() != null) {
             description.setText(currentGroup.getDescription());
         }
         // get restaurant
@@ -384,7 +332,7 @@ private Button chatButton;
                 restrWeb.setText(currentRestr.getResWebsite());
 
                 // load image
-                final GeoDataClient mGeoDataClient ;
+                final GeoDataClient mGeoDataClient;
                 mGeoDataClient = Places.getGeoDataClient(getApplicationContext(), null);
 
                 String placeId = currentRestr.getResID();
@@ -408,13 +356,13 @@ private Button chatButton;
                                 // set up map
                                 int oldWidth = bitmap.getWidth();
                                 int oldHeight = bitmap.getHeight();
-                                double ratio = oldHeight*1.0/(oldWidth*1.0);
+                                double ratio = oldHeight * 1.0 / (oldWidth * 1.0);
 
                                 int newWidth = 800;
-                                int newHeight = (int)(newWidth * ratio);
+                                int newHeight = (int) (newWidth * ratio);
 
                                 Bitmap resized = Bitmap.createScaledBitmap(bitmap,
-                                        newWidth, newHeight, true );
+                                        newWidth, newHeight, true);
 
                                 groupImage.setImageBitmap(resized);
 
@@ -435,12 +383,12 @@ private Button chatButton;
 //        private TextView groupName, mealTime, restaurantName, description, currentMembers;
         groupName.setText(currentGroup.getGroupName());
         mealTime.setText(currentGroup.getMealTime());
-      //  restaurantName.setText(currentGroup.getRestaurantName());
+        //  restaurantName.setText(currentGroup.getRestaurantName());
         description.setText(currentGroup.getDescription());
         // currentMembers is a Map.
         currentMembers = currentGroup.getCurrentMembers();
 
-        if(currentMembers != null){
+        if (currentMembers != null) {
             // get all currentMembers ID
             Set<String> membersID = currentMembers.keySet();
 
@@ -463,7 +411,7 @@ private Button chatButton;
 
                         // update ui
                         int listLength = userNamesList.toString().length();
-                        memberNames.setText(userNamesList.toString().substring(1, listLength-1));
+                        memberNames.setText(userNamesList.toString().substring(1, listLength - 1));
                     }
 
                     @Override

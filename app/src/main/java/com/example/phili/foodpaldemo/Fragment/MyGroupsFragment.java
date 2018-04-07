@@ -88,27 +88,6 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
 
         initRecyclerView(query);
 
-//        searchViewMyGroup.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//
-//                onStop();
-//                query = myRef.orderByChild("currentMembers/"+currentUserID)
-//                        .equalTo(true)
-//                        .orderByChild("groupName")
-//                        .startAt(newText)
-//                        .endAt(newText + "\uf8ff");
-//                initRecyclerView(query);
-//                onStart();
-//                return false;
-//            }
-//        });
-        // groupList = groupListView.findViewById(R.id.group_list);
         recyclerView.setOnClickListener(this);
 
         return groupListView;

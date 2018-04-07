@@ -1,21 +1,36 @@
 package com.example.phili.foodpaldemo;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
 import com.example.phili.foodpaldemo.Fragment.MyGroupsFragment;
 import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
 import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
+import com.example.phili.foodpaldemo.models.UserGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.onesignal.OneSignal;
+
+import java.util.HashSet;
 
 public class MainHomeActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener,
@@ -23,19 +38,87 @@ public class MainHomeActivity extends AppCompatActivity
 
     private Fragment[] fragmentsArray;
     private FragmentManager fragmentManager;
+    private long num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
 
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
-
         fragmentManager = getSupportFragmentManager();
 
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference uRef = FirebaseDatabase.getInstance().getReference().child("users")
+                .child(user.getUid()).child("joinedGroups");
+
+
+        uRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        DatabaseReference gRef = FirebaseDatabase.getInstance().getReference().child("groups");
+
+        gRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                UserGroup g = dataSnapshot.getValue(UserGroup.class);
+                if (g.getCurrentMembers().containsKey(user.getUid())) {
+
+                    Intent intent = new Intent(getApplicationContext(), MainHomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+                            getApplicationContext(), "0")
+                            .setSmallIcon(R.drawable.cast_ic_notification_small_icon)
+                            .setContentTitle("Some one joined the group")
+                            .setContentText("There is a motherfucker joined the group")
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                                    .bigText("Much longer text that cannot fit one line..."))
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                            .setContentIntent(pendingIntent)
+                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                            .setAutoCancel(true);
+
+                    //Toast.makeText(getApplicationContext(), "Fuck you", Toast.LENGTH_LONG).show();
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+
+// notificationId is a unique int for each notification that you must define
+                    notificationManager.notify(0, mBuilder.build());
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         Fragment fragmentAllGroup = new GroupListFragment();
         Fragment fragmentMyGroup = new MyGroupsFragment();

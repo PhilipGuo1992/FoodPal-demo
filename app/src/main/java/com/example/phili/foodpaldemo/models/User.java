@@ -22,12 +22,12 @@ public class User {
     private String photoUrl;
     private String device_token;
 
+    // groups: user belongs to
+    private Map<String, Boolean> joinedGroups = new HashMap<>();
+
     // default constructor   **DO NOT REMOVE THE constructor**
     public User() {
     }
-
-    // groups: user belongs to
-    private Map<String, Boolean> joinedGroups = new HashMap<>();
 
     @Override
     public String toString() {
