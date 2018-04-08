@@ -178,3 +178,4 @@ We did a good job on the project and achieved all our expectations. We finished 
 [18]"Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/index.html. [Accessed: 08- Apr- 2018].
 [19]"Create a List with RecyclerView | Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/guide/topics/ui/layout/recyclerview.html. [Accessed: 08- Apr- 2018].
 [20]"Create a navigation list | Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/guide/topics/ui/dialogs.html. [Accessed: 08- Apr- 2018].
+[21]"Dynamically add elements to a listView Android", Stackoverflow.com, 2018. [Online]. Available: https://stackoverflow.com/questions/4540754/dynamically-add-elements-to-a-listview-android. [Accessed: 08- Apr- 2018].
