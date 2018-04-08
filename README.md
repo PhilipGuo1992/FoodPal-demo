@@ -142,15 +142,15 @@ We did a good job on the project and achieved all our expectations. We finished 
 
 #### Minimum Functionality
 - Feature 1 Camera (Completed)
-- Feature 2 User Registration(Using Firebase) (Completed)
-- Feature 3 Access to local storage  (Completed)
+- Feature 2 User Registration(Local Storage (Firebase))(Completed)
+- Feature 3 Access to local storage(Completed)
 - Feature 4 User Profile (Completed)
 - Feature 5 User can join or leave the group(Completed)
 - Feature 6 Register with Dalhousie Mail(Completed)
 
 #### Expected Functionality
 - Feature 1 Notification (Completed)
-- Feature 2 List of Restaurants (Completed)
+- Feature 2 List of Restaurants(Using Google Map)(Completed)
 
 #### Bonus Functionality
 - Feature 1 Chat Functionality(Completed)
