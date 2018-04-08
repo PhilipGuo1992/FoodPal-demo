@@ -76,7 +76,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        // [15]
+        // Citation[15]
         query = myRef;
         initRecyclerView(query);
 
