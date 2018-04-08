@@ -32,7 +32,7 @@ We intend to create a mobile application called FoodPal that is an easy-to-use s
 **Cardview:** A FrameLayout with a rounded corner background and shadow. Source [here](https://developer.android.com/training/material/lists-cards.html?hl=zh-cn)
 
 ## Installation Notes
-The API level should be 23 or above and
+The API level should be 23 or above and for creating a new user the local machine should have debug.keystore file that we have uploaded to github as well.
 
 ## Code Examples
 
@@ -175,3 +175,6 @@ We did achieve our goals, even through we have one expected functionality is par
 [15]"firebase/FirebaseUI-Android", GitHub, 2018. [Online]. Available: https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md. [Accessed: 07- Apr- 2018].
 [16]"Почему не конвертируются Fragment?", «Тостер» — вопросы и ответы, 2018. [Online]. Available: https://toster.ru/q/185673. [Accessed: 07- Apr- 2018].
 [17] Qaru and К. RecyclerView, "android - Как создать контекстное меню для RecyclerView - Qaru", Qaru.site, 2018. [Online]. Available: http://qaru.site/questions/97825/how-to-create-context-menu-for-recyclerview. [Accessed: 08- Apr- 2018].
+[18]"Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/index.html. [Accessed: 08- Apr- 2018].
+[19]"Create a List with RecyclerView | Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/guide/topics/ui/layout/recyclerview.html. [Accessed: 08- Apr- 2018].
+[20]"Create a navigation list | Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/guide/topics/ui/dialogs.html. [Accessed: 08- Apr- 2018].

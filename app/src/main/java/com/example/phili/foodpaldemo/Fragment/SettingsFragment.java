@@ -63,6 +63,7 @@ import static android.app.Activity.RESULT_OK;
 public class SettingsFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
 
     public static boolean SETTING = false;
+
     //declare all view components
     private ImageView imageViewedit, imageViewsubmit;
     private CircleImageView circleImageViewPhoto;
