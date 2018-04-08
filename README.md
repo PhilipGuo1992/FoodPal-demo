@@ -32,7 +32,7 @@ We intend to create a mobile application called FoodPal that is an easy-to-use s
 **Cardview:** A FrameLayout with a rounded corner background and shadow. Source [here](https://developer.android.com/training/material/lists-cards.html?hl=zh-cn)
 
 ## Installation Notes
-The API level should be 23 or above and for creating a new user the local machine should have debug.keystore file that we have uploaded to github as well.
+The API level should be 23 or above. As this project is under develop mode, users (developers) need to replace their debug.keystore file with ours in order to enable Google Place service. The debug.keystore is already uploaded. You can download and use it.
 
 ## Code Examples
 
