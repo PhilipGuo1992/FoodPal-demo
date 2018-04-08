@@ -174,4 +174,4 @@ We did achieve our goals, even through we have one expected functionality is par
 [14]"Android Chat Tutorial: Building a Messaging UI", Blog.sendbird.com, 2018. [Online]. Available: https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui. [Accessed: 06- Apr- 2018].
 [15]"firebase/FirebaseUI-Android", GitHub, 2018. [Online]. Available: https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md. [Accessed: 07- Apr- 2018].
 [16]"Почему не конвертируются Fragment?", «Тостер» — вопросы и ответы, 2018. [Online]. Available: https://toster.ru/q/185673. [Accessed: 07- Apr- 2018].
-[17]
+[17] Qaru and К. RecyclerView, "android - Как создать контекстное меню для RecyclerView - Qaru", Qaru.site, 2018. [Online]. Available: http://qaru.site/questions/97825/how-to-create-context-menu-for-recyclerview. [Accessed: 08- Apr- 2018].

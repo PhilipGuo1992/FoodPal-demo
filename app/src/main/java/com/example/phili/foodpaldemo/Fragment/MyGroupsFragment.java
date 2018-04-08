@@ -104,7 +104,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         recyclerAdapter.stopListening();
     }
 
-
+     //[17]
     public void initRecyclerView(Query query) {
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
