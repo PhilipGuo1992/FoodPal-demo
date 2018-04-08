@@ -36,9 +36,9 @@ The API level should be 23 or above and for creating a new user the local machin
 
 ## Code Examples
 
-**Problem 1: In the beginning, the model design is a challenge.**
+**Problem 1: How to handle the relationship between user and group.**
 
-The many-to-many relationship need to be managed well in Firebase. For our project, we have users and groups. Each user can join many groups, and each group can have many users, which is a many-to-many relationship. We used Map to manage the relationship.  In Firebase, we stored the groups’ id in the user file, also we stored the user’s id to the group file.
+It is tricky to handle the many-to-many relationship in Firebase. For our project, we have user model and usergroup model. Each user can join many groups, and each group can have many users, which is a many-to-many relationship. We used Map to manage the relationship.  In Firebase, we stored the groups’ id in the user file, also we stored the user’s id to the group file.
 ```
 //  the user model
 public class User {
@@ -138,7 +138,7 @@ When users are in a group, there is a button on the group information page calle
 
 
 ## Final Project Status
-We did achieve our goals, even through we have one expected functionality is partially completed. We finished all the minimum functionality, and three bonus functionality.
+We did a good job on the project and achieved all our expectations. We finished all the minimum functionality, all the expected functionality, and two bonus functionality.
 
 #### Minimum Functionality
 - Feature 1 Camera (Completed)
