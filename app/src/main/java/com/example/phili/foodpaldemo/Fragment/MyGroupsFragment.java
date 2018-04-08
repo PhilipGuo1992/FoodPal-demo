@@ -55,7 +55,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         // Required empty public constructor
     }
 
-    //[16]
+    //Citation[16]
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +104,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         recyclerAdapter.stopListening();
     }
 
-
+     //Citation[17]
     public void initRecyclerView(Query query) {
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
