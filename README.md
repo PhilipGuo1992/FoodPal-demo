@@ -35,7 +35,9 @@ We intend to create a mobile application called FoodPal that is an easy-to-use s
 The API level should be 23 or above. As this project is under develop mode, users (developers) need to replace their debug.keystore file with ours in order to enable Google Place service. The debug.keystore is already uploaded. You can download and use it.
 Locations:
 ~/.android/ on OS X and Linux
+
 C:\Documents and Settings\<user>\.android\ on Windows XP
+
 C:\Users\<user>\.android\ on Windows Vista and Windows 7, 8, and 10
 
 ## Code Examples
@@ -130,15 +132,15 @@ if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE ) {
 ```
 
 ## Feature Section
-The login and registration page is the first page that users see when they open the application. After they registered, they are on the page of Profile, where they can edit their personal information.  
+The login and registration page is the first page that users see when they open the application. After they registered, they are on the page of Profile, where they can edit their personal information.
 
-On the list of groups page, users can view all the existing groups created by other users. The user can click each group, then it will show the detail of the group, and gives the option to join or leave the group. Also, on the list of the group page, there is a button on the right bottom corner to create a new group. When a user clicks this button, it requires the user to enter the group name, group description, choose a meal time and choose a restaurant, which uses the Google PlacePicker API.  
+On the list of groups page, users can view all the existing groups created by other users. The user can click each group, then it will show the detail of the group, and gives the option to join or leave the group. Also, on the list of the group page, there is a button on the right bottom corner to create a new group. When a user clicks this button, it requires the user to enter the group name, group description, choose a meal time and choose a restaurant, which uses the Google PlacePicker API.
 
-Users can also view all the groups he/she has joined by viewing my group page. Also, users can see the restaurants’ information on the restaurant page. Including location, type, price, and comments.  
+Users can also view all the groups he/she has joined by viewing my group page. Also, users can see the restaurants’ information on the restaurant page. Including location, type, price, and comments.
 
-On the setting page, users can see their profile and change them if they like. On the top of group list page and my group page, there is a search bar. If there is a huge amount of group on these two pages and the user can not find what they want to in an efficient way. They can use this searching function to help them. Also in these two pages, the card of every single group shows the basic information of the group, including the number of people in this group, the name of who created this group, the basic information of the restaurant. 
- 
-When users are in a group, there is a button on the group information page called to chat. By this, users can have a chat with the members of this group. 
+On the setting page, users can see their profile and change them if they like. On the top of group list page and my group page, there is a search bar. If there is a huge amount of group on these two pages and the user can not find what they want to in an efficient way. They can use this searching function to help them. Also in these two pages, the card of every single group shows the basic information of the group, including the number of people in this group, the name of who created this group, the basic information of the restaurant.
+
+When users are in a group, there is a button on the group information page called to chat. By this, users can have a chat with the members of this group.
 
 
 ## Final Project Status
@@ -151,6 +153,7 @@ We did a good job on the project and achieved all our expectations. We finished 
 - Feature 4 User Profile (Completed)
 - Feature 5 User can join or leave the group(Completed)
 - Feature 6 Register with Dalhousie Mail(Completed)
+- Feature 7 User can create a group(Completed) - please scoll down when selecting the restaurant, do not use the place on map.
 
 #### Expected Functionality
 - Feature 1 Notification (Completed)
@@ -162,19 +165,19 @@ We did a good job on the project and achieved all our expectations. We finished 
 - Feature 3 Restaurant rating (not implemented)
 
 ## Sources
-[1] "Java (programming language)", En.wikipedia.org, 2018. [Online]. Available: https://en.wikipedia.org/wiki/Java_(programming_language).  
-[2]  Akshayejh, “TVAC Studio,” YouTube. [Online]. Available: https://www.youtube.com/user/akshayejh/videos. [Accessed: 06-Apr-2018].  
-[3] “ArthurHub/Android-Image-Cropper,” GitHub. [Online]. Available: https://github.com/ArthurHub/Android-Image-Cropper. [Accessed: 06-Apr-2018].  
-[4] “bumptech/glide,” GitHub. [Online]. Available: https://github.com/bumptech/glide. [Accessed: 06-Apr-2018].  
-[5] “hdodenhof/CircleImageView,” GitHub. [Online]. Available: https://github.com/hdodenhof/CircleImageView. [Accessed: 06-Apr-2018].  
-[6] “Picasso,” Square. [Online]. Available: http://square.github.io/picasso/. [Accessed: 06-Apr-2018].  
-[7] Bigkoo, “Bigkoo/Android-PickerView,” GitHub. [Online]. Available: https://github.com/Bigkoo/Android-PickerView. [Accessed: 06-Apr-2018].  
-[8] How can I switch between two fragments, w. (2018). How can I switch between two fragments, without recreating the fragments each time?. [online] Stackoverflow.com. Available at: https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222 [Accessed 6 Apr. 2018].  
-[9] “Place Picker  |  Google Places API for Android  |  Google Developers,” Google. [Online]. Available: https://developers.google.com/places/android-api/placepicker.  
-[10] The Google Android Place Picker Part 2 - The Java Coding. [Online]. Available: http://www.northborder-software.com/placepicker2.html.  
-[11] E. Desjardins, CSCI 5708, Lab 6 Notes, Topic: “Currency Application”, Faculty of Computer Science, Dalhousie University, Halifax, Nova Scotia, Mar. 9, 2018.  
-[12] georgiecasey, How to set custom header in Volley Request, Stack Overflow. Accessed on Mar. 18, 2018. [Online]. Available: https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request  
-[13] “Modern Profile UI Design in Android Studio,” YouTube, 05-Oct-2017. [Online]. Available: https://www.youtube.com/watch?v=2pirZvqXza0&t=1153s.  
+[1] "Java (programming language)", En.wikipedia.org, 2018. [Online]. Available: https://en.wikipedia.org/wiki/Java_(programming_language).
+[2]  Akshayejh, “TVAC Studio,” YouTube. [Online]. Available: https://www.youtube.com/user/akshayejh/videos. [Accessed: 06-Apr-2018].
+[3] “ArthurHub/Android-Image-Cropper,” GitHub. [Online]. Available: https://github.com/ArthurHub/Android-Image-Cropper. [Accessed: 06-Apr-2018].
+[4] “bumptech/glide,” GitHub. [Online]. Available: https://github.com/bumptech/glide. [Accessed: 06-Apr-2018].
+[5] “hdodenhof/CircleImageView,” GitHub. [Online]. Available: https://github.com/hdodenhof/CircleImageView. [Accessed: 06-Apr-2018].
+[6] “Picasso,” Square. [Online]. Available: http://square.github.io/picasso/. [Accessed: 06-Apr-2018].
+[7] Bigkoo, “Bigkoo/Android-PickerView,” GitHub. [Online]. Available: https://github.com/Bigkoo/Android-PickerView. [Accessed: 06-Apr-2018].
+[8] How can I switch between two fragments, w. (2018). How can I switch between two fragments, without recreating the fragments each time?. [online] Stackoverflow.com. Available at: https://stackoverflow.com/questions/22713128/how-can-i-switch-between-two-fragments-without-recreating-the-fragments-each-ti/22714222 [Accessed 6 Apr. 2018].
+[9] “Place Picker  |  Google Places API for Android  |  Google Developers,” Google. [Online]. Available: https://developers.google.com/places/android-api/placepicker.
+[10] The Google Android Place Picker Part 2 - The Java Coding. [Online]. Available: http://www.northborder-software.com/placepicker2.html.
+[11] E. Desjardins, CSCI 5708, Lab 6 Notes, Topic: “Currency Application”, Faculty of Computer Science, Dalhousie University, Halifax, Nova Scotia, Mar. 9, 2018.
+[12] georgiecasey, How to set custom header in Volley Request, Stack Overflow. Accessed on Mar. 18, 2018. [Online]. Available: https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request
+[13] “Modern Profile UI Design in Android Studio,” YouTube, 05-Oct-2017. [Online]. Available: https://www.youtube.com/watch?v=2pirZvqXza0&t=1153s.
 [14]"Android Chat Tutorial: Building a Messaging UI", Blog.sendbird.com, 2018. [Online]. Available: https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui. [Accessed: 06- Apr- 2018].
 [15]"firebase/FirebaseUI-Android", GitHub, 2018. [Online]. Available: https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md. [Accessed: 07- Apr- 2018].
 [16]"Почему не конвертируются Fragment?", «Тостер» — вопросы и ответы, 2018. [Online]. Available: https://toster.ru/q/185673. [Accessed: 07- Apr- 2018].
