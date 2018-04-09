@@ -24,7 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".FoodPalFMService">
+        <service android:name=".FoodPalService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -36,6 +36,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAnypfIvLqnXThKm4eZP8GaP75Jw7Po5wI" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".LoginActivity"
@@ -55,15 +59,12 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
         <activity
             android:name=".MainHomeActivity"
             android:label="@string/title_activity_main_home" />
-        <activity android:name=".models.ChatScreenActivity" />
+        <activity android:name=".ChatScreenActivity" />
+
+
     </application>
 
 </manifest>

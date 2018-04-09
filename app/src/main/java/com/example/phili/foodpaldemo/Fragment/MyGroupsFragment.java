@@ -40,7 +40,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
     public static final String GROUP_CONTAIN_USER= "IF_CONTAIN_USER";
 
     private List<UserGroup> allGroups = new ArrayList<>();
-    // widegs
+    // widgets
     private ListView groupList;
     FirebaseRecyclerAdapter<UserGroup, GroupHolder> recyclerAdapter;
     private RecyclerView recyclerView;

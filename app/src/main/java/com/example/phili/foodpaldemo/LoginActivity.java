@@ -3,7 +3,6 @@ package com.example.phili.foodpaldemo;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,9 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.onesignal.OneSignal;
 
-//import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by yiren on 2018-02-10.
@@ -51,21 +48,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.activity_login);
 
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-//        if (firebaseAuth.getCurrentUser() != null) {
-//            finish();
-//            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-//        }
-
         createAccount = (TextView) findViewById(R.id.app_create);
         btnLogin = (Button) findViewById(R.id.btn_login);
         editTextEmail = (EditText) findViewById(R.id.et_username);
@@ -90,21 +77,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-//        if (editTextEmail.getOnFocusChangeListener().onFocusChange();) {
-//            imageViewUsernameClear.setVisibility(View.VISIBLE);}
-//
-//        if (!password.isEmpty()) {
-//            imageViewPasswordClear.setVisibility(View.VISIBLE);
-//
-//        }
 
         //Log.i(TAG, "UserRegister: here ");
-        if(TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) {
             //If email is empty
             Toast.makeText(this, "Please enter your Email", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) {
             //If password is empty
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
             return;
@@ -124,19 +104,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     String current_user = firebaseAuth.getCurrentUser().getUid();
                     databaseReference.child(current_user).child("device_token").setValue(deviceToken);
 
-                    //startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
-                    //Keep this line
-                    //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    //Test for creating a group
-                    userid = current_user;
-                    OneSignal.sendTag("user_id", userid);
-
-
-                  startActivity(new Intent(getApplicationContext(), MainHomeActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MainHomeActivity.class));
                     finish();
-                    // go to home page
-                    //@
-                    // test create group
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Your username or password is incorrect!", Toast.LENGTH_SHORT).show();
@@ -144,7 +113,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-    //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
     @Override
@@ -153,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this, RegisterActivity.class));
         }
 
-        if (view == forgetPassword){
+        if (view == forgetPassword) {
             startActivity(new Intent(this, ForgetPswActivity.class));
         }
 
@@ -167,10 +135,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view == imageViewPasswordClear) {
             editTextPassword.getText().clear();
         }
-
-
     }
-
-
-
 }

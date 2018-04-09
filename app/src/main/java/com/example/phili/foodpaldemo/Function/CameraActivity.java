@@ -15,14 +15,14 @@ import com.example.phili.foodpaldemo.R;
 
 public class CameraActivity extends AppCompatActivity {
 
-    private ImageView editphoto;
+    private ImageView editPhoto;
 
     //Below Code reference From Android Developer
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
 
-        editphoto = findViewById(R.id.editphoto);
+        editPhoto = findViewById(R.id.editphoto);
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
@@ -35,7 +35,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            editphoto.setImageBitmap(imageBitmap);
+            editPhoto.setImageBitmap(imageBitmap);
         }
     }
 }

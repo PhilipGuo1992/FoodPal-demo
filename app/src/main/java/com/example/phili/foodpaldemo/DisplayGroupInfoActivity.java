@@ -2,9 +2,6 @@ package com.example.phili.foodpaldemo;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -17,8 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phili.foodpaldemo.Fragment.GroupListFragment;
-import com.example.phili.foodpaldemo.models.ChatScreenActivity;
+
 import com.example.phili.foodpaldemo.models.Restaurant;
 import com.example.phili.foodpaldemo.models.User;
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -37,15 +33,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.lang.String;
 import java.lang.Boolean;
@@ -150,12 +142,12 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
         joinGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // user want to join the group.
                 // first: update the group member info
                 try {
                     mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
                     mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
+                    FirebaseMessaging.getInstance().subscribeToTopic(group_Name);
                     Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
 
                     // go to my group activity
@@ -168,60 +160,18 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
                     Log.i("test", "click join group, " + e);
 
                 }
-                // second: update the user's group info
-
-
-//                mDatabaseGroup.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        // convert to java object
-//                        UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
-//                        currentMembers = currentGroup.getCurrentMembers();
-//                        Set<String> membersID = currentMembers.keySet();
-//                        HashMap<String, String> notificationData = new HashMap<>();
-//                        notificationData.put("from", currentUserID);
-//                        notificationData.put("type", "join");
-//
-//                        // go to my group acvitity
-//                        Intent intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
-//                        // put id to intent
-//                        CreateGroupActivity.LOAD_MY_GROUP = true;
-//                        //intent.putExtra("loadMyGroup", true);
-//                        startActivity(intent);
-//
-//                        // user want to join the group.
-//                        // first: update the group member info
-//                        mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(true);
-//                        // second: update the user's group info
-//                        mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(true);
-//
-//                        Toast.makeText(DisplayGroupInfoActivity.this, "join the group success", Toast.LENGTH_SHORT).show();
-//
-//                        // go to my group activity
-//                        intent = new Intent(DisplayGroupInfoActivity.this, MainHomeActivity.class);
-//                        // put id to intent
-//                        intent.putExtra("loadMyGroup", true);
-//                        startActivity(intent);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
-
 
             }
-        }
-
-        );
+        });
 
 
         leaveGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // start a dialog first
-                // android.app.FragmentManager manager = getFragmentManager();
+//                mDatabaseGroup.child("currentMembers").child(currentUserID).setValue(null);
+//                mDatabaseUsers.child(currentUserID).child("joinedGroups").child(groupID).setValue(null);
+                FirebaseMessaging.getInstance().unsubscribeFromTopic(group_Name);
                 FragmentManager manager = getSupportFragmentManager();
                 LeaveGroupConfirmFragment dialog = new LeaveGroupConfirmFragment();
                 dialog.show(manager, LEAVE_GROUP);
@@ -232,23 +182,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
         chatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //
-                //  String userName = FirebaseDatabase.getInstance().getReference().child()
-                // group_Name =
-              /*  mDatabaseGroup.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // convert to java object
-                        UserGroup currentGroup = dataSnapshot.getValue(UserGroup.class);
-                        group_Name= currentGroup.getGroupName();
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-*/
                 userEmail = firebaseAuth.getCurrentUser().getEmail();
                 Intent chatScreen_intent = new Intent(DisplayGroupInfoActivity.this, ChatScreenActivity.class);
                 chatScreen_intent.putExtra("GROUPNAME", group_Name);
@@ -290,7 +223,6 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-
         // get current group info from firebase
         // this require active listen
         mDatabaseGroup.addValueEventListener(new ValueEventListener() {
@@ -315,7 +247,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
     }
 
     private void updateUI(final UserGroup currentGroup) {
-        // SET descrip
+        // SET description
         if (currentGroup.getDescription() != null) {
             description.setText(currentGroup.getDescription());
         }
@@ -380,11 +312,10 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
             }
         });
 
-//        private TextView groupName, mealTime, restaurantName, description, currentMembers;
         groupName.setText(currentGroup.getGroupName());
         mealTime.setText(currentGroup.getMealTime());
-        //  restaurantName.setText(currentGroup.getRestaurantName());
         description.setText(currentGroup.getDescription());
+
         // currentMembers is a Map.
         currentMembers = currentGroup.getCurrentMembers();
 
@@ -419,12 +350,7 @@ public class DisplayGroupInfoActivity extends AppCompatActivity
 
                     }
                 });
-
             }
-
         }
-
-
     }
-
 }

@@ -37,7 +37,7 @@ import java.util.List;
 public class GroupListFragment extends android.support.v4.app.Fragment implements RecyclerView.OnClickListener {
 
     private List<UserGroup> allGroups = new ArrayList<>();
-    // widegs
+    // widgets
     private ListView groupList;
     private FloatingActionButton createGroup;
     FirebaseRecyclerAdapter<UserGroup, GroupHolder> recyclerAdapter;

@@ -42,7 +42,7 @@ public class User {
         this.userBirthday = userBirthday;
     }
 
-    public User(String userID,String device_token, String userName, String userEmailAddress, String userMajor,
+    public User(String userID, String device_token, String userName, String userEmailAddress, String userMajor,
                 String userGender, String userBirthday, String selfDescription, String photoUrl) {
 
         this.userID = userID;
@@ -125,9 +125,15 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public Set<String> keySet() { return joinedGroups.keySet(); }
+    public Set<String> keySet() {
+        return joinedGroups.keySet();
+    }
 
-    public String getDevice_token() {return  device_token; }
+    public String getDevice_token() {
+        return device_token;
+    }
 
-    public void setDevice_token(){this.device_token = device_token;}
+    public void setDevice_token() {
+        this.device_token = device_token;
+    }
 }

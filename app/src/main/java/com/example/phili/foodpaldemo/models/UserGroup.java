@@ -1,7 +1,5 @@
 package com.example.phili.foodpaldemo.models;
 
-import com.google.android.gms.location.places.Place;
-
 import java.util.Map;
 
 

@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class ForgetPswActivity extends AppCompatActivity {
 
@@ -42,25 +41,25 @@ public class ForgetPswActivity extends AppCompatActivity {
                 // check if user entered email or not
                 final String email_address = input_email.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email_address)){
+                if (TextUtils.isEmpty(email_address)) {
                     Toast.makeText(getApplicationContext(), "Please enter your email!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // reset password by sending email.
-               firebaseAuth.sendPasswordResetEmail(email_address)
-                       .addOnCompleteListener(new OnCompleteListener<Void>() {
-                           @Override
-                           public void onComplete(@NonNull Task<Void> task) {
-                               if(task.isSuccessful()){
-                                   Toast.makeText(ForgetPswActivity.this, "Check your email to reset password.",
-                                           Toast.LENGTH_SHORT).show();
-                               } else {
-                                   Toast.makeText(ForgetPswActivity.this, "Fail to send the " +
-                                                   "email. Pleaes make sure the email address is correct",
-                                           Toast.LENGTH_SHORT).show();
-                               }
-                           }
-                       });
+                firebaseAuth.sendPasswordResetEmail(email_address)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(ForgetPswActivity.this, "Check your email to reset password.",
+                                            Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ForgetPswActivity.this, "Fail to send the " +
+                                                    "email. Pleaes make sure the email address is correct",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
 
             }
         });
@@ -73,9 +72,5 @@ public class ForgetPswActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
-
-
 }

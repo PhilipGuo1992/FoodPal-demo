@@ -1,20 +1,15 @@
-package com.example.phili.foodpaldemo.models;
+package com.example.phili.foodpaldemo;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.phili.foodpaldemo.DisplayGroupInfoActivity;
 import com.example.phili.foodpaldemo.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,18 +55,17 @@ public class ChatScreenActivity extends ListActivity {
         userEmail = i.getStringExtra("EMAIL");
 
 
-
-        chatbox = (EditText)findViewById(R.id.chatbox);
-        send_messsage = (Button)findViewById(R.id.send_messsage);
+        chatbox = (EditText) findViewById(R.id.chatbox);
+        send_messsage = (Button) findViewById(R.id.send_messsage);
 
 
         //https://stackoverflow.com/questions/4540754/dynamically-add-elements-to-a-listview-android
-       adapter=new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
-               messageList);
+                messageList);
         setListAdapter(adapter);
 
-      //retrieve older messages
+        //retrieve older messages
         chatDatabaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference gRef = chatDatabaseReference.child("groups").child(groupId).child("Chat");
         gRef.addChildEventListener(new ChildEventListener() {
@@ -80,9 +74,9 @@ public class ChatScreenActivity extends ListActivity {
 
                 // if new message is added, then add it to the ListView (chat screen)
 
-                Log.i("child",dataSnapshot.toString());
-                HashMap map =(HashMap) dataSnapshot.getValue();
-                if(map!=null)
+                Log.i("child", dataSnapshot.toString());
+                HashMap map = (HashMap) dataSnapshot.getValue();
+                if (map != null)
                     messageList.add(map.get("Message").toString());
 
                 adapter.notifyDataSetChanged();
