@@ -6,14 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
+
 import com.example.phili.foodpaldemo.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextUsername;
     private TextView textViewLogin;
     private ProgressDialog progressDialog;
-    //private String TAG="feature";
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -49,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        //databaseReference = firebaseDatabase.getReference().child()
 
         btnRegister = (Button) findViewById(R.id.btn_register);
         editTextEmail = (EditText) findViewById(R.id.input_email);
@@ -104,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             String uEmail = firebaseUser.getEmail();
                             String deviceToken = FirebaseInstanceId.getInstance().getToken();
                             databaseReference = firebaseDatabase.getReference("users").child(uId);
-                            User user = new User(uId,deviceToken, username,uEmail,"","","","","");
+                            User user = new User(uId, deviceToken, username, uEmail, "", "", "", "", "");
                             databaseReference.setValue(user);
 
                             Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();

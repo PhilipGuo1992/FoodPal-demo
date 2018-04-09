@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import com.example.phili.foodpaldemo.GroupHolder;
 import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +35,7 @@ import java.util.Map;
 public class MyGroupsFragment extends android.support.v4.app.Fragment implements RecyclerView.OnClickListener {
 
     public static final String GROUP_ID = "groupID";
-    public static final String GROUP_CONTAIN_USER= "IF_CONTAIN_USER";
+    public static final String GROUP_CONTAIN_USER = "IF_CONTAIN_USER";
 
     private List<UserGroup> allGroups = new ArrayList<>();
     // widgets
@@ -82,7 +84,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         final FirebaseUser currentUser = mAuth.getCurrentUser();
         currentUserID = currentUser.getUid();
 
-        query = myRef.orderByChild("currentMembers/"+currentUserID).equalTo(true);
+        query = myRef.orderByChild("currentMembers/" + currentUserID).equalTo(true);
 
         initRecyclerView(query);
 
@@ -104,7 +106,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         recyclerAdapter.stopListening();
     }
 
-     //Citation[17]
+    //Citation[17]
     public void initRecyclerView(Query query) {
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()
@@ -127,7 +129,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
             protected void onBindViewHolder(@NonNull GroupHolder holder, int position, @NonNull UserGroup model) {
                 // bind data to widget
                 holder.bind(model);
-                String clickedKey =  recyclerAdapter.getRef(position).getKey();
+                String clickedKey = recyclerAdapter.getRef(position).getKey();
                 holder.setGroupID(clickedKey);
 
 
@@ -142,7 +144,6 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
 
     @Override
     public void onClick(View v) {
-
 
 
     }

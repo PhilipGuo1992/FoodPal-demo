@@ -16,8 +16,9 @@ public class LeaveGroupConfirmFragment extends DialogFragment {
 
     // Citation[20] developer.android.com/guide/topics/ui/dialogs.html
 
-    public interface LeaveDialogListener{
+    public interface LeaveDialogListener {
         public void onDialogPositiveClick(DialogFragment dialog);
+
         public void onDialogNegativeClick(DialogFragment dialog);
 
     }
@@ -27,11 +28,10 @@ public class LeaveGroupConfirmFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        //
         try {
-            mListener = (LeaveDialogListener)context;
-        }catch (ClassCastException e){
-            throw new ClassCastException(context.toString()+" must implement this interface");
+            mListener = (LeaveDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement this interface");
 
         }
 

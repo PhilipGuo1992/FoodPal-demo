@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import com.example.phili.foodpaldemo.CreateGroupActivity;
 import com.example.phili.foodpaldemo.GroupHolder;
 import com.example.phili.foodpaldemo.R;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +102,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
                 return false;
             }
         });
-       // groupList = groupListView.findViewById(R.id.group_list);
+        // groupList = groupListView.findViewById(R.id.group_list);
         recyclerView.setOnClickListener(this);
 
         createGroup = groupListView.findViewById(R.id.create_group);
@@ -150,7 +152,7 @@ public class GroupListFragment extends android.support.v4.app.Fragment implement
             protected void onBindViewHolder(@NonNull GroupHolder holder, int position, @NonNull UserGroup model) {
                 // bind data to widget
                 holder.bind(model);
-                String clickedKey =  recyclerAdapter.getRef(position).getKey();
+                String clickedKey = recyclerAdapter.getRef(position).getKey();
                 holder.setGroupID(clickedKey);
 
 

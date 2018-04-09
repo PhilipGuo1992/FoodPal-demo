@@ -18,6 +18,7 @@ import com.example.phili.foodpaldemo.R;
 
 
 /**
+ * author: zongming
  * Ref: Lab6 notes, Mobile Computing, Winter 2018, Dalhousie University.
  */
 

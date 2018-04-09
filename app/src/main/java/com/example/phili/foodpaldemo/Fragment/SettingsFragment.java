@@ -1,17 +1,11 @@
 package com.example.phili.foodpaldemo.Fragment;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -46,10 +40,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -60,7 +56,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingsFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
+public class SettingsFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
 
     public static boolean SETTING = false;
 
@@ -91,7 +87,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
 
     //empty constructor for fragment
-    public SettingsFragment(){}
+    public SettingsFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,7 +133,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setCropShape(CropImageView.CropShape.OVAL)
-                        .setAspectRatio(1,1)
+                        .setAspectRatio(1, 1)
                         .start(getContext(), SettingsFragment.this);
             }
         });
@@ -146,7 +143,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             public void onClick(View view) {
                 timePickerView.setDate(Calendar.getInstance());
                 timePickerView.show(view);
-               // timePickerView.setDate();
+                // timePickerView.setDate();
                 setVisibility();
             }
         });
@@ -157,10 +154,9 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                 firebaseAuth.signOut();
                 getActivity().finish();
                 startActivity(new Intent(getContext(), LoginActivity.class));
-                Toast.makeText(getContext(),"Signed out successfully!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Signed out successfully!", Toast.LENGTH_LONG).show();
             }
         });
-
 
 
         userReference.addValueEventListener(new ValueEventListener() {
@@ -214,7 +210,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         if (view == imageViewsubmit) {
             saveChange();
         }
-
 
 
     }
@@ -279,9 +274,6 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         gender.setFocusable(true);
         gender.setFocusableInTouchMode(true);
 
-//        birthday.setFocusable(true);
-//        birthday.setFocusableInTouchMode(true);
-
         major.setFocusable(true);
         major.setFocusableInTouchMode(true);
 
@@ -296,7 +288,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
         //retrieved from https://github.com/ArthurHub/Android-Image-Cropper
         //Image-Cropper [3]“ArthurHub/Android-Image-Cropper,” GitHub. [Online].
         // Available: https://github.com/ArthurHub/Android-Image-Cropper.
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE ) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 imageUri = result.getUri();
@@ -316,11 +308,11 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getActivity(), "Success!", Toast.LENGTH_LONG).show();
-                                   // goToFragment();
+                                    // goToFragment();
                                 }
                             });
                         } else {
-                            Toast.makeText(getActivity(),"Error!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Error!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -383,8 +375,8 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
             }
         })
                 //year/month/day/hour/minute/second
-                .setType(new boolean[]{true,true,true,false,false,false})
-                .setLabel("","","","","","")
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .setLabel("", "", "", "", "", "")
                 .isCenterLabel(false)
                 //IOS-liked color
                 .setDividerColor(Color.DKGRAY)
@@ -396,7 +388,7 @@ public class SettingsFragment extends android.support.v4.app.Fragment implements
 
     private String getTime(Date date) {
 
-        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
         return sdFormat.format(date);
     }
 

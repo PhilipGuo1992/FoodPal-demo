@@ -13,7 +13,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import java.util.Objects;
 
 /**
- * Created by zongming
+ * author: zongming
  * Ref - https://firebase.google.com/docs/cloud-messaging/android/topic-messaging
  */
 

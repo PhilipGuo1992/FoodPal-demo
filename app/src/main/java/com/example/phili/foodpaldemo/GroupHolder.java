@@ -40,13 +40,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class GroupHolder extends RecyclerView.ViewHolder {
 
     public static final String GROUP_ID = "groupID";
-    public static final String GROUP_CONTAIN_USER= "IF_CONTAIN_USER";
+    public static final String GROUP_CONTAIN_USER = "IF_CONTAIN_USER";
 
     // define widgets
     private TextView createrName;
     private CircleImageView userImage;
     private TextView groupName;
-    private ImageView restauImage;;
+    private ImageView restauImage;
+    ;
     private TextView totalMembers;
     private DatabaseReference mDatabaseUser;
     private Activity context;
@@ -67,7 +68,7 @@ public class GroupHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(groupID != null){
+                if (groupID != null) {
                     checkIfGroupContainUser(groupID);
                 }
             }
@@ -116,25 +117,23 @@ public class GroupHolder extends RecyclerView.ViewHolder {
         });
 
 
-
-
     }
 
 
-    public void bind(UserGroup userGroup){
+    public void bind(UserGroup userGroup) {
         int members;
         // group name
         groupName.setText(userGroup.getGroupName());
         createrName.setText("jk");
         //
-        String groupCreaterID =  userGroup.getGroupCreatorID();
-        if(groupCreaterID != null){
+        String groupCreaterID = userGroup.getGroupCreatorID();
+        if (groupCreaterID != null) {
             setCreaterPhotoAndName(groupCreaterID);
 
         }
         // total member
 
-        if(userGroup.getCurrentMembers() == null)
+        if (userGroup.getCurrentMembers() == null)
             members = 0;
         else
             members = userGroup.getCurrentMembers().size();
@@ -148,42 +147,41 @@ public class GroupHolder extends RecyclerView.ViewHolder {
     private void setCreaterPhotoAndName(String groupCreaterID) {
         mDatabaseUser = FirebaseDatabase.getInstance().getReference("users");
 
-            mDatabaseUser.child(groupCreaterID).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    User currentUser = dataSnapshot.getValue(User.class);
+        mDatabaseUser.child(groupCreaterID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User currentUser = dataSnapshot.getValue(User.class);
 
-                    // get user name, and set user name
-                    String username = currentUser.getUserName();
-                    createrName.setText(username);
+                // get user name, and set user name
+                String username = currentUser.getUserName();
+                createrName.setText(username);
 
-                    RequestOptions requestOptions = new RequestOptions();
-                    requestOptions.placeholder(R.drawable.photo2);
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.placeholder(R.drawable.photo2);
 
-                    // get picture
-                    Glide.with(context)
-                            .setDefaultRequestOptions(requestOptions)
-                            .load(currentUser.getPhotoUrl())
-                            .into(userImage);
+                // get picture
+                Glide.with(context)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load(currentUser.getPhotoUrl())
+                        .into(userImage);
 
-                }
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+            }
+        });
 
 
     }
 
     private void setRestaurantPhoto(String resID, final ImageView resImage) {
 
-        final GeoDataClient mGeoDataClient ;
+        final GeoDataClient mGeoDataClient;
         mGeoDataClient = Places.getGeoDataClient(context, null);
 
         String placeId = resID;
-
 
 
         final Task<PlacePhotoMetadataResponse> photoMetadataResponse = mGeoDataClient.getPlacePhotos(placeId);
@@ -213,14 +211,14 @@ public class GroupHolder extends RecyclerView.ViewHolder {
 
                         int oldWidth = bitmap.getWidth();
                         int oldHeight = bitmap.getHeight();
-                        double ratio = oldHeight*1.0/(oldWidth*1.0);
+                        double ratio = oldHeight * 1.0 / (oldWidth * 1.0);
 
                         int newWidth = 800;
-                        int newHeight = (int)(newWidth * ratio);
+                        int newHeight = (int) (newWidth * ratio);
 
 
                         Bitmap resized = Bitmap.createScaledBitmap(bitmap,
-                                newWidth, newHeight, true );
+                                newWidth, newHeight, true);
 
                         resImage.setImageBitmap(resized);
 
@@ -235,7 +233,6 @@ public class GroupHolder extends RecyclerView.ViewHolder {
                 resImage.setImageResource(R.drawable.photo2);
             }
         });
-
 
 
     }

@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.phili.foodpaldemo.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -34,7 +33,7 @@ public class ChatScreenActivity extends ListActivity {
     private DatabaseReference chatDatabaseReference;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-    ArrayList<String> messageList = new ArrayList<String>();
+    ArrayList<String> messageList = new ArrayList<>();
     ArrayAdapter<String> adapter;
 
     EditText chatbox;
@@ -60,7 +59,7 @@ public class ChatScreenActivity extends ListActivity {
 
 
         //https://stackoverflow.com/questions/4540754/dynamically-add-elements-to-a-listview-android
-        adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 messageList);
         setListAdapter(adapter);

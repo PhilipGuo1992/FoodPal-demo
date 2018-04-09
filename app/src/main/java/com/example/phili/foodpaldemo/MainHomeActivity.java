@@ -16,7 +16,6 @@ import com.example.phili.foodpaldemo.Fragment.RestaurantsFragment;
 import com.example.phili.foodpaldemo.Fragment.SettingsFragment;
 
 
-
 public class MainHomeActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemReselectedListener {
