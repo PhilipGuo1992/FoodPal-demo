@@ -5,8 +5,6 @@ We intend to create a mobile application called FoodPal that is an easy-to-use s
 
 **FirebaseUI for Android:** FirebaseUI database is used to bind data from the Firebase realtime database. It allows us to use a recyclerView much easier. Source [here](https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md)
 
-**OneSignal:** OneSignal is a multi-platform push notification service. It can help developers to store tags of users who are currently logging in. And push notification to the specific user by filter the tag when some action is triggered. Source [here](https://github.com/OneSignal/OneSignal-Android-SDK)
-
 **okHttp:** okhttp can silently recover from some common connection problems. Source [here](https://github.com/square/okhttp)
 
 **Volley:** Volley is an HTTP library for transmitting network data on Android platform. In this project, it is used to send HTTP request to the REST API provided by Zomato (an Indian restaurant search and discovery service), and to retrieve information about various restaurants. Source [here](https://github.com/google/volley)
