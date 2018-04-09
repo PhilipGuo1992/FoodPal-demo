@@ -33,6 +33,10 @@ We intend to create a mobile application called FoodPal that is an easy-to-use s
 
 ## Installation Notes
 The API level should be 23 or above. As this project is under develop mode, users (developers) need to replace their debug.keystore file with ours in order to enable Google Place service. The debug.keystore is already uploaded. You can download and use it.
+Locations:
+~/.android/ on OS X and Linux
+C:\Documents and Settings\<user>\.android\ on Windows XP
+C:\Users\<user>\.android\ on Windows Vista and Windows 7, 8, and 10
 
 ## Code Examples
 
