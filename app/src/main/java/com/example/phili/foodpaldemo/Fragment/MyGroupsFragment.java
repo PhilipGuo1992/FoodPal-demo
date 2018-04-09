@@ -5,16 +5,13 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
 import com.example.phili.foodpaldemo.GroupHolder;
 import com.example.phili.foodpaldemo.R;
 import com.example.phili.foodpaldemo.models.UserGroup;
@@ -25,7 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +54,8 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
     public MyGroupsFragment() {
         // Required empty public constructor
     }
+
+    //Citation[16]
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +104,7 @@ public class MyGroupsFragment extends android.support.v4.app.Fragment implements
         recyclerAdapter.stopListening();
     }
 
-
+     //Citation[17]
     public void initRecyclerView(Query query) {
         FirebaseRecyclerOptions<UserGroup> options =
                 new FirebaseRecyclerOptions.Builder<UserGroup>()

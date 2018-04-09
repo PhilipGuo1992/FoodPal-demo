@@ -1,5 +1,7 @@
 <resources>
+
     <string name="app_name">Food Pal</string>
+    <string name="EnterMessage">Enter Your Message here</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>

@@ -14,7 +14,7 @@ import android.support.v7.app.AlertDialog;
 
 public class LeaveGroupConfirmFragment extends DialogFragment {
 
-    // cite code: developer.android.com/guide/topics/ui/dialogs.html
+    // Citation[20] developer.android.com/guide/topics/ui/dialogs.html
 
     public interface LeaveDialogListener{
         public void onDialogPositiveClick(DialogFragment dialog);

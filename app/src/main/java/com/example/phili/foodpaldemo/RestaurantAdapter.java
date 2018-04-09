@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Created by zongming on 2018-03-19.
- * Ref: https://developer.android.com/guide/topics/ui/layout/recyclerview.html
+ * Citation[19] Ref: https://developer.android.com/guide/topics/ui/layout/recyclerview.html
  */
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {

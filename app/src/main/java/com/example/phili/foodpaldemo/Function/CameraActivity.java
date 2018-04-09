@@ -17,7 +17,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private ImageView editPhoto;
 
-    //Below Code reference From Android Developer
+    //Citation[18] "Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/index.html. [Accessed: 08- Apr- 2018].
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {

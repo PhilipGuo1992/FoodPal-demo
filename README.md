@@ -32,13 +32,13 @@ We intend to create a mobile application called FoodPal that is an easy-to-use s
 **Cardview:** A FrameLayout with a rounded corner background and shadow. Source [here](https://developer.android.com/training/material/lists-cards.html?hl=zh-cn)
 
 ## Installation Notes
-The API level should be 23 or above and
+The API level should be 23 or above. As this project is under develop mode, users (developers) need to replace their debug.keystore file with ours in order to enable Google Place service. The debug.keystore is already uploaded. You can download and use it.
 
 ## Code Examples
 
-**Problem 1: In the beginning, the model design is a challenge.**
+**Problem 1: How to handle the relationship between user and group.**
 
-The many-to-many relationship need to be managed well in Firebase. For our project, we have users and groups. Each user can join many groups, and each group can have many users, which is a many-to-many relationship. We used Map to manage the relationship.  In Firebase, we stored the groups’ id in the user file, also we stored the user’s id to the group file.
+It is tricky to handle the many-to-many relationship in Firebase. For our project, we have user model and usergroup model. Each user can join many groups, and each group can have many users, which is a many-to-many relationship. We used Map to manage the relationship.  In Firebase, we stored the groups’ id in the user file, also we stored the user’s id to the group file.
 ```
 //  the user model
 public class User {
@@ -138,19 +138,19 @@ When users are in a group, there is a button on the group information page calle
 
 
 ## Final Project Status
-We did achieve our goals, even through we have one expected functionality is partially completed. We finished all the minimum functionality, and three bonus functionality.
+We did a good job on the project and achieved all our expectations. We finished all the minimum functionality, all the expected functionality, and two bonus functionality.
 
 #### Minimum Functionality
 - Feature 1 Camera (Completed)
-- Feature 2 User Registration(Using Firebase) (Completed)
-- Feature 3 Access to local storage  (Completed)
+- Feature 2 User Registration(Local Storage (Firebase))(Completed)
+- Feature 3 Access to local storage(Completed)
 - Feature 4 User Profile (Completed)
 - Feature 5 User can join or leave the group(Completed)
 - Feature 6 Register with Dalhousie Mail(Completed)
 
 #### Expected Functionality
 - Feature 1 Notification (Completed)
-- Feature 2 List of Restaurants (Completed)
+- Feature 2 List of Restaurants(Using Google Map)(Completed)
 
 #### Bonus Functionality
 - Feature 1 Chat Functionality(Completed)
@@ -172,4 +172,10 @@ We did achieve our goals, even through we have one expected functionality is par
 [12] georgiecasey, How to set custom header in Volley Request, Stack Overflow. Accessed on Mar. 18, 2018. [Online]. Available: https://stackoverflow.com/questions/17049473/how-to-set-custom-header-in-volley-request  
 [13] “Modern Profile UI Design in Android Studio,” YouTube, 05-Oct-2017. [Online]. Available: https://www.youtube.com/watch?v=2pirZvqXza0&t=1153s.  
 [14]"Android Chat Tutorial: Building a Messaging UI", Blog.sendbird.com, 2018. [Online]. Available: https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui. [Accessed: 06- Apr- 2018].
-[15]
+[15]"firebase/FirebaseUI-Android", GitHub, 2018. [Online]. Available: https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md. [Accessed: 07- Apr- 2018].
+[16]"Почему не конвертируются Fragment?", «Тостер» — вопросы и ответы, 2018. [Online]. Available: https://toster.ru/q/185673. [Accessed: 07- Apr- 2018].
+[17] Qaru and К. RecyclerView, "android - Как создать контекстное меню для RecyclerView - Qaru", Qaru.site, 2018. [Online]. Available: http://qaru.site/questions/97825/how-to-create-context-menu-for-recyclerview. [Accessed: 08- Apr- 2018].
+[18]"Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/index.html. [Accessed: 08- Apr- 2018].
+[19]"Create a List with RecyclerView | Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/guide/topics/ui/layout/recyclerview.html. [Accessed: 08- Apr- 2018].
+[20]"Create a navigation list | Android Developers", Developer.android.com, 2018. [Online]. Available: https://developer.android.com/guide/topics/ui/dialogs.html. [Accessed: 08- Apr- 2018].
+[21]"Dynamically add elements to a listView Android", Stackoverflow.com, 2018. [Online]. Available: https://stackoverflow.com/questions/4540754/dynamically-add-elements-to-a-listview-android. [Accessed: 08- Apr- 2018].
