@@ -161,7 +161,7 @@ We did a good job on the project and achieved all our expectations. We finished 
 
 #### Expected Functionality
 - Feature 1 Notification (Completed)
-- Feature 2 List of Restaurants(Using Google Map)(Completed)
+- Feature 2 List of Restaurants(Using Zomato's API)(Completed)
 
 #### Bonus Functionality
 - Feature 1 Chat Functionality(Completed)
